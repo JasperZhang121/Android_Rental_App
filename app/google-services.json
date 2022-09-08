@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "111393266534",
+    "project_id": "linkhome-ab7b5",
+    "storage_bucket": "linkhome-ab7b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111393266534:android:9dc2499e012074c96e86a7",
+        "android_client_info": {
+          "package_name": "au.edu.anu.cecs.linkhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111393266534-7psglbabldc34psnonrjgijjr8a8j0q5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPDEDnxJLkH29CG1kLFZTihbKOOVxO_-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111393266534-7psglbabldc34psnonrjgijjr8a8j0q5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
