@@ -219,7 +219,7 @@ Feature Category: Firebase Integration <br>
 
 *Here is an example (you could start numbering your meetings from 1):*
 
-- *[Team Meeting 0](./meeting0.md)*
+- *[Team Meeting 0](./meeting1.md)*
 - ...
 
 * Link to the minutes of your meetings as above. There must be at least 4 team meetings. 

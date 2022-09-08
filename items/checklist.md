@@ -9,7 +9,7 @@ The following markdown document is a checklist of items you **should** complete 
 
 ## Documents (all non-android files) located in a folder named `items`
 - [ ] A conflict resolution protocol is documented and well-defined.
-- [ ] All Team Meeting Minutes (with links in the report). There must be at least 4 meetings among the team. See the [meeting template](./meeting0.md) for guidance on how to structure these if you have never done this before.
+- [ ] All Team Meeting Minutes (with links in the report). There must be at least 4 meetings among the team. See the [meeting template](./meeting1.md) for guidance on how to structure these if you have never done this before.
 - [ ] A working standalone **APK**, i.e., an APK that can be loaded and execute correctly on an AVD.
 - [ ] Have a markdown report document titled 'report.md'.
 - [ ] **Statement of Originality**: All members have read and signed the [statement of originality](./statement-of-originality.yml). Failure to do so will result in zero marks.
