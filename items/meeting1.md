@@ -1,6 +1,6 @@
-# [indexOutOfBounds]
+# indexOutOfBounds
 
-## Team Meeting [1] - Week [Teaching break] - [8th Sept, 2022] (12-2pm)
+## Team Meeting 1 - Teaching break - 8th Sept, 2022 (12-2pm)
 **Absent: None**
 <br>
 **Lead/scribe: Avani**
@@ -17,8 +17,8 @@ Target date: 15th Sept
 ## Agenda Items
 | Number | Item |
 | :--- | ---: |
-| [1] | [Introduce ourselves] |
-| [2] | [Distribute tasks among  ourselves] |
+| 1 | Introduce ourselves |
+| 2 | Distribute tasks among  ourselves |
 
 ## Meeting Minutes
 - Introduced ourselves
@@ -29,14 +29,14 @@ Target date: 15th Sept
 ## TODO Items
 | Task | Assignee |
 | :--- | ---: |
-| [Log-in with Firebase authentication] | [Avani, Devanshi] |
-| [Simulating data-streams using FireBase] | [Nihar, Hao] |
+| Log-in with Firebase authentication] | Avani, Devanshi |
+| Simulating data-streams using FireBase] | Nihar, Hao |
 
 ## Scribe Rotation
 The following dictates who will be scribe in this and the next meeting.
 | Name |
 | :---: |
-| [Avani] |
-| [Devanshi] |
-| [Nihar] |
-| [Hao] |
+| Avani |
+| Devanshi |
+| Nihar |
+| Hao |
