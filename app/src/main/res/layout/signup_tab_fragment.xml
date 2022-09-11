@@ -25,6 +25,7 @@
 
     <EditText
         android:id="@+id/password"
+        android:inputType="textPassword"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
 
     <EditText
         android:id="@+id/confirm_password"
+        android:inputType="textPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="10dp"
