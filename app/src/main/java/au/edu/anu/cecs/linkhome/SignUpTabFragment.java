@@ -68,6 +68,7 @@ public class SignUpTabFragment extends Fragment {
         }
         else if(!passwordNew.equals(passwordConfirm)){
             confirm_password.setError("Passwords do not match");
+            confirm_password.requestFocus();
         }
         else{
             mAuth.createUserWithEmailAndPassword(emailID,passwordConfirm).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

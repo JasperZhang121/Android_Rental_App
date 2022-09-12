@@ -27,6 +27,7 @@ public class LoginTabFragment extends Fragment {
     Button login;
 
 
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -67,16 +68,15 @@ public class LoginTabFragment extends Fragment {
             mAuth.signInWithEmailAndPassword(emailID, passwordNew).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getContext(), HomePage.class));
                         }
+
                         else{
                             Toast.makeText(getContext(),"Login Error" +
                                     task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
                 }
             });
         }

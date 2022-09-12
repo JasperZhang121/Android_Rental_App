@@ -22,12 +22,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if(firebaseUser == null){
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            mAuth.signOut();
+
+        if (firebaseUser != null) {
+            finish();
         }
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
     }
+
+
 
 
 

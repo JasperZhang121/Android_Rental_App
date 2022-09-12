@@ -3,13 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/jaspe/StudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_database.xml" value="0.22282608695652173" />
-        <entry key="..\:/Users/jaspe/StudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_main.xml" value="0.22282608695652173" />
-        <entry key="..\:/Users/jaspe/StudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/item.xml" value="0.22282608695652173" />
-        <entry key="..\:/Users/jaspe/StudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/login_tab_fragment.xml" value="0.22327898550724637" />
+        <entry key="app/src/main/res/layout/activity_database.xml" value="0.27323455810546876" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.30520833333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.30520833333333336" />
+        <entry key="app/src/main/res/layout/item.xml" value="0.30520833333333336" />
         <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.26020965576171873" />
         <entry key="app/src/main/res/layout/signup_tab_fragment.xml" value="0.30520833333333336" />
       </map>

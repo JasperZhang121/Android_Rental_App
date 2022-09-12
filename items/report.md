@@ -1,4 +1,4 @@
-# [Team Name] Report
+# indexOutOfBounds Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -197,15 +197,23 @@ Production Rules:
 
 *Here are some examples:*
 
-Feature Category: Privacy <br>
+Feature Category: Login Screen and Firebase Integration <br>
 *Implemented features:*
-1. Feature 1: **Users may ... . (easy)**
-   * Class X, methods Z, Y, Lines of code: 10-100
-   * Class Y, methods K, L, M, Lines of code: 35-150
+1: Feature 1: **Users must be able to log in successfully (easy)**
+* Class LoginActivity, methods Z, Y, Lines of code: 10-100
+* Class LoginAdapter, methods K, L, M, Lines of code: 35-150
+* Class LoginTabFragment
+* Your description: ...
+  <br>
+2. Feature 2: **Users can sign up if not registered already**
+   * Class SignUpTabFragment, methods Z, Y, Lines of code: 10-100
+   * Class LoginActivity, methods K, L, M, Lines of code: 35-150
+   * Class LoginAdapter, methods K, L, M, Lines of code: 35-150
    * Your description: ...
 <br>
-2. Feature 2: **A user can only ... . (medium)**
+3. Feature 2: **A user can only ... . (medium)**
 <br>
+
 
 Feature Category: Firebase Integration <br>
 *Implemented features:* <br>
@@ -219,7 +227,7 @@ Feature Category: Firebase Integration <br>
 
 *Here is an example (you could start numbering your meetings from 1):*
 
-- *[Team Meeting 0](./meeting1.md)*
+- *[Team Meeting 1](./meeting1.md)*
 - ...
 
 * Link to the minutes of your meetings as above. There must be at least 4 team meetings. 
