@@ -203,15 +203,24 @@ Feature Category: Login Screen and Firebase Integration <br>
 * Class LoginActivity, methods Z, Y, Lines of code: 10-100
 * Class LoginAdapter, methods K, L, M, Lines of code: 35-150
 * Class LoginTabFragment
+* User Interface for Database which user check for attributes for our database (activity_database.xml)
+* UI for single data (item.xml).
+* Class Data Inserted few attributes like address, city, postalZip, rent
+* Class DataAdapter This file is used to link to the item database file.
+* Class Database Make the list to insert the item into 
+* 
+* 
 * Your description: ...
   <br>
 2. Feature 2: **Users can sign up if not registered already**
    * Class SignUpTabFragment, methods Z, Y, Lines of code: 10-100
    * Class LoginActivity, methods K, L, M, Lines of code: 35-150
    * Class LoginAdapter, methods K, L, M, Lines of code: 35-150
+   * Class 
    * Your description: ...
 <br>
 3. Feature 2: **A user can only ... . (medium)**
+4. Feature 3: Access for the Database where we have added the attribute Address, City, PostalZip Code, Rent 
 <br>
 
 
