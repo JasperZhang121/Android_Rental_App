@@ -10,7 +10,7 @@ Meeting Location: In-person at Chiefly Library
 
 Actionable items:
 - Load the images on the front-end and add description to them
-- Work around a bit to implement the search functionality 
+- Start with the search functionality using Tokenizers and Parsers 
 
 Target date: 23rd Sept
 
@@ -20,11 +20,14 @@ Target date: 23rd Sept
 | 1 | Discuss the functionalities implemented |
 | 2 | Worked on few areas to enhance the existing UI|
 | 3 | Distribute tasks among ourselves |
+| 4 | To implement the search functionality |
 
 ## Meeting Minutes
 - Team members presented their work
 - Exchanged sources to learn android among ourselves
 - Assigned tasks to group members
+- Decided to implement AVL tree for our app
+- Decided the grammar and structure of the data
 
 ## TODO Items
 | Task | Assignee |
