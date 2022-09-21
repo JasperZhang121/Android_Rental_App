@@ -18,4 +18,5 @@ public class Data {
     public String getRent() {
         return rent;
     }
+
 }

@@ -70,7 +70,8 @@ public class LoginTabFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getContext(), HomePage.class));
+                            // startActivity(new Intent(getContext(), HomePage.class));
+                            startActivity(new Intent(getContext(), Database.class));
                         }
 
                         else{
