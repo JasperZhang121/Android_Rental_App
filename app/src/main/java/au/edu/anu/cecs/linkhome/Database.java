@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,11 @@ public class Database extends AppCompatActivity {
     DataAdapter DataAdapter;
     ArrayList<Data> list;
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(Database.this, MainActivity.class));
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +35,14 @@ public class Database extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.Database);
         database = FirebaseDatabase.getInstance().getReference("Users");
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
+        System.out.println("Just Checking");
         list = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DataAdapter = new DataAdapter(this,list);
+        //recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        list = new ArrayList<>();
+//        DataAdapter = new DataAdapter(this,list);
         recyclerView.setAdapter(DataAdapter);
 
 
@@ -46,6 +53,7 @@ public class Database extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Data user = dataSnapshot.getValue(Data.class);
                     list.add(user);
+                    System.out.println("LIST: " + list);
                 }
                 DataAdapter.notifyDataSetChanged();
             }
