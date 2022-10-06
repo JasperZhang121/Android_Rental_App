@@ -7,16 +7,16 @@ import java.util.List;
  * The following interface defines required methods of any Tree.
  * Note that this is simplified for this lab (no delete).
  *
- * @param <T> the generic type this Tree uses. It extends comparable
+ * @param <Address> the generic type this Tree uses. It extends comparable
  *            which allows us to order two of the same type.
  */
-public abstract class Tree<T extends Comparable<T>> {
+public abstract class Tree<Address extends Comparable<Address>> {
     /**
      * Here we store our class fields.
      */
-    public final T value;       // element stored in this node of the tree.
-    public Tree<T> leftNode;    // less than the node.
-    public Tree<T> rightNode;   // greater than the node.
+    public final Address value;       // element stored in this node of the tree.
+    public Tree<Address> leftNode;    // less than the node.
+    public Tree<Address> rightNode;   // greater than the node.
 
     /**
      * Constructor to allow for empty trees
@@ -31,7 +31,7 @@ public abstract class Tree<T extends Comparable<T>> {
      *
      * @param value to set as this node's value.
      */
-    public Tree(T value) {
+    public Tree(Address value) {
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -47,7 +47,7 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param leftNode  left child of current node.
      * @param rightNode right child of current node.
      */
-    public Tree(T value, Tree<T> leftNode, Tree<T> rightNode) {
+    public Tree(Address value, Tree<Address> leftNode, Tree<Address> rightNode) {
         // Ensure inputs are not null.
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
@@ -57,13 +57,13 @@ public abstract class Tree<T extends Comparable<T>> {
         this.rightNode = rightNode;
     }
 
-    public abstract T min();                     // Finds the minimum.
+    public abstract Address min();                     // Finds the minimum.
 
-    public abstract T max();                     // Finds the maximum.
+    public abstract Address max();                     // Finds the maximum.
 
-    public abstract Tree<T> find(T element);     // Finds the element and returns the node.
+    public abstract Tree<Address> find(Address element);     // Finds the element and returns the node.
 
-    public abstract Tree<T> insert(T element);   // Inserts the element and returns a new instance of itself with the new node.
+    public abstract Tree<Address> insert(Address element);   // Inserts the element and returns a new instance of itself with the new node.
 
     /**
      * Height of current node.
@@ -79,7 +79,7 @@ public abstract class Tree<T extends Comparable<T>> {
     @Override
     public String toString() {
         return "{" +
-                "value=" + value +
+                "rent=" + value +
                 ", leftNode=" + leftNode +
                 ", rightNode=" + rightNode +
                 '}';
@@ -114,7 +114,7 @@ public abstract class Tree<T extends Comparable<T>> {
     /**
       * List the elements of the tree with in-order
       */
-    public List<T> inOrder() {
+    public List<Address> inOrder() {
 		return this.treeToListInOrder(this);
 	}
 
@@ -123,8 +123,8 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param tree to convert to list.
      * @return in-order list of tree values.
      */
-	private List<T> treeToListInOrder(Tree<T> tree) {
-		List<T> list = new LinkedList<>();
+	private List<Address> treeToListInOrder(Tree<Address> tree) {
+		List<Address> list = new LinkedList<>();
 
 		// Recurse through left subtree.
         if (tree.leftNode != null) {
@@ -132,7 +132,6 @@ public abstract class Tree<T extends Comparable<T>> {
                 list.addAll(treeToListInOrder(tree.leftNode));
             }
         }
-
 
 		// Add current node's value
         if (tree.value != null) {

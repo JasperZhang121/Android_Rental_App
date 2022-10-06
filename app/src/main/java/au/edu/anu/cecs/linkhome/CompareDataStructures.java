@@ -17,40 +17,20 @@ public class CompareDataStructures {
             Note that you can only run this test after you have properly implemented
             the AVL tree.
          */
-        int[] values = new int[10000]; // Feel free to edit this to be even larger!
+        Data[] values = new Data[10000]; // Feel free to edit this to be even larger!
         Random rand = new Random();
         for (int i = 0; i < values.length; i++) {
-            values[i] = rand.nextInt();
+            values[i] = new Data("adshiuwhf", "wuigfwui", "wgfuw", rand.nextInt());
         }
 
-        /*
-             Just a fun bit of code :)
-             Want to see the distribution of positive and negative numbers? Uncomment the code below!
-         */
-//        int pos = 0;
-//        int neg = 0;
-//        int zero = 0;
-//        for (int v : values) {
-//            if (v > 0)
-//                pos += 1;
-//            else if (v < 0)
-//                neg += 1;
-//            else
-//                zero += 1;
-//        }
-//        System.out.println("number of negative numbers: " + neg + " which makes up: " + (float) (neg)/(neg+pos+zero)*100 + "% of numbers generated");
-//        System.out.println("number of positive numbers: " + pos + " which makes up: " + (float) (pos)/(neg+pos+zero)*100 + "% of numbers generated");
-//        System.out.println("number of times zero occurs (neither positive nor negative): " + zero + " which makes up: " + (float) (zero)/(neg+pos+zero)*100 + "% of numbers generated");
-
-
         // Create BST to test
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>(values[0]);
+        BinarySearchTree<Data> bst = new BinarySearchTree<>(values[0]);
         for (int i = 1; i < values.length; i++) {
             bst = bst.insert(values[i]);
         }
 
         // Create AVL tree to test
-        AVLTree<Integer> avl = new AVLTree<>(values[0]);
+        AVLTree<Data> avl = new AVLTree<>(values[0]);
         for (int i = 1; i < values.length; i++) {
             avl = avl.insert(values[i]);
         }
@@ -76,26 +56,27 @@ public class CompareDataStructures {
      * @param array of integers.
      * @return range of array.
      */
-    private static int getRangeFromArray(int[] array) {
+    private static int getRangeFromArray(Data[] array) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        for (int val : array) {
-            if (val < min)
-                min = val;
-            if (val > max)
-                max = val;
+        for (Data val : array) {
+            int rent = val.getRent();
+            if (rent < min)
+                min = rent;
+            if (rent > max)
+                max = rent;
         }
 
         return min < 0 ? max + min : max - min;
     }
 
     /**
-     * @param AVLTree<Integer> AVL tree which holds type integer.
+     * @param tree<Data> AVL tree which holds type integer.
      * @return range of avl tree.
      */
-    private static int getRangeFromTree(Tree<Integer> tree) {
-        int max = tree.max();
-        int min = tree.min();
+    private static int getRangeFromTree(Tree<Data> tree) {
+        int max = tree.max().getRent();
+        int min = tree.min().getRent();
         return min < 0 ? max + min : max - min;
     }
 }

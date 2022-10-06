@@ -205,7 +205,7 @@ Feature Category: Login Screen and Firebase Integration <br>
 * Class LoginTabFragment
 * User Interface for Database which user check for attributes for our database (activity_database.xml)
 * UI for single data (item.xml).
-* Class Data Inserted few attributes like address, city, postalZip, rent
+* Class Data Inserted few attributes like data, city, postalZip, rent
 * Class DataAdapter This file is used to link to the item database file.
 * Class Database Make the list to insert the item into 
 * 

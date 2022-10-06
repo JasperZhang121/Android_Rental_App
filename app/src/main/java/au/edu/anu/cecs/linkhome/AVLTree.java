@@ -15,7 +15,7 @@ package au.edu.anu.cecs.linkhome;
  * of the method '.display()' (found in Tree.java which class, AVLTree, extends through BinarySearchTree). This
  * method will provide you with a graphical representation of the tree.
  */
-public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
+public class AVLTree<Data extends Comparable<Data>> extends BinarySearchTree<Data> {
     /*
         As a result of inheritance by using 'extends BinarySearchTree<T>,
         all class fields within BinarySearchTree are also present here.
@@ -25,14 +25,14 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             - rightNode
      */
 
-    public AVLTree(T value) {
+    public AVLTree(Data value) {
         super(value);
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
         this.leftNode = new EmptyAVL<>();
         this.rightNode = new EmptyAVL<>();
     }
 
-    public AVLTree(T value, Tree<T> leftNode, Tree<T> rightNode) {
+    public AVLTree(Data value, Tree<Data> leftNode, Tree<Data> rightNode) {
         super(value, leftNode, rightNode);
     }
 
@@ -50,7 +50,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     @Override
-    public AVLTree<T> insert(T element) {
+    public AVLTree<Data> insert(Data element) {
         /*
             TODO: Write and or complete your insertion code here
             Note that what each method does is described in its superclass unless edited.
@@ -58,7 +58,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
          */
 
         // To ensure immutability
-        AVLTree<T> newTreeCopy= new AVLTree<>(this.value,this.leftNode,this.rightNode);
+        AVLTree<Data> newTreeCopy= new AVLTree<>(this.value,this.leftNode,this.rightNode);
 
         // Ensure input is not null
         if (element == null)
@@ -66,9 +66,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
         // Using the property of the BST
         if (element.compareTo(value) > 0) {
-
             newTreeCopy.rightNode=newTreeCopy.rightNode.insert(element);
-            //return new AVLTree<>(this.value,this.leftNode,this.rightNode);
             // COMPLETE
         }
         else if (element.compareTo(value) < 0) {
@@ -87,7 +85,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         if(newTreeCopy.getBalanceFactor()<-1){
             assert newTreeCopy.rightNode.value != null;
             if(element.compareTo(newTreeCopy.rightNode.value)<=0) {
-                AVLTree<T> rightNode = (AVLTree<T>) newTreeCopy.rightNode;
+                AVLTree<Data> rightNode = (AVLTree<Data>) newTreeCopy.rightNode;
                 newTreeCopy.rightNode = rightNode.rightRotate();
             }
             return newTreeCopy.leftRotate();
@@ -95,7 +93,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         else if(newTreeCopy.getBalanceFactor()>1){
             assert newTreeCopy.leftNode.value != null;
             if(element.compareTo(newTreeCopy.leftNode.value)>=0) {
-                AVLTree<T> leftNode = (AVLTree<T>) newTreeCopy.leftNode;
+                AVLTree<Data> leftNode = (AVLTree<Data>) newTreeCopy.leftNode;
                 newTreeCopy.leftNode= leftNode.leftRotate();
                 return newTreeCopy.rightRotate();
             }
@@ -114,7 +112,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      *
      * @return the new 'current' or 'top' node after rotation.
      */
-    public AVLTree<T> leftRotate() {
+    public AVLTree<Data> leftRotate() {
         /*
             TODO: Write and or complete this method so that you can conduct a left rotation on the current node.
             This can be quite difficult to get your head around. Try looking for visualisations
@@ -131,14 +129,14 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             than something about your code is incorrect!
          */
 
-        Tree<T> newParent = this.rightNode; // 8, 10
-        Tree<T> newRightOfCurrent = newParent.leftNode; //5
+        Tree<Data> newParent = this.rightNode; // 8, 10
+        Tree<Data> newRightOfCurrent = newParent.leftNode; //5
         newParent.leftNode=this;
         newParent.leftNode.rightNode=newRightOfCurrent;
 
         // COMPLETE
 
-        return (AVLTree<T>) newParent; // Change to return something different
+        return (AVLTree<Data>) newParent; // Change to return something different
     }
 
     /**
@@ -146,7 +144,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      *
      * @return the new 'current' or 'top' node after rotation.
      */
-    public AVLTree<T> rightRotate() {
+    public AVLTree<Data> rightRotate() {
         /*
             TODO: Write this method so that you can conduct a right rotation on the current node.
             This can be quite difficult to get your head around. Try looking for visualisations
@@ -162,14 +160,14 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             (AVLTree$EmptyAVL and AVLTree are in unnamed module of loader 'app')'
             than something about your code is incorrect!
          */
-        Tree<T> newParent = this.leftNode;
-        Tree<T> newRightOfCurrent = newParent.rightNode;
+        Tree<Data> newParent = this.leftNode;
+        Tree<Data> newRightOfCurrent = newParent.rightNode;
 
         newParent.rightNode=this;
         newParent.rightNode.leftNode=newRightOfCurrent;
         // COMPLETE
 
-        return (AVLTree<T>) newParent;
+        return (AVLTree<Data>) newParent;
 
 
         //return null; // Change to return something different
@@ -180,11 +178,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * The answer is: this is just a design decision. 'insert' here will return something specific
      * to the parent class inheriting Tree from BinarySearchTree. In this case an AVL tree.
      */
-    public static class EmptyAVL<T extends Comparable<T>> extends EmptyTree<T> {
+    public static class EmptyAVL<Data extends Comparable<Data>> extends EmptyTree<Data> {
         @Override
-        public Tree<T> insert(T element) {
+        public Tree<Data> insert(Data element) {
             // The creation of a new Tree, hence, return tree.
-            return new AVLTree<T>(element);
+            return new AVLTree<Data>(element);
         }
     }
 }

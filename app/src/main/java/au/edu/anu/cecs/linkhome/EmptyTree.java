@@ -4,24 +4,24 @@ package au.edu.anu.cecs.linkhome;
  * To avoid null pointer errors (and because this implementation is immutable)
  * we have a class that represents an 'empty' tree.
  */
-public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
+public abstract class EmptyTree<Data extends Comparable<Data>> extends Tree<Data> {
     // Will need to be implemented by the subclass inheriting this class.
-    public abstract Tree<T> insert(T element);
+    public abstract Tree<Data> insert(Data element);
 
     @Override
-    public T min() {
+    public Data min() {
         // No minimum.
         return null;
     }
 
     @Override
-    public T max() {
+    public Data max() {
         // No maximum.
         return null;
     }
 
     @Override
-    public Tree<T> find(T element) {
+    public Tree<Data> find(Data element) {
         // Was unable to find the item. Hence, return null.
         return null;
     }
