@@ -21,7 +21,7 @@ public class Database extends AppCompatActivity {
     DatabaseReference database;
     DataAdapter DataAdapter;
     ArrayList<Data> list;
-
+//
 //    public void onBackPressed(){
 //        super.onBackPressed();
 //        startActivity(new Intent(Database.this, MainActivity.class));
