@@ -1,22 +1,21 @@
 package au.edu.anu.cecs.linkhome;
 
 public class Data {
-    String address, city, postalZip, rent;
+    String address, city, rent, postalZip;
 
     public String getAddress() {
-        return address;
-    }
+        return address;}
 
     public String getCity() {
         return city;
     }
 
     public String getPostalZip() {
-        return postalZip;
+          return postalZip;
     }
 
     public String getRent() {
         return rent;
     }
-
 }
+
