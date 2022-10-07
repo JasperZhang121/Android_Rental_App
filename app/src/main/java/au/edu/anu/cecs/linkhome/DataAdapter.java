@@ -16,7 +16,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
 
     ArrayList<Data> list;
 
-
     public DataAdapter(Context context, ArrayList<Data> list) {
         this.context = context;
         this.list = list;
