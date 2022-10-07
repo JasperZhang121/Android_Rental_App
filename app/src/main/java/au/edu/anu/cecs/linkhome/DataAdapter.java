@@ -36,6 +36,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         holder.city.setText(user.getCity());
         holder.postalZip.setText(user.getPostalZip());
         holder.rent.setText(user.getRent());
+
     }
 
     @Override
