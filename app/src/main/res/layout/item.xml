@@ -15,41 +15,22 @@
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
-
-
         <LinearLayout
+
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-
-
-            <TextView
+            <ImageView
+                android:id="@+id/DatabaseimageView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="data :"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
-
-
-            <TextView
-                android:id="@+id/Databaseaddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="Arya"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-
+                android:layout_height="300dp"
+                android:src="@drawable/logo" />
 
         </LinearLayout>
 
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,15 +38,13 @@
             android:orientation="horizontal">
 
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="city:"
+                android:text="City:"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -74,12 +53,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="Stark"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address :"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/Databaseaddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="Arya"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+
+
+        </LinearLayout>
+
+
+
+
 
 
 
@@ -90,15 +104,13 @@
             android:orientation="horizontal">
 
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="postalZip :"
+                android:text="PostalZip :"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -107,8 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="18"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
 
 
@@ -122,15 +135,13 @@
             android:orientation="horizontal">
 
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="rent :"
+                android:text="Rent :"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -139,8 +150,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:text="18"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
 
 

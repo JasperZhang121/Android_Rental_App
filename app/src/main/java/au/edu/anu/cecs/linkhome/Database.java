@@ -48,10 +48,12 @@ public class Database extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
                     Data user = dataSnapshot.getValue(Data.class);
                     list.add(user);
                     System.out.println("LIST: " + list);
                 }
+
                 DataAdapter.notifyDataSetChanged();
             }
 
