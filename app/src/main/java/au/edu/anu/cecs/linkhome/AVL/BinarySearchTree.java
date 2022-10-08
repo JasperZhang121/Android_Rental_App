@@ -4,37 +4,35 @@ package au.edu.anu.cecs.linkhome.AVL;
  * An AVL tree is actually an extension of a Binary Search Tree
  * with self balancing properties. Hence, our AVL trees will 'extend'
  * this Binary Search tree data structure.
- *
- * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
-public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> {
+public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
 
-    public BinarySearchTree(Data value) {
+    public BinarySearchTree(T value) {
         super(value);
         this.leftNode = new EmptyBST<>();
         this.rightNode = new EmptyBST<>();
     }
 
-    public BinarySearchTree(Data value, Tree<Data> leftNode, Tree<Data> rightNode) {
+    public BinarySearchTree(T value, Tree<T> leftNode, Tree<T> rightNode) {
         super(value, leftNode, rightNode);
     }
 
     @Override
-    public Data min() {
+    public T min() {
         return (leftNode instanceof EmptyTree) ? value : leftNode.min();
     }
 
     @Override
-    public Data max() {
+    public T max() {
         return (rightNode instanceof EmptyTree) ? value : rightNode.max();
     }
 
     @Override
-    public Tree<Data> find(Data element) {
+    public Tree<T> find(T element) {
         /*
             Left is less, right is greater in this implementation.
-            compareTo returns 0 if both elements' rent are equal.
-            compareTo returns < 0 if the element's rent is less than the node's rent.
+            compareTo returns 0 if both elements are equal.
+            compareTo returns <= 0 if the element's rent is less than or equal to the node's rent.
             compareTo returns > 0 if the element's rent is greater than the node's rent.
          */
 
@@ -42,9 +40,9 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        if (element.compareTo(value) == 0) {
+        if (element.equals(value)){
             return this;
-        } else if (element.compareTo(value) < 0) {
+        } else if (element.compareTo(value) <= 0) {
             //If element not in tree
             if(leftNode == null)
                 return null;
@@ -58,7 +56,7 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
     }
 
     @Override
-    public BinarySearchTree<Data> insert(Data element) {
+    public BinarySearchTree<T> insert(T element) {
         // Ensure input is not null.
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -71,12 +69,6 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         }
     }
 
-    @Override
-    public BinarySearchTree<Data> delete(Data element) {
-        // Ensure input is not null.
-        return this;
-    }
-
     /**
      * Note that this is not within a file of its own... WHY?
      * The answer is: this is just a design decision. 'insert' here will return something specific
@@ -87,11 +79,6 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         public Tree<Data> insert(Data element) {
             // The creation of a new Tree, hence, return tree.
             return new BinarySearchTree<>(element);
-        }
-        @Override
-        public Tree<Data> delete(Data element) {
-            // The creation of a new Tree, hence, return tree.
-            return new EmptyBST<>();
         }
     }
 }

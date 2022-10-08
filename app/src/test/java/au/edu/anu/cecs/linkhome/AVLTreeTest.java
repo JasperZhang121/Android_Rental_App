@@ -225,7 +225,7 @@ public class AVLTreeTest {
                 .insert(new Data("something", "Canberra", "2612", "$275"))
                 .insert(new Data("something", "Canberra", "2612", "$350"));
 
-        String expected = "{rent=250, leftNode={rent=175, leftNode={rent=125, leftNode={rent=100, leftNode={}, rightNode={}}, rightNode={rent=150, leftNode={}, rightNode={}}}, rightNode={rent=200, leftNode={}, rightNode={rent=225, leftNode={}, rightNode={}}}}, rightNode={rent=325, leftNode={rent=300, leftNode={rent=275, leftNode={}, rightNode={}}, rightNode={}}, rightNode={rent=375, leftNode={rent=350, leftNode={}, rightNode={}}, rightNode={rent=400, leftNode={}, rightNode={}}}}}";
+        String expected = "{rent=$250, leftNode={rent=$175, leftNode={rent=$125, leftNode={rent=$100, leftNode={}, rightNode={}}, rightNode={rent=$150, leftNode={}, rightNode={}}}, rightNode={rent=$200, leftNode={}, rightNode={rent=$225, leftNode={}, rightNode={}}}}, rightNode={rent=$325, leftNode={rent=$300, leftNode={rent=$275, leftNode={}, rightNode={}}, rightNode={}}, rightNode={rent=$375, leftNode={rent=$350, leftNode={}, rightNode={}}, rightNode={rent=$400, leftNode={}, rightNode={}}}}}";
         assertNotNull(
                 "\nInsertion cannot handle either right right, right left, left left or left right double rotations." +
                         "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
@@ -271,7 +271,7 @@ public class AVLTreeTest {
                 .insert(new Data("something", "Canberra", "2612", "$300"))
                 .insert(new Data("something", "Canberra", "2612", "$500"));
 
-        expected = "{rent=350, leftNode={rent=250, leftNode={rent=200, leftNode={}, rightNode={}}, rightNode={rent=300, leftNode={}, rightNode={}}}, rightNode={rent=450, leftNode={rent=400, leftNode={}, rightNode={}}, rightNode={rent=500, leftNode={}, rightNode={}}}}";
+        expected = "{rent=$350, leftNode={rent=$250, leftNode={rent=$200, leftNode={}, rightNode={}}, rightNode={rent=$300, leftNode={}, rightNode={}}}, rightNode={rent=$450, leftNode={rent=$400, leftNode={}, rightNode={}}, rightNode={rent=$500, leftNode={}, rightNode={}}}}";
         assertNotNull(
                 "\nInsertion cannot handle either right right, right left, left left or left right double rotations." +
                         "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
@@ -306,42 +306,13 @@ public class AVLTreeTest {
         );
     }
 
-    @Test(timeout = 1000)
+    @Test(timeout = 1000, expected = IllegalArgumentException.class)
     public void elementDNEDeletionTest() {
         Data data1 = new Data("something", "Canberra", "2612", "$350");
         Data data2 = new Data("something", "Canberra", "2612", "$300");
         Data data3 = new Data("something", "Canberra", "2612", "$400");
-        AVLTree<Data> avl = new AVLTree<>(data1).insert(data2).insert(data3).delete(new Data("something", "Canberra", "2612", "$200"));
-        String expected = "{rent=350, leftNode={rent=300, leftNode={}, rightNode={}}, rightNode={rent=400, leftNode={}, rightNode={}}}";
-
-        assertNotNull(
-                "\nDeletion does not properly position values" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                avl.value);
-        assertNotNull(
-                "\nDeletion does not properly position values" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                avl.leftNode.value);
-        assertNotNull(
-                "\nDeletion does not properly position values" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                avl.rightNode.value);
-        assertEquals(
-                "\nDeletion does not properly position values" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                0, avl.getBalanceFactor());
-        assertEquals(
-                "\nDeletion should not change tree since element does not exist in tree" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                data1, avl.value);
-        assertEquals(
-                "\nDeletion should not change tree since element does not exist in tree" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                data2, avl.leftNode.value);
-        assertEquals(
-                "\nDeletion should not change tree since element does not exist in tree" +
-                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-                data3, avl.rightNode.value);
+        AVLTree<Data> avl = new AVLTree<>(data1).insert(data2).insert(data3).delete(new Data("something else ", "Canberra", "2612", "$300"));
+        String expected = "{rent=$350, leftNode={rent=$300, leftNode={}, rightNode={}}, rightNode={rent=$400, leftNode={}, rightNode={}}}";
     }
 
     @Test(timeout = 1000)
@@ -351,7 +322,7 @@ public class AVLTreeTest {
         Data data3 = new Data("something", "Canberra", "2612", "$400");
 
         AVLTree<Data> avl = new AVLTree<>(data1).insert(data2).insert(data3).delete(data1);
-        String expected = "{rent=400, leftNode={}, rightNode={rent=350, leftNode={}, rightNode={}}}";
+        String expected = "{rent=$400, leftNode={}, rightNode={rent=$350, leftNode={}, rightNode={}}}";
 
         assertNotNull(
                 "\nDeletion does not properly position values" +
@@ -375,58 +346,58 @@ public class AVLTreeTest {
                 data2, avl.leftNode.value);
     }
 
-//    @Test(timeout = 1000)
-//    public void advancedDeletionTest() {
-//        Data dataToBeDeleted = new Data("something", "Canberra", "2612", "$250");
-//        Data data1 = new Data("something", "Canberra", "2612", "$400");
-//        Data data2= new Data("something", "Canberra", "2612", "$300");
-//        Data data3 = new Data("something", "Canberra", "2612", "$500");
-//        AVLTree<Data> avl = new AVLTree<>(data1) //50 ---
-//                .insert(data2) //20
-//                .insert(data3) //70 -----
-//                .insert(dataToBeDeleted) //10
-//                .insert(new Data("something", "Canberra", "2612", "$350")) //30
-//                .insert(new Data("something", "Canberra", "2612", "$450")) //60
-//                .insert(new Data("something", "Canberra", "2612", "$550")) //80 ---
-//                .insert(new Data("something", "Canberra", "2612", "$375")) //35
-//                .insert(new Data("something", "Canberra", "2612", "$425")) //55
-//                .insert(new Data("something", "Canberra", "2612", "$525")) //75
-//                .insert(new Data("something", "Canberra", "2612", "$575")) //85
-//                .insert(new Data("something", "Canberra", "2612", "$600")) //90
-//                .delete(dataToBeDeleted); //10
-//        String expected = "{rent=400, leftNode={rent=300, leftNode={rent=250, leftNode={}, rightNode={rent=359, leftNode={}, rightNode={rent=375, leftNode={}, rightNode={}}}}, rightNode={}}, rightNode={rent=400, leftNode={}, rightNode={rent=450, leftNode={}, rightNode={}}}}";
-//        assertNotNull(
-//                "\nDeletion does not properly position values" +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                avl.value);
-//        assertNotNull(
-//                "\nDeletion does not properly position values" +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                avl.leftNode.value);
-//        assertNotNull(
-//                "\nDeletion does not properly position values" +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                avl.rightNode.value);
-//        assertEquals(
-//                "\nDeletion does not properly position values." +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                0, avl.getBalanceFactor()
-//        );
-//        assertEquals(
-//                "\nDeletion does not properly position values." +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                data1, avl.value
-//        );
-//        assertEquals(
-//                "\nDeletion does not properly position values." +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                data2, avl.leftNode.value
-//        );
-//        assertEquals(
-//                "\nDeletion does not properly position values." +
-//                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
-//                data3, avl.rightNode.value
-//        );
-//    }
+    @Test(timeout = 1000)
+    public void advancedDeletionTest() {;
+        Data dataToBeDeleted = new Data("something", "Canberra", "2612", "$250");
+        Data data1 = new Data("something", "Canberra", "2612", "$400");
+        Data data2 = new Data("something", "Canberra", "2612", "$500");
+        Data data3 = new Data("something", "Canberra", "2612", "$550");
+        AVLTree<Data> avl = new AVLTree<>(data1)
+                .insert(new Data("something", "Canberra", "2612", "$300"))
+                .insert(data2)
+                .insert(dataToBeDeleted)
+                .insert(new Data("something", "Canberra", "2612", "$350"))
+                .insert(new Data("something", "Canberra", "2612", "$450"))
+                .insert(data3)
+                .insert(new Data("something", "Canberra", "2612", "$375"))
+                .insert(new Data("something", "Canberra", "2612", "$425"))
+                .insert(new Data("something", "Canberra", "2612", "$525"))
+                .insert(new Data("something", "Canberra", "2612", "$575"))
+                .insert(new Data("something", "Canberra", "2612", "$600"))
+                .delete(dataToBeDeleted);
+        String expected = "rent=$500, leftNode={rent=$400, leftNode={rent=$350, leftNode={rent=$300, leftNode={}, rightNode={}}, rightNode={rent=$375, leftNode={}, rightNode={}}}, rightNode={rent=$450, leftNode={rent=$425, leftNode={}, rightNode={}}, rightNode={}}}, rightNode={rent=$550, leftNode={rent=$525, leftNode={}, rightNode={}}, rightNode={rent=$575, leftNode={}, rightNode={rent=$600, leftNode={}, rightNode={}}}}}";
+        assertNotNull(
+                "\nDeletion does not properly position values" +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                avl.value);
+        assertNotNull(
+                "\nDeletion does not properly position values" +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                avl.leftNode.value);
+        assertNotNull(
+                "\nDeletion does not properly position values" +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                avl.rightNode.value);
+        assertEquals(
+                "\nDeletion does not properly position values." +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                0, avl.getBalanceFactor()
+        );
+        assertEquals(
+                "\nDeletion does not properly position values." +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                data2, avl.value
+        );
+        assertEquals(
+                "\nDeletion does not properly position values." +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                data1, avl.leftNode.value
+        );
+        assertEquals(
+                "\nDeletion does not properly position values." +
+                        "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
+                data3, avl.rightNode.value
+        );
+    }
 }
 

@@ -6,24 +6,24 @@ package au.edu.anu.cecs.linkhome.AVL;
  *
  * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
-public abstract class EmptyTree<Data extends Comparable<Data>> extends Tree<Data> {
+public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
     // Will need to be implemented by the subclass inheriting this class.
-    public abstract Tree<Data> insert(Data element);
+    public abstract Tree<T> insert(T element);
 
     @Override
-    public Data min() {
+    public T min() {
         // No minimum.
         return null;
     }
 
     @Override
-    public Data max() {
+    public T max() {
         // No maximum.
         return null;
     }
 
     @Override
-    public Tree<Data> find(Data element) {
+    public Tree<T> find(T element) {
         // Was unable to find the item. Hence, return null.
         return null;
     }

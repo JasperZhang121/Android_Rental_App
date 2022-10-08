@@ -7,17 +7,17 @@ import java.util.List;
  * The following interface defines required methods of any Tree.
  * Note that this is simplified for this lab (no delete).
  *
- * @author Avani Dhaliwal, Devanshi Dhall, lab4
- * @param <Data> the generic type this Tree uses. It extends comparable
+ * @author lab4
+ * @param <T> the generic type this Tree uses. It extends comparable
  *            which allows us to order two of the same type.
  */
-public abstract class Tree<Data extends Comparable<Data>> {
+public abstract class Tree<T extends Comparable<T>> {
     /**
      * Here we store our class fields.
      */
-    public final Data value;       // element stored in this node of the tree.
-    public Tree<Data> leftNode;    // less than the node.
-    public Tree<Data> rightNode;   // greater than the node.
+    public final T value;       // element stored in this node of the tree.
+    public Tree<T> leftNode;    // less than the node.
+    public Tree<T> rightNode;   // greater than the node.
 
     /**
      * Constructor to allow for empty trees
@@ -32,7 +32,7 @@ public abstract class Tree<Data extends Comparable<Data>> {
      *
      * @param value to set as this node's value.
      */
-    public Tree(Data value) {
+    public Tree(T value) {
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -48,7 +48,7 @@ public abstract class Tree<Data extends Comparable<Data>> {
      * @param leftNode  left child of current node.
      * @param rightNode right child of current node.
      */
-    public Tree(Data value, Tree<Data> leftNode, Tree<Data> rightNode) {
+    public Tree(T value, Tree<T> leftNode, Tree<T> rightNode) {
         // Ensure inputs are not null.
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
@@ -58,15 +58,13 @@ public abstract class Tree<Data extends Comparable<Data>> {
         this.rightNode = rightNode;
     }
 
-    public abstract Data min();                     // Finds the minimum.
+    public abstract T min();                     // Finds the minimum.
 
-    public abstract Data max();                     // Finds the maximum.
+    public abstract T max();                     // Finds the maximum.
 
-    public abstract Tree<Data> find(Data element);     // Finds the element and returns the node.
+    public abstract Tree<T> find(T element);     // Finds the element and returns the node.
 
-    public abstract Tree<Data> insert(Data element);   // Inserts the element and returns a new instance of itself with the new node.
-
-    public abstract Tree<Data> delete(Data element);   // Delets the element and returns a new instance of itself without the new node.
+    public abstract Tree<T> insert(T element);   // Inserts the element and returns a new instance of itself with the new node.
 
     /**
      * Height of current node.
@@ -101,6 +99,7 @@ public abstract class Tree<Data extends Comparable<Data>> {
     /**
      * Graphically visualises the tree for human readability.
      *
+     * @author Avani Dhaliwal
      * @param tabs from the left side of the screen.
      * @return graph of the tree.
      */
@@ -124,7 +123,7 @@ public abstract class Tree<Data extends Comparable<Data>> {
     /**
       * List the elements of the tree with in-order
       */
-    public List<Data> inOrder() {
+    public List<T> inOrder() {
 		return this.treeToListInOrder(this);
 	}
 
@@ -133,8 +132,8 @@ public abstract class Tree<Data extends Comparable<Data>> {
      * @param tree to convert to list.
      * @return in-order list of tree values.
      */
-	private List<Data> treeToListInOrder(Tree<Data> tree) {
-		List<Data> list = new LinkedList<>();
+	private List<T> treeToListInOrder(Tree<T> tree) {
+		List<T> list = new LinkedList<>();
 
 		// Recurse through left subtree.
         if (tree.leftNode != null) {
