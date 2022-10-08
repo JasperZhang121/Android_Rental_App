@@ -1,10 +1,11 @@
 package au.edu.anu.cecs.linkhome;
 
 public class Data implements Comparable<Data>{
-    String address, city, postalZip;
-    int rent;
+    String address, city, postalZip, rent;
 
-    public Data(String address, String city, String postalZip, int rent) {
+    public Data(){};
+
+    public Data(String address, String city, String postalZip, String rent) {
         this.address = address;
         this.city = city;
         this.postalZip = postalZip;
@@ -13,7 +14,7 @@ public class Data implements Comparable<Data>{
 
     @Override
     public int compareTo(Data data) {
-        return Integer.compare(rent, data.rent);
+        return Float.compare(Float.parseFloat(rent.substring(1)), Float.parseFloat(data.rent.substring(1)));
     }
 
     public String getAddress() {
@@ -28,12 +29,12 @@ public class Data implements Comparable<Data>{
         return postalZip;
     }
 
-    public int getRent() {
+    public String getRent() {
         return rent;
     }
 
     @Override
     public String toString() {
-        return "" + rent;
+        return rent;
     }
 }

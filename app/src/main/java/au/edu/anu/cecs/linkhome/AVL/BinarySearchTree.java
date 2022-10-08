@@ -1,9 +1,11 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.AVL;
 
 /**
  * An AVL tree is actually an extension of a Binary Search Tree
  * with self balancing properties. Hence, our AVL trees will 'extend'
  * this Binary Search tree data structure.
+ *
+ * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
 public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> {
 
@@ -31,9 +33,9 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
     public Tree<Data> find(Data element) {
         /*
             Left is less, right is greater in this implementation.
-            compareTo returns 0 if both elements are equal.
-            compareTo returns < 0 if the element is less than the node.
-            compareTo returns > 0 if the element is greater than the node.
+            compareTo returns 0 if both elements' rent are equal.
+            compareTo returns < 0 if the element's rent is less than the node's rent.
+            compareTo returns > 0 if the element's rent is greater than the node's rent.
          */
 
         // Ensure input is not null.
@@ -43,8 +45,14 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         if (element.compareTo(value) == 0) {
             return this;
         } else if (element.compareTo(value) < 0) {
+            //If element not in tree
+            if(leftNode == null)
+                return null;
             return leftNode.find(element);
         } else {
+            //If element not in tree
+            if(rightNode == null)
+                return null;
             return rightNode.find(element);
         }
     }
@@ -55,12 +63,18 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        // If the two values are equal, in this implementation we want to insert to the left.
+        // If the two rents are equal, in this implementation we want to insert to the left.
         if (element.compareTo(value) > 0) {
             return new BinarySearchTree<>(value, leftNode, rightNode.insert(element));
         } else {
             return new BinarySearchTree<>(value, leftNode.insert(element), rightNode);
         }
+    }
+
+    @Override
+    public BinarySearchTree<Data> delete(Data element) {
+        // Ensure input is not null.
+        return this;
     }
 
     /**
@@ -72,7 +86,12 @@ public class BinarySearchTree<Data extends Comparable<Data>> extends Tree<Data> 
         @Override
         public Tree<Data> insert(Data element) {
             // The creation of a new Tree, hence, return tree.
-            return new BinarySearchTree<Data>(element);
+            return new BinarySearchTree<>(element);
+        }
+        @Override
+        public Tree<Data> delete(Data element) {
+            // The creation of a new Tree, hence, return tree.
+            return new EmptyBST<>();
         }
     }
 }

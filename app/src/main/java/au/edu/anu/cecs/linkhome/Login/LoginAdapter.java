@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.Login;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

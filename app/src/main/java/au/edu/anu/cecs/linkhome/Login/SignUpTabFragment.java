@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.Login;
 
 import android.content.Intent;
 import android.os.Bundle;

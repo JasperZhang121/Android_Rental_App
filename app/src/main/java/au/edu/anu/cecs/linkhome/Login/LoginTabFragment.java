@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import au.edu.anu.cecs.linkhome.Database;
+import au.edu.anu.cecs.linkhome.R;
 
 
 public class LoginTabFragment extends Fragment {

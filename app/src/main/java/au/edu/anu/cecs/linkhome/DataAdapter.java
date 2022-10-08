@@ -57,11 +57,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             city = itemView.findViewById(R.id.Databasecity);
             postalZip = itemView.findViewById(R.id.DatabasepostalZip);
             rent = itemView.findViewById(R.id.Databaserent);
-
-            Data data = new Data(this.address.getText().toString(),
-                    city.getText().toString(),
-                    postalZip.getText().toString(),
-                    Integer.parseInt(rent.getText().toString().substring(1)));
         }
     }
 

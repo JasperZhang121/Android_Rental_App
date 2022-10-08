@@ -1,8 +1,10 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.AVL;
 
 /**
  * To avoid null pointer errors (and because this implementation is immutable)
  * we have a class that represents an 'empty' tree.
+ *
+ * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
 public abstract class EmptyTree<Data extends Comparable<Data>> extends Tree<Data> {
     // Will need to be implemented by the subclass inheriting this class.

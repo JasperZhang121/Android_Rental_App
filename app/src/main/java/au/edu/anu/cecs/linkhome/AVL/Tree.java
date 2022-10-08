@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.AVL;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,16 +7,17 @@ import java.util.List;
  * The following interface defines required methods of any Tree.
  * Note that this is simplified for this lab (no delete).
  *
- * @param <Address> the generic type this Tree uses. It extends comparable
+ * @author Avani Dhaliwal, Devanshi Dhall, lab4
+ * @param <Data> the generic type this Tree uses. It extends comparable
  *            which allows us to order two of the same type.
  */
-public abstract class Tree<Address extends Comparable<Address>> {
+public abstract class Tree<Data extends Comparable<Data>> {
     /**
      * Here we store our class fields.
      */
-    public final Address value;       // element stored in this node of the tree.
-    public Tree<Address> leftNode;    // less than the node.
-    public Tree<Address> rightNode;   // greater than the node.
+    public final Data value;       // element stored in this node of the tree.
+    public Tree<Data> leftNode;    // less than the node.
+    public Tree<Data> rightNode;   // greater than the node.
 
     /**
      * Constructor to allow for empty trees
@@ -31,7 +32,7 @@ public abstract class Tree<Address extends Comparable<Address>> {
      *
      * @param value to set as this node's value.
      */
-    public Tree(Address value) {
+    public Tree(Data value) {
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -47,7 +48,7 @@ public abstract class Tree<Address extends Comparable<Address>> {
      * @param leftNode  left child of current node.
      * @param rightNode right child of current node.
      */
-    public Tree(Address value, Tree<Address> leftNode, Tree<Address> rightNode) {
+    public Tree(Data value, Tree<Data> leftNode, Tree<Data> rightNode) {
         // Ensure inputs are not null.
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
@@ -57,13 +58,15 @@ public abstract class Tree<Address extends Comparable<Address>> {
         this.rightNode = rightNode;
     }
 
-    public abstract Address min();                     // Finds the minimum.
+    public abstract Data min();                     // Finds the minimum.
 
-    public abstract Address max();                     // Finds the maximum.
+    public abstract Data max();                     // Finds the maximum.
 
-    public abstract Tree<Address> find(Address element);     // Finds the element and returns the node.
+    public abstract Tree<Data> find(Data element);     // Finds the element and returns the node.
 
-    public abstract Tree<Address> insert(Address element);   // Inserts the element and returns a new instance of itself with the new node.
+    public abstract Tree<Data> insert(Data element);   // Inserts the element and returns a new instance of itself with the new node.
+
+    public abstract Tree<Data> delete(Data element);   // Delets the element and returns a new instance of itself without the new node.
 
     /**
      * Height of current node.
@@ -97,7 +100,6 @@ public abstract class Tree<Address extends Comparable<Address>> {
 
     /**
      * Graphically visualises the tree for human readability.
-     * Feel free to edit this display methods
      *
      * @param tabs from the left side of the screen.
      * @return graph of the tree.
@@ -106,15 +108,23 @@ public abstract class Tree<Address extends Comparable<Address>> {
         // StringBuilder is faster than using string concatenation (which in java makes a new object per concatenation).
         assert value != null;
         StringBuilder sb = new StringBuilder(value.toString());
-//        sb.append("\n").append("\t".repeat(tabs)).append("├─").append(leftNode.display(tabs + 1));
-//        sb.append("\n").append("\t".repeat(tabs)).append("├─").append(rightNode.display(tabs + 1));
+        sb.append("\n") ;
+        for (int i = 0; i < tabs; i++) {
+            sb.append("\t");
+        }
+        sb.append("├─").append(leftNode.display(tabs + 1));
+        sb.append("\n");
+        for (int i = 0; i < tabs; i++) {
+            sb.append("\t");
+        }
+        sb.append("├─").append(rightNode.display(tabs + 1));
         return sb.toString();
     }
 
     /**
       * List the elements of the tree with in-order
       */
-    public List<Address> inOrder() {
+    public List<Data> inOrder() {
 		return this.treeToListInOrder(this);
 	}
 
@@ -123,8 +133,8 @@ public abstract class Tree<Address extends Comparable<Address>> {
      * @param tree to convert to list.
      * @return in-order list of tree values.
      */
-	private List<Address> treeToListInOrder(Tree<Address> tree) {
-		List<Address> list = new LinkedList<>();
+	private List<Data> treeToListInOrder(Tree<Data> tree) {
+		List<Data> list = new LinkedList<>();
 
 		// Recurse through left subtree.
         if (tree.leftNode != null) {
