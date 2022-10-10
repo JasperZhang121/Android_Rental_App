@@ -49,7 +49,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true))
                 .into(holder.getImageView());
-
     }
 
     @Override
