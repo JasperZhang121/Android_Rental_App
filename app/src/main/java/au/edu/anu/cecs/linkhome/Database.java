@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Random;
 
 import au.edu.anu.cecs.linkhome.AVL.AVLTree;
 
@@ -25,6 +30,8 @@ public class Database extends AppCompatActivity {
     DataAdapter DataAdapter;
     HashMap<String, AVLTree<Data>> hashMapAVL;
     ArrayList<Data> list;
+    ArrayList<Integer> listImages;
+    DataAdapter.ItemClickListener listener;
 
 //    public void onBackPressed(){
 //        super.onBackPressed();
@@ -42,8 +49,11 @@ public class Database extends AppCompatActivity {
         System.out.println("Just Checking");
         hashMapAVL = new HashMap<String, AVLTree<Data>>();
         list = new ArrayList<>();
+        listImages = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DataAdapter = new DataAdapter(this,list);
+        setOnClickListener();
+
+        DataAdapter = new DataAdapter(this, list, listImages, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);
 
@@ -66,6 +76,9 @@ public class Database extends AppCompatActivity {
                     }
 
                     list.add(data);
+                    int max = 1000;
+                    int min = 0;
+                    listImages.add((int)(Math.random()*((max-min)+1)+min));
                 }
                 System.out.println("LIST: " + list);
                 System.out.println("HASH: " + hashMapAVL.keySet());
@@ -77,5 +90,20 @@ public class Database extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void setOnClickListener(){
+        listener = new DataAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(getApplicationContext(), DetailedPage.class);
+                intent.putExtra("city", list.get(position).getCity());
+                intent.putExtra("address", list.get(position).getAddress());
+                intent.putExtra("postal", list.get(position).getPostalZip());
+                intent.putExtra("rent", list.get(position).getRent());
+                intent.putExtra("image", list.get(position).getImage());
+                startActivity(intent);
+            }
+        };
     }
 }

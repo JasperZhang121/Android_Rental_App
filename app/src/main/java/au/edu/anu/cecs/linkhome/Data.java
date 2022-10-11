@@ -1,7 +1,9 @@
 package au.edu.anu.cecs.linkhome;
 
+import android.widget.ImageView;
+
 public class Data implements Comparable<Data>{
-    String address, city, postalZip, rent;
+    String address, city, postalZip, rent, image;
 
     public Data(){};
 
@@ -31,6 +33,14 @@ public class Data implements Comparable<Data>{
 
     public String getRent() {
         return rent;
+    }
+
+    public void setImage(String image){
+        this.image = image;
+    }
+
+    public String getImage(){
+        return image;
     }
 
     @Override

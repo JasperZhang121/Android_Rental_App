@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LinkHome"
         tools:targetApi="31">
         <activity
+            android:name=".DetailedPage"
+            android:exported="true" />
+        <activity
             android:name=".Database"
             android:exported="true" />
         <activity

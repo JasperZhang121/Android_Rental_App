@@ -1,6 +1,7 @@
 package au.edu.anu.cecs.linkhome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,21 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
-    Context context;
+    private ItemClickListener listener;
+    private Context context;
+    private ArrayList<Data> list;
+    private ArrayList<Integer> listImages;
 
-    ArrayList<Data> list;
-
-    public DataAdapter(Context context, ArrayList<Data> list) {
+    public DataAdapter(Context context, ArrayList<Data> list, ArrayList<Integer> listImages, ItemClickListener listener) {
         this.context = context;
         this.list = list;
+        this.listImages = listImages;
+        this.listener = listener;
     }
 
     @NonNull
@@ -42,13 +48,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         holder.postalZip.setText(user.getPostalZip());
         holder.rent.setText(user.getRent());
 
-        int max = 1000;
-        int min = 0;
-        int id = (int)(Math.random()*((max-min)+1)+min);
-        Glide.with(context).load("https://picsum.photos/id/"+id+"/300/200").apply(new RequestOptions()
+        Glide.with(context).load("https://picsum.photos/id/"+listImages.get(position)+"/300/200").apply(new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true))
                 .into(holder.getImageView());
+
+        user.setImage("https://picsum.photos/id/"+listImages.get(position)+"/300/200");
     }
 
     @Override
@@ -56,7 +61,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         return list.size();
     }
 
-    public static class MyViewHolder extends  RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imageView;
         TextView address;
@@ -73,9 +78,20 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             city = itemView.findViewById(R.id.Databasecity);
             postalZip = itemView.findViewById(R.id.DatabasepostalZip);
             rent = itemView.findViewById(R.id.Databaserent);
+
+            itemView.setOnClickListener(this);
         }
 
         public ImageView getImageView(){return imageView;}
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(View v, int position);
     }
 
 }
