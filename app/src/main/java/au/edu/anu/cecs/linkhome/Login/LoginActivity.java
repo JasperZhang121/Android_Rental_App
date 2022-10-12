@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         mAuth = FirebaseAuth.getInstance();
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_google);
+//        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_google);
 
 //        tabLayout.addTab(tabLayout.newTab().setText("Login"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));

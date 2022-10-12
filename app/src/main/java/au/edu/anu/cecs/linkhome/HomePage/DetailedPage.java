@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome;
+package au.edu.anu.cecs.linkhome.HomePage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+
+import au.edu.anu.cecs.linkhome.R;
 
 public class DetailedPage extends AppCompatActivity {
 

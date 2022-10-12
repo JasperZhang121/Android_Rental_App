@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import au.edu.anu.cecs.linkhome.Database;
+import au.edu.anu.cecs.linkhome.HomePage.HomePage;
 import au.edu.anu.cecs.linkhome.R;
 
 
@@ -39,19 +39,12 @@ public class LoginTabFragment extends Fragment {
 
         email = root.findViewById(R.id.email_address);
         password = root.findViewById(R.id.password);
-        View forgot_password = root.findViewById(R.id.forgot_password);
-        View remember_me = root.findViewById(R.id.remember_me);
+//        View forgot_password = root.findViewById(R.id.forgot_password);
+//        View remember_me = root.findViewById(R.id.remember_me);
         login = root.findViewById(R.id.button);
         mAuth = FirebaseAuth.getInstance();
 
-        // I think this should be deleted
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginUser();
-
-            }
-        });
+        login.setOnClickListener(view -> loginUser());
 
         return root;
     }
@@ -73,8 +66,8 @@ public class LoginTabFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
-                            // startActivity(new Intent(getContext(), HomePage.class));
-                            startActivity(new Intent(getContext(), Database.class));
+                            startActivity(new Intent(getContext(), HomePage.class));
+                            // startActivity(new Intent(getContext(), Database.class));
                         }
 
                         else{

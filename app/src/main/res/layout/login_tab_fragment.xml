@@ -66,49 +66,49 @@
         app:layout_constraintWidth_percent=".7" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/white"
-        android:elevation="35dp"
-        android:src="@drawable/google"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button"
-        android:layout_marginTop="60dp"
-        app:tint="@null" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab_google"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="28dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:elevation="35dp"-->
+<!--        android:src="@drawable/google"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/button"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        app:tint="@null" />-->
 
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintEnd_toEndOf="@id/password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.07"
-        app:layout_constraintHorizontal_bias="1"
-        android:layout_marginTop="5dp"
-        android:layout_margin="5dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/forgot_password"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/forgot_password"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/password"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/password"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.07"-->
+<!--        app:layout_constraintHorizontal_bias="1"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_margin="5dp" />-->
 
-    <TextView
-        android:id="@+id/remember_me"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/remember_me"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/password"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintVertical_bias="0.07"
-        android:layout_marginTop="5dp"
-        android:layout_margin="5dp" />
+<!--    <TextView-->
+<!--        android:id="@+id/remember_me"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/remember_me"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/password"-->
+<!--        app:layout_constraintHorizontal_bias="0.147"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/password"-->
+<!--        app:layout_constraintVertical_bias="0.07"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_margin="5dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
