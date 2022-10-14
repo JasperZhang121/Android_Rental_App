@@ -40,13 +40,7 @@ public class SignUpTabFragment extends Fragment {
         signup = root.findViewById(R.id.signup);
         mAuth= FirebaseAuth.getInstance();
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createUser();
-
-            }
-        });
+        signup.setOnClickListener(view -> createUser());
         return root;
     }
 

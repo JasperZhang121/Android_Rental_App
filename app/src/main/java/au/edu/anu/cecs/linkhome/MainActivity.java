@@ -9,10 +9,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import au.edu.anu.cecs.linkhome.Login.LoginActivity;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +27,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        user = new User();
 
         if (firebaseUser != null) {
             finish();
         }
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.putExtra("USER", user);
+        startActivity(intent);
     }
+
+//    public void logout(){
+//        mAuth.signOut();
+//        user.changeState(new LogoutState(user));
+//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//        intent.putExtra("USER", user);
+//        startActivity(intent);
+//    }
 }

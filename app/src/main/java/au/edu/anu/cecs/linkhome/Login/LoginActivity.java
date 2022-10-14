@@ -1,9 +1,11 @@
 package au.edu.anu.cecs.linkhome.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,11 +40,15 @@ public class LoginActivity extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        loginAdapter.addFragment(new LoginTabFragment(), "Login");
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("USER", getIntent().getExtras().getSerializable("USER"));
+        Fragment loginFragment = new LoginTabFragment();
+        loginFragment.setArguments(bundle);
+        loginAdapter.addFragment(loginFragment, "Login");
+
         loginAdapter.addFragment(new SignUpTabFragment(), "SignUp");
 
         viewPager.setAdapter(loginAdapter);
-
-
     }
 }

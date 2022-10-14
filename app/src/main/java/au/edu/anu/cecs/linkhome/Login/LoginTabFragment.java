@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import au.edu.anu.cecs.linkhome.HomePage.HomePage;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.LoginState;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
 
 public class LoginTabFragment extends Fragment {
@@ -28,8 +30,6 @@ public class LoginTabFragment extends Fragment {
     TextView email;
     TextView password;
     Button login;
-
-
 
     @Override
 
@@ -66,8 +66,13 @@ public class LoginTabFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getContext(), HomePage.class));
-                            // startActivity(new Intent(getContext(), Database.class));
+                            User user = (User) getArguments().getSerializable("USER");
+                            System.out.println("SOMETHING "+ user);
+                            user.login(mAuth.getCurrentUser());
+                            user.changeState(new LoginState(user));
+                            Intent intent = new Intent(getContext(), HomePage.class);
+                            intent.putExtra("USER", user);
+                            startActivity(intent);
                         }
 
                         else{
