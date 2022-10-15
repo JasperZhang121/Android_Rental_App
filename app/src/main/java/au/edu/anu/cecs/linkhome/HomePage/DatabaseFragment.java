@@ -2,6 +2,7 @@ package au.edu.anu.cecs.linkhome.HomePage;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -91,13 +92,13 @@ public class DatabaseFragment extends Fragment {
                 System.out.println("LIST: " + list);
                 System.out.println("HASH: " + hashMapAVL.keySet());
 
-                Collections.sort(list, new Comparator<Data>() {
-                    @Override
-                    public int compare(Data o1, Data o2) {
-                        return o1.getRent().compareTo(o2.getRent());
-                    }
-                });
-
+//                Collections.sort(list, new Comparator<Data>() {
+//                    @Override
+//                    public int compare(Data o1, Data o2) {
+//                        return o1.getRent().compareTo(o2.getRent());
+//                    }
+//                });
+//
                 DataAdapter.notifyDataSetChanged();
 
             }
@@ -114,6 +115,22 @@ public class DatabaseFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu,menu);
+        inflater.inflate(R.menu.search,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_bar);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to Search");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         super.onCreateOptionsMenu(menu,inflater);
     }
 
