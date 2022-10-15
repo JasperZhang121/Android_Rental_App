@@ -4,21 +4,37 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 
+
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
-    Context context;
 
-    ArrayList<Data> list;
+    private ItemClickListener listener;
+    private Context context;
+    private ArrayList<Data> list;
+    private ArrayList<Integer> listImages;
 
-    public DataAdapter(Context context, ArrayList<Data> list) {
+
+    private ArrayAdapter arrayAdapter;
+
+
+    public DataAdapter(Context context, ArrayList<Data> list, ArrayList<Integer> listImages, ItemClickListener listener) {
         this.context = context;
         this.list = list;
+        this.listImages = listImages;
+        this.listener = listener;
+
     }
 
     @NonNull
@@ -36,6 +52,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         holder.city.setText(user.getCity());
         holder.postalZip.setText(user.getPostalZip());
         holder.rent.setText(user.getRent());
+
+        Glide.with(context).load("https://picsum.photos/id/"+listImages.get(position)+"/300/200").apply(new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true))
+                .into(holder.getImageView());
+
+        user.setImage("https://picsum.photos/id/"+listImages.get(position)+"/300/200");
     }
 
     @Override
@@ -43,7 +66,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         return list.size();
     }
 
-    public static class MyViewHolder extends  RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        ImageView imageView;
         TextView address;
         TextView city;
         TextView postalZip;
@@ -52,12 +77,26 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            address = itemView.findViewById(R.id.Databaseaddress);
+            imageView =  itemView.findViewById(R.id.DatabaseimageView);
+
+            this.address = itemView.findViewById(R.id.Databaseaddress);
             city = itemView.findViewById(R.id.Databasecity);
             postalZip = itemView.findViewById(R.id.DatabasepostalZip);
             rent = itemView.findViewById(R.id.Databaserent);
 
+            itemView.setOnClickListener(this);
         }
+
+        public ImageView getImageView(){return imageView;}
+
+        @Override
+        public void onClick(View view) {
+            listener.onItemClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(View v, int position);
     }
 
 }

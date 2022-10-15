@@ -4,13 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
+import au.edu.anu.cecs.linkhome.Login.LoginActivity;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
+import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
+//        user = new User();
+         user = User.getInstance();
 
         if (firebaseUser != null) {
             finish();
         }
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.putExtra("USER", user);
+        startActivity(intent);
     }
-
-
-
-
 
 }

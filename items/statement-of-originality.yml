@@ -25,16 +25,19 @@ code:
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external assets)
 assets:
-  # NOTE: "Bliss" is just here as an example, you SHOULD REMOVE IT
-  - comment: "_Bliss_ by Charles O'Rear"
-    url: https://en.wikipedia.org/wiki/Bliss_(image)
-    licence: fair use
+  - comment: "Wood Background with Ivy by bykst" Background image in login page
+    url: https://www.stockvault.net/photo/222197/wood-background-with-ivy
+    licence: CC0 1.0
+
+  - comment: Used random images for our data/posts. (Although images are loaded from picsum, the images are originally from unsplash, thus the license and url are different)
+    url: https://picsum.photos/
+    licence: https://unsplash.com/license
 
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
-    uid:
+  - name: Avani Dhaliwal
+    uid: u7399886
   - name:
     uid:
   - name:
