@@ -8,6 +8,8 @@ import java.util.List;
 import au.edu.anu.cecs.linkhome.Data;
 
 public class User implements Serializable {
+
+    private static User instance;
     UserState userState;
 
     String username;
@@ -15,6 +17,13 @@ public class User implements Serializable {
     public User(){
         UserState defaultState = new LogoutState(this);
         changeState(defaultState);
+    }
+
+    public static User getInstance(){
+        if(instance == null){
+            instance = new User();
+        }
+        return instance;
     }
 
     public void changeState(UserState state){

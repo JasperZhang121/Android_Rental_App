@@ -50,14 +50,6 @@ public class DatabaseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setOnClickListener();
 
-        database = FirebaseDatabase.getInstance().getReference("Users");
-        System.out.println("Just Checking");
-        hashMapAVL = new HashMap<String, AVLTree<Data>>();
-        list = new ArrayList<>();
-        listImages = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        setOnClickListener();
-
         DataAdapter = new DataAdapter(getContext(), list, listImages, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);

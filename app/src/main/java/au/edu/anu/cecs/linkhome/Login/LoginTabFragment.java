@@ -66,7 +66,8 @@ public class LoginTabFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
-                            User user = (User) getArguments().getSerializable("USER");
+                            User user = User.getInstance();
+//                            User user = (User) getArguments().getSerializable("USER");
                             System.out.println("SOMETHING "+ user);
                             user.login(mAuth.getCurrentUser());
                             user.changeState(new LoginState(user));

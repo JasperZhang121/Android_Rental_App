@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        User user = User.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -42,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("USER", getIntent().getExtras().getSerializable("USER"));
+//        bundle.putSerializable("USER", getIntent().getExtras().getSerializable("USER"));
+        bundle.putSerializable("USER", user);
         Fragment loginFragment = new LoginTabFragment();
         loginFragment.setArguments(bundle);
         loginAdapter.addFragment(loginFragment, "Login");

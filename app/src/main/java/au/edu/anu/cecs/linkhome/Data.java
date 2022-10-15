@@ -1,7 +1,5 @@
 package au.edu.anu.cecs.linkhome;
 
-import android.widget.ImageView;
-
 public class Data implements Comparable<Data>{
     String address, city, postalZip, rent, image;
 

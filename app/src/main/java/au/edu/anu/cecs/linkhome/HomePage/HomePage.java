@@ -60,7 +60,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        User user = (User) getIntent().getExtras().getSerializable("USER");
+//        User user = (User) getIntent().getExtras().getSerializable("USER");
+        User user = User.getInstance();
 
         switch (item.getItemId()){
             case R.id.nav_bookmarks:

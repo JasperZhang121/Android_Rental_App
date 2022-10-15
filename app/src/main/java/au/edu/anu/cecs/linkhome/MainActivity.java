@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        user = new User();
+//        user = new User();
+         user = User.getInstance();
 
         if (firebaseUser != null) {
             finish();
@@ -38,11 +39,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void logout(){
-//        mAuth.signOut();
-//        user.changeState(new LogoutState(user));
-//        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//        intent.putExtra("USER", user);
-//        startActivity(intent);
-//    }
 }
