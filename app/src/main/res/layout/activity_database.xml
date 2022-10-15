@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".HomePage.DatabaseFragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Database"
         android:layout_width="match_parent"

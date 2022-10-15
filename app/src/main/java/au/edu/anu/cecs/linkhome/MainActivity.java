@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 import au.edu.anu.cecs.linkhome.Login.LoginActivity;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
@@ -16,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

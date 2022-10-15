@@ -9,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -36,11 +42,14 @@ public class DatabaseFragment extends Fragment {
     ArrayList<Integer> listImages;
     DataAdapter.ItemClickListener listener;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_database, container, false);
         recyclerView = root.findViewById(R.id.Database);
+
 
         database = FirebaseDatabase.getInstance().getReference("Users");
         System.out.println("Just Checking");
@@ -53,6 +62,8 @@ public class DatabaseFragment extends Fragment {
         DataAdapter = new DataAdapter(getContext(), list, listImages, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);
+
+        setHasOptionsMenu(true);
 
         database.addValueEventListener(new ValueEventListener() {
             /**
@@ -79,7 +90,16 @@ public class DatabaseFragment extends Fragment {
                 }
                 System.out.println("LIST: " + list);
                 System.out.println("HASH: " + hashMapAVL.keySet());
+
+                Collections.sort(list, new Comparator<Data>() {
+                    @Override
+                    public int compare(Data o1, Data o2) {
+                        return o1.getRent().compareTo(o2.getRent());
+                    }
+                });
+
                 DataAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -89,6 +109,35 @@ public class DatabaseFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        inflater.inflate(R.menu.menu,menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id==R.id.Sort1){
+            Collections.sort(list, new Comparator<Data>() {
+                @Override
+                public int compare(Data o1, Data o2) {
+                    return o1.getRent().compareTo(o2.getRent());
+                }
+            });
+            DataAdapter.notifyDataSetChanged();
+        } else if (id==R.id.Sort2){
+            Collections.sort(list, new Comparator<Data>() {
+                @Override
+                public int compare(Data o1, Data o2) {
+                    return o2.getRent().compareTo(o1.getRent());
+                }
+            });
+            DataAdapter.notifyDataSetChanged();
+        }
+        return true;
     }
 
     public void setOnClickListener(){

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +26,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
     private ArrayList<Integer> listImages;
 
 
+    private ArrayAdapter arrayAdapter;
+
+
     public DataAdapter(Context context, ArrayList<Data> list, ArrayList<Integer> listImages, ItemClickListener listener) {
         this.context = context;
         this.list = list;
         this.listImages = listImages;
         this.listener = listener;
+
     }
 
     @NonNull

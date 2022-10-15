@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/Filter"
+        android:title="filter"
+        app:showAsAction="always">
+
+        <menu>
+           <item android:id="@+id/Sort1"
+               android:title="Sort Low to High"
+               android:icon="@drawable/ic_baseline_sort_24"
+               android:orderInCategory="100"/>
+           <item android:id="@+id/Sort2"
+               android:title="Sort High to Low"
+               android:orderInCategory="100"/>
+
+        </menu>
+
+    </item>
+
+
+</menu>
