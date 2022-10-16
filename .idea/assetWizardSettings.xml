@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/search/baseline_search_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/favorite/baseline_favorite_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="search" />
-                            <entry key="sourceFile" value="/C:\Users\RAZER BLADE\AndroidStudioProjects\ga-22s2-comp2100-6442" />
+                            <entry key="outputName" value="ic_heart_filled" />
+                            <entry key="sourceFile" value="C:\Users\RAZER BLADE\AndroidStudioProjects\ga-22s2-comp2100-6442" />
                           </map>
                         </option>
                       </PersistentState>

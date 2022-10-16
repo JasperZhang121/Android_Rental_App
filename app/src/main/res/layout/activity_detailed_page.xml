@@ -119,15 +119,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/ic_baseline_turned_in_not_24" />
+
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:id="@+id/detailedPagePayButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:gravity="center"
+        android:text="Pay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
-        app:layout_constraintVertical_bias="0.792" />
+        app:layout_constraintVertical_bias="0.718"
+        app:srcCompat="@drawable/ic_baseline_turned_in_not_24" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,13 +8,12 @@
     app:cardCornerRadius="8dp"
     android:layout_margin="16dp">
 
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
 
@@ -28,6 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
                 android:src="@drawable/logo" />
+
+
 
         </LinearLayout>
 
@@ -86,16 +88,7 @@
                 android:textColor="@color/green_700"
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />
-
-
-
         </LinearLayout>
-
-
-
-
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -122,8 +115,6 @@
                 android:textColor="@color/green_700"
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />
-
-
 
 
         </LinearLayout>
@@ -154,12 +145,23 @@
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />
 
-
-
+            <CheckBox
+                android:id="@+id/cbHeart"
+                android:layout_width="307dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:button="@drawable/selector_wishlist_item"
+                android:padding="100dp" />
 
         </LinearLayout>
 
+        <!--        <ImageButton-->
+<!--            android:layout_width="75dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:src="@drawable/ic_baseline_favorite_border_24"-->
+<!--            android:background="@null"/>-->
+
 
     </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

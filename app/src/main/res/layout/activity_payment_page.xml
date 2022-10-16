@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage.PaymentPage">
+
+
+    <EditText
+        android:id="@+id/paymentCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Card number"
+        android:inputType="number"
+        android:text=""
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+    <EditText
+        android:id="@+id/paymentDates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="MM/YY"
+        android:inputType="date"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
+        app:layout_constraintVertical_bias="0.022" />
+
+
+    <EditText
+        android:id="@+id/paymentCVV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="CVV"
+        android:inputType="numberPassword"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/paymentDates"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
+        app:layout_constraintVertical_bias="0.022" />
+
+
+    <EditText
+        android:id="@+id/paymentHolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Card Holder Name"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentDates"
+        app:layout_constraintVertical_bias="0.032" />
+
+
+    <EditText
+        android:id="@+id/paymentEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentDates"
+        app:layout_constraintVertical_bias="0.151" />
+
+    <Button
+        android:id="@+id/paymentConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/paymentCardNumber"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_credit_card_24" />
+
+    <ImageView
+        android:id="@+id/imageView_mastercard"
+        android:layout_width="82dp"
+        android:layout_height="61dp"
+        android:src="@drawable/mastercard"
+        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail" />
+
+    <ImageView
+        android:id="@+id/imageView_paypal"
+        android:layout_width="82dp"
+        android:layout_height="61dp"
+        android:src="@drawable/paypal"
+        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_googlePay"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <ImageView
+        android:id="@+id/imageView_googlePay"
+        android:layout_width="82dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/googlepay"
+        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_applePay"
+        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintVertical_bias="0.501" />
+
+    <ImageView
+        android:id="@+id/imageView_applePay"
+        android:layout_width="82dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:src="@drawable/applepay"
+        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintVertical_bias="0.501" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
