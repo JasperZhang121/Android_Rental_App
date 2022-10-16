@@ -8,6 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * LoginAdapter class acts as a bridge between adapterView and the data for that particular view
+ * It provided access to each data item
+ *
+ */
 public class LoginAdapter extends FragmentPagerAdapter {
 
     private final ArrayList<Fragment> fragmentArrayList= new ArrayList<>();
@@ -19,11 +24,9 @@ public class LoginAdapter extends FragmentPagerAdapter {
 
     @NonNull
     @Override
-
     public Fragment getItem(int position) {
         return fragmentArrayList.get(position);
     }
-
 
     @Override
     public int getCount() {
@@ -38,7 +41,6 @@ public class LoginAdapter extends FragmentPagerAdapter {
 
     @Nullable
     @Override
-
     public CharSequence getPageTitle(int position){
         return fragmentTitle.get(position);
     }

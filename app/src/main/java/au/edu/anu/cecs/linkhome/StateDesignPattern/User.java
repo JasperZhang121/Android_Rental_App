@@ -7,11 +7,14 @@ import java.util.List;
 
 import au.edu.anu.cecs.linkhome.Data;
 
+/**
+ * User class to implement state design pattern
+ */
 public class User implements Serializable {
 
+    // Instance of the User class
     private static User instance;
     UserState userState;
-
     String username;
 
     public User(){
@@ -19,6 +22,7 @@ public class User implements Serializable {
         changeState(defaultState);
     }
 
+    // Make use of Singleton Design Pattern
     public static User getInstance(){
         if(instance == null){
             instance = new User();

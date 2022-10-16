@@ -17,7 +17,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     public AVLTree(T value) {
         super(value);
+
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
+
         this.leftNode = new EmptyAVL<>();
         this.rightNode = new EmptyAVL<>();
     }
@@ -41,6 +43,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     @Override
     public AVLTree<T> insert(T element) {
+
         // To ensure immutability
         AVLTree<T> newTreeCopy= new AVLTree<>(this.value,this.leftNode,this.rightNode);
 
@@ -170,7 +173,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     /**
-     * Helper function for delete(), recursive, fine the leftmost (smallest) element in current tree
+     * Helper function for delete(), recursive, finds the leftmost (smallest) element in current tree
      * @author Peicheng Liu
      * @return the leftmost element
      */

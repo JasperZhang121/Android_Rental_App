@@ -20,13 +20,11 @@ import java.util.ArrayList;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
 
-    private ItemClickListener listener;
-    private Context context;
-    private ArrayList<Data> list;
-    private ArrayList<Integer> listImages;
-
-
-    private ArrayAdapter arrayAdapter;
+    private final ItemClickListener listener;
+    private final Context context;
+    private final ArrayList<Data> list;
+    private final ArrayList<Integer> listImages;
+    //private ArrayAdapter arrayAdapter;
 
 
     public DataAdapter(Context context, ArrayList<Data> list, ArrayList<Integer> listImages, ItemClickListener listener) {
@@ -87,7 +85,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             itemView.setOnClickListener(this);
         }
 
-        public ImageView getImageView(){return imageView;}
+        public ImageView getImageView(){
+            return imageView;
+        }
 
         @Override
         public void onClick(View view) {

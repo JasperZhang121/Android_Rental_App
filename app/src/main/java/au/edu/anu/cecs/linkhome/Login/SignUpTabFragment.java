@@ -20,13 +20,18 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * SignUpTabFragment deals with the new users registration
+ */
 public class SignUpTabFragment extends Fragment {
 
+    // Storing UI components
     TextView email;
     TextView password;
     TextView confirm_password;
     Button signup;
 
+    // Firebase authentication
     FirebaseAuth mAuth;
 
     @Override
@@ -44,26 +49,36 @@ public class SignUpTabFragment extends Fragment {
         return root;
     }
 
+    /**
+     * createUser method creates an account for the new users who have signed up in the app
+     */
     private void createUser(){
         String emailID= email.getText().toString();
         String passwordNew= password.getText().toString();
         String passwordConfirm = confirm_password.getText().toString();
 
+        // Check for Email
         if(TextUtils.isEmpty(emailID)){
             email.setError("Email cannot be empty");
             email.requestFocus();
-        }else if(TextUtils.isEmpty(passwordNew)){
+        }
+        // Check for Password
+        else if(TextUtils.isEmpty(passwordNew)){
             password.setError("Password cannot be empty");
             password.requestFocus();
         }
+        // Check for PasswordConfirm
         else if(TextUtils.isEmpty(passwordConfirm)){
             confirm_password.setError("Password cannot be empty");
             confirm_password.requestFocus();
         }
+        // Check if both the passwords match
         else if(!passwordNew.equals(passwordConfirm)){
             confirm_password.setError("Passwords do not match");
             confirm_password.requestFocus();
         }
+
+        // Checks for if a user has signed up successfully or not
         else{
             mAuth.createUserWithEmailAndPassword(emailID,passwordConfirm).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override

@@ -16,8 +16,13 @@ import au.edu.anu.cecs.linkhome.Login.LoginActivity;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
+/**
+ * MainActivity to create connection
+ * with the Firebase and jump to the LoginActivity class
+ */
 public class MainActivity extends AppCompatActivity {
 
+    // Initialization of FirebaseAuth and User
     FirebaseAuth mAuth;
     User user;
 
@@ -32,13 +37,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-//        user = new User();
-         user = User.getInstance();
+        user = User.getInstance();
 
         if (firebaseUser != null) {
             finish();
         }
-
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.putExtra("USER", user);
         startActivity(intent);

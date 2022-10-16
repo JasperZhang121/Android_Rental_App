@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,7 +34,14 @@ import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.DataAdapter;
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * Create Database Fragment to store all the data of the app
+ * and have functionalities in-place
+ *
+ */
+
 public class DatabaseFragment extends Fragment {
+
     RecyclerView recyclerView;
     DatabaseReference database;
     au.edu.anu.cecs.linkhome.DataAdapter DataAdapter;
@@ -43,40 +50,41 @@ public class DatabaseFragment extends Fragment {
     ArrayList<Integer> listImages;
     DataAdapter.ItemClickListener listener;
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_database, container, false);
         recyclerView = root.findViewById(R.id.Database);
-
-
         database = FirebaseDatabase.getInstance().getReference("Users");
-        System.out.println("Just Checking");
         hashMapAVL = new HashMap<String, AVLTree<Data>>();
         list = new ArrayList<>();
+
         listImages = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setOnClickListener();
-
         DataAdapter = new DataAdapter(getContext(), list, listImages, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);
 
         setHasOptionsMenu(true);
 
+        /**
+         * Read data from the JSON file in firebase and create new objects of type Data
+         * @param snapshot DataSnapshot
+         *
+         */
+
         database.addValueEventListener(new ValueEventListener() {
-            /**
-             * Read data from the JSON file in firebase and create new objects of type Data
-             * @param snapshot
-             */
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     Data data = dataSnapshot.getValue(Data.class);
+
                     //Adds the data to an AVL tree according to its city.
+
                     assert data != null;
                     if(hashMapAVL.containsKey(data.getCity())){
                         Objects.requireNonNull(hashMapAVL.get(data.getCity())).insert(data);
@@ -89,18 +97,8 @@ public class DatabaseFragment extends Fragment {
                     int min = 0;
                     listImages.add((int)(Math.random()*((max-min)+1)+min));
                 }
-                System.out.println("LIST: " + list);
-                System.out.println("HASH: " + hashMapAVL.keySet());
 
-//                Collections.sort(list, new Comparator<Data>() {
-//                    @Override
-//                    public int compare(Data o1, Data o2) {
-//                        return o1.getRent().compareTo(o2.getRent());
-//                    }
-//                });
-//
                 DataAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -112,8 +110,14 @@ public class DatabaseFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Create a search bar to filter according to specific requirements
+     * @param menu Menu, inflater MenuInflater
+     * To search by clicking on the search icon
+     */
+
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater){
         inflater.inflate(R.menu.menu,menu);
         inflater.inflate(R.menu.search,menu);
         MenuItem menuItem = menu.findItem(R.id.search_bar);
@@ -134,8 +138,17 @@ public class DatabaseFragment extends Fragment {
         super.onCreateOptionsMenu(menu,inflater);
     }
 
+    /**
+     * Create a Sort functionality to filter records in from high to low or low to high
+     * @param item MenuItem, Collection of items to sort accordingly
+     * @return true or false
+     */
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+
+        // Sort values of rent in either ascending or descending order
+
         int id = item.getItemId();
         if (id==R.id.Sort1){
             Collections.sort(list, new Comparator<Data>() {
@@ -145,13 +158,9 @@ public class DatabaseFragment extends Fragment {
                 }
             });
             DataAdapter.notifyDataSetChanged();
+
         } else if (id==R.id.Sort2){
-            Collections.sort(list, new Comparator<Data>() {
-                @Override
-                public int compare(Data o1, Data o2) {
-                    return o2.getRent().compareTo(o1.getRent());
-                }
-            });
+            Collections.sort(list, (o1, o2) -> o2.getRent().compareTo(o1.getRent()));
             DataAdapter.notifyDataSetChanged();
         }
         return true;

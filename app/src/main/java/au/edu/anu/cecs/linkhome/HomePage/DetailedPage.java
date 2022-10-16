@@ -12,6 +12,12 @@ import com.bumptech.glide.request.RequestOptions;
 
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * DetailedPage class gives a detailed view
+ * of the current image being clicked
+ *
+ */
+
 public class DetailedPage extends AppCompatActivity {
 
     @Override
@@ -43,6 +49,7 @@ public class DetailedPage extends AppCompatActivity {
                     .into(image);
         }
 
+        // Detailed information about a specific home to be on rent
         cityText.setText(city);
         addressText.setText(address);
         postalText.setText(postal);
