@@ -11,7 +11,7 @@
         android:id="@+id/paymentCardNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="92dp"
         android:ems="10"
         android:hint="Card number"
         android:inputType="number"
@@ -19,10 +19,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
-
     <EditText
         android:id="@+id/paymentDates"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="MM/YY"
@@ -33,8 +32,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
-        app:layout_constraintVertical_bias="0.022" />
-
+        app:layout_constraintVertical_bias="0.034" />
 
     <EditText
         android:id="@+id/paymentCVV"
@@ -46,12 +44,10 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/paymentDates"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
-        app:layout_constraintVertical_bias="0.022" />
-
+        app:layout_constraintVertical_bias="0.162" />
 
     <EditText
         android:id="@+id/paymentHolderName"
@@ -66,8 +62,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentDates"
-        app:layout_constraintVertical_bias="0.032" />
-
+        app:layout_constraintVertical_bias="0.208" />
 
     <EditText
         android:id="@+id/paymentEmail"
@@ -79,10 +74,10 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentDates"
-        app:layout_constraintVertical_bias="0.151" />
+        app:layout_constraintVertical_bias="0.344" />
 
     <Button
         android:id="@+id/paymentConfirm"
@@ -98,11 +93,11 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="31dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         app:layout_constraintEnd_toEndOf="@+id/paymentCardNumber"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_credit_card_24" />
@@ -111,10 +106,13 @@
         android:id="@+id/imageView_mastercard"
         android:layout_width="82dp"
         android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:src="@drawable/mastercard"
         app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintVertical_bias="0.501" />
 
     <ImageView
         android:id="@+id/imageView_paypal"
@@ -137,7 +135,7 @@
         android:src="@drawable/googlepay"
         app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
         app:layout_constraintEnd_toStartOf="@+id/imageView_applePay"
-        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
         app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
         app:layout_constraintVertical_bias="0.501" />
@@ -146,12 +144,22 @@
         android:id="@+id/imageView_applePay"
         android:layout_width="82dp"
         android:layout_height="61dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/applepay"
         app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
         app:layout_constraintVertical_bias="0.501" />
+
+    <EditText
+        android:id="@+id/et_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Add your payment details:"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="26dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

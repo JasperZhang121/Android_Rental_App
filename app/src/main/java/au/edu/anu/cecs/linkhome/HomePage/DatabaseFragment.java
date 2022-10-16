@@ -100,7 +100,7 @@ public class DatabaseFragment extends Fragment  {
 //                    }
 //                });
                 DataAdapter.notifyDataSetChanged();
-                checkBox();
+               // checkBox();
 
             }
 
