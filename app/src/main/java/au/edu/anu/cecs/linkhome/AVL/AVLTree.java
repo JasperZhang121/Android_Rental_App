@@ -107,11 +107,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             }
             //Case 1: one right child
             else if (this.leftNode.value == null){
-                return new AVLTree<T>(this.rightNode.value, this.rightNode.leftNode, this.rightNode.rightNode);
+                return new AVLTree<>(this.rightNode.value, this.rightNode.leftNode, this.rightNode.rightNode);
             }
             //Case 1: one left child
             else if (this.rightNode.value == null){
-                return new AVLTree<T>(this.leftNode.value, this.leftNode.leftNode, this.leftNode.rightNode);
+                return new AVLTree<>(this.leftNode.value, this.leftNode.leftNode, this.leftNode.rightNode);
             }
             //Case 2: both children
             else {
@@ -119,9 +119,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
                 T successor = right.findLeftMost();
                 right = right.delete(successor);
                 if(right == null || right.value == null){
-                    return new AVLTree<T>(successor, this.leftNode, new EmptyAVL<>());
+                    return new AVLTree<>(successor, this.leftNode, new EmptyAVL<>());
                 } else {
-                    return new AVLTree<T>(successor, this.leftNode, right);
+                    return new AVLTree<>(successor, this.leftNode, right);
                 }
             }
         }

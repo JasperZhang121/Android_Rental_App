@@ -1,5 +1,7 @@
 package au.edu.anu.cecs.linkhome.AVL;
 
+import androidx.annotation.NonNull;
+
 /**
  * To avoid null pointer errors (and because this implementation is immutable)
  * we have a class that represents an 'empty' tree.
@@ -40,6 +42,7 @@ public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
         return -1;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "{}";
