@@ -14,8 +14,17 @@ public class User implements Serializable {
 
     // Instance of the User class
     private static User instance;
+
     UserState userState;
     String username;
+
+    public UserState getUserState() {
+        return userState;
+    }
+
+    public String getUsername(){
+        return  username;
+    }
 
     public User(){
         UserState defaultState = new LogoutState(this);

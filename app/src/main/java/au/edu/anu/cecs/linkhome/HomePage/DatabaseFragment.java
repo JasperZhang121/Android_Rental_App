@@ -45,7 +45,7 @@ public class DatabaseFragment extends Fragment  {
     ArrayList<Integer> listImages;
     DataAdapter.ItemClickListener listener;
     CheckBox cbHeart;
-
+    boolean isChecked;
 
 
     @Nullable
@@ -60,7 +60,7 @@ public class DatabaseFragment extends Fragment  {
         listImages = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setOnClickListener();
-
+        isChecked = false;
         DataAdapter = new DataAdapter(getContext(), list, listImages, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);
@@ -100,7 +100,6 @@ public class DatabaseFragment extends Fragment  {
 //                    }
 //                });
                 DataAdapter.notifyDataSetChanged();
-                checkBox();
 
             }
 
@@ -113,13 +112,15 @@ public class DatabaseFragment extends Fragment  {
         return root;
     }
 
-
     public void checkBox(){
         cbHeart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Item not added", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -154,17 +155,25 @@ public class DatabaseFragment extends Fragment  {
         return true;
     }
 
-
     public void setOnClickListener(){
         listener = (v, position) -> {
-            Intent intent = new Intent(getContext(), DetailedPage.class);
-            intent.putExtra("city", list.get(position).getCity());
-            intent.putExtra("address", list.get(position).getAddress());
-            intent.putExtra("postal", list.get(position).getPostalZip());
-            intent.putExtra("rent", list.get(position).getRent());
-            intent.putExtra("image", list.get(position).getImage());
-            startActivity(intent);
+            
+            if(!isChecked){
+                Intent intent1 = new Intent(getContext(), BookmarkFragment.class);
+                startActivity(intent1);
+            }
+            else {
+                Intent intent = new Intent(getContext(), DetailedPage.class);
+                intent.putExtra("city", list.get(position).getCity());
+                intent.putExtra("address", list.get(position).getAddress());
+                intent.putExtra("postal", list.get(position).getPostalZip());
+                intent.putExtra("rent", list.get(position).getRent());
+                intent.putExtra("image", list.get(position).getImage());
+                startActivity(intent);
+            }
         };
     }
+
+
 
 }

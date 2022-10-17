@@ -74,7 +74,6 @@ public class DetailedPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
-                System.out.println("here");
                 startActivity(intent);
             }
         });
