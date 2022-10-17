@@ -16,9 +16,16 @@
         android:theme="@style/Theme.LinkHome"
         tools:targetApi="31">
         <activity
+            android:name=".HomePage.PaymentPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".HomePage.HomePage"
             android:exported="true"
-            android:theme="@style/Theme.LinkHome.NoActionBar"/>
+            android:theme="@style/Theme.LinkHome.NoActionBar" />
         <activity
             android:name=".HomePage.DetailedPage"
             android:exported="true" />

@@ -7,6 +7,7 @@ package au.edu.anu.cecs.linkhome.AVL;
  * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
 public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
+
     // Will need to be implemented by the subclass inheriting this class.
     public abstract Tree<T> insert(T element);
 
@@ -33,8 +34,8 @@ public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
         /*
          return -1 as this is a leaf node.
          -1 instead of 0 as this is inline with our definition of height as 'the number of edges between
-             the current node and the leaf node'. Furthermore, returning 0 will not cause rotations where they
-             should occur.
+         the current node and the leaf node'. Furthermore, returning 0 will not cause rotations where they
+         should occur.
          */
         return -1;
     }

@@ -1,6 +1,6 @@
 # indexOutOfBounds
 
-## Team Meeting 1 - 6th Oct, 2022 (12-5)
+## Team Meeting 3 - 6th Oct, 2022 (12-5)
 **Absent: None**
 <br>
 **Lead/scribe: Devanshi**

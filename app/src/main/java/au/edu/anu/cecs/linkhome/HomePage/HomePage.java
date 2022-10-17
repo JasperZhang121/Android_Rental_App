@@ -22,7 +22,14 @@ import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
+/**
+ * HomePage stores all the details related to the navigation
+ * All the different states such as going from login to clicking on logout are implemented
+ * Each user can navigate to different pages in the app as per their preference
+ *
+ */
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
+    /**
+     * onBackPressed method helps to open or close the
+     * navigation menu by clicking on hamburger menu icon
+     *
+     */
     @Override
     public void onBackPressed() {
         if(drawer.isDrawerOpen(GravityCompat.START)){
@@ -57,12 +69,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         }
     }
 
+    /**
+     * onNavigationItemSelected helps to navigate from the item selected to the destination page
+     * @param item MenuItem
+     * @return true or false
+     */
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        User user = (User) getIntent().getExtras().getSerializable("USER");
-        User user = User.getInstance();
 
+        // Creating an instance of a User class to access where an instance of a user is required
+        User user = User.getInstance();
         switch (item.getItemId()){
             case R.id.nav_bookmarks:
                 if(user.bookmarksPage() != null){

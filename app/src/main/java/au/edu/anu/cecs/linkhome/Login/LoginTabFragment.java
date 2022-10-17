@@ -23,10 +23,15 @@ import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.LoginState;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
-
+/**
+ * LoginTabFragment deals with the login state of the users
+ */
 public class LoginTabFragment extends Fragment {
 
+    // Firebase authentication
     FirebaseAuth mAuth;
+
+    // Storing UI components
     TextView email;
     TextView password;
     Button login;
@@ -37,29 +42,37 @@ public class LoginTabFragment extends Fragment {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment,container,false);
 
+        /*
+        To store all the components of UI with respect to their data type
+         */
         email = root.findViewById(R.id.email_address);
         password = root.findViewById(R.id.password);
-//        View forgot_password = root.findViewById(R.id.forgot_password);
-//        View remember_me = root.findViewById(R.id.remember_me);
         login = root.findViewById(R.id.button);
         mAuth = FirebaseAuth.getInstance();
-
         login.setOnClickListener(view -> loginUser());
-
         return root;
     }
 
+    /**
+     * loginUer method checks for certain conditions if a user is trying to log in
+     */
     private void loginUser(){
         String emailID= email.getText().toString();
         String passwordNew= password.getText().toString();
 
+        // Check for Email
         if(TextUtils.isEmpty(emailID)){
             email.setError("Email cannot be empty");
             email.requestFocus();
-        }else if(TextUtils.isEmpty(passwordNew)){
+        }
+
+        // Check for Password
+        else if(TextUtils.isEmpty(passwordNew)){
             password.setError("Password cannot be empty");
             password.requestFocus();
         }
+
+        // Checks for if a user has logged in successfully or not
         else{
             mAuth.signInWithEmailAndPassword(emailID, passwordNew).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -67,8 +80,6 @@ public class LoginTabFragment extends Fragment {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
                             User user = User.getInstance();
-//                            User user = (User) getArguments().getSerializable("USER");
-                            System.out.println("SOMETHING "+ user);
                             user.login(mAuth.getCurrentUser());
                             user.changeState(new LoginState(user));
                             Intent intent = new Intent(getContext(), HomePage.class);
@@ -84,8 +95,4 @@ public class LoginTabFragment extends Fragment {
             });
         }
     }
-
-
-
-
 }

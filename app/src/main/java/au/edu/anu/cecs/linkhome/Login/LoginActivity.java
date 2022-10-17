@@ -15,42 +15,40 @@ import com.google.firebase.auth.FirebaseAuth;
 import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
+/** LoginActivity sets up the login tab fragment and sign up fragment
+ * for the users to login and sign up accordingly
+ * The data is stored on firebase for all the logged in users or those users who sign up
+ *
+ */
 public class LoginActivity extends AppCompatActivity {
 
+    // Firebase Authentication
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Instance of the User
         User user = User.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Tabs for Login and SignUp
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         mAuth = FirebaseAuth.getInstance();
-
-//        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_google);
-
-//        tabLayout.addTab(tabLayout.newTab().setText("Login"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Sign Up"));
-//        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //final LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
-        //viewPager.setAdapter(adapter);
-
-        //viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.setupWithViewPager(viewPager);
         LoginAdapter loginAdapter = new LoginAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         Bundle bundle = new Bundle();
-//        bundle.putSerializable("USER", getIntent().getExtras().getSerializable("USER"));
         bundle.putSerializable("USER", user);
+
         Fragment loginFragment = new LoginTabFragment();
         loginFragment.setArguments(bundle);
+
         loginAdapter.addFragment(loginFragment, "Login");
-
         loginAdapter.addFragment(new SignUpTabFragment(), "SignUp");
-
         viewPager.setAdapter(loginAdapter);
     }
 }

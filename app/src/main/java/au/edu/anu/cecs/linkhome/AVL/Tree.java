@@ -1,5 +1,7 @@
 package au.edu.anu.cecs.linkhome.AVL;
 
+import androidx.annotation.NonNull;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param value to set as this node's value.
      */
     public Tree(T value) {
+
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -49,6 +52,7 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param rightNode right child of current node.
      */
     public Tree(T value, Tree<T> leftNode, Tree<T> rightNode) {
+
         // Ensure inputs are not null.
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
@@ -71,12 +75,14 @@ public abstract class Tree<T extends Comparable<T>> {
      * @return The maximum height of either children.
      */
     public int getHeight() {
+
         // Check whether leftNode or rightNode are EmptyTree
         int leftNodeHeight = leftNode instanceof EmptyTree ? 0 : 1 + leftNode.getHeight();
         int rightNodeHeight = rightNode instanceof EmptyTree ? 0 : 1 + rightNode.getHeight();
         return Math.max(leftNodeHeight, rightNodeHeight);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "{" +
@@ -104,8 +110,10 @@ public abstract class Tree<T extends Comparable<T>> {
      * @return graph of the tree.
      */
     public String display(int tabs) {
+
         // StringBuilder is faster than using string concatenation (which in java makes a new object per concatenation).
         assert value != null;
+
         StringBuilder sb = new StringBuilder(value.toString());
         sb.append("\n") ;
         for (int i = 0; i < tabs; i++) {

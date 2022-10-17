@@ -7,18 +7,31 @@ import java.util.List;
 
 import au.edu.anu.cecs.linkhome.Data;
 
+/**
+ * User class to implement state design pattern
+ */
 public class User implements Serializable {
 
+    // Instance of the User class
     private static User instance;
-    UserState userState;
 
+    UserState userState;
     String username;
+
+    public UserState getUserState() {
+        return userState;
+    }
+
+    public String getUsername(){
+        return  username;
+    }
 
     public User(){
         UserState defaultState = new LogoutState(this);
         changeState(defaultState);
     }
 
+    // Make use of Singleton Design Pattern
     public static User getInstance(){
         if(instance == null){
             instance = new User();
