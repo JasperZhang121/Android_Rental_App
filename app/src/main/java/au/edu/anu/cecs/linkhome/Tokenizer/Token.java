@@ -12,10 +12,11 @@ import java.util.Objects;
  * LESS: <
  * MORE: >
  * EQUAL: =
+ * TEXT: String
  */
 public class Token {
     // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
-    public enum Type {INT, LESS, MORE, EQUAL, AND, OR}
+    public enum Type {INT, LESS, MORE, EQUAL, AND, OR, TEXT}
 
     /**
      * The following exception should be thrown if a tokenizer attempts to tokenize something that is not of one
