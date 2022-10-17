@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import au.edu.anu.cecs.linkhome.Login.LoginActivity;
-import au.edu.anu.cecs.linkhome.MainActivity;
 import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;

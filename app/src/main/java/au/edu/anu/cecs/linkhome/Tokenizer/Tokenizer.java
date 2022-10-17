@@ -118,18 +118,22 @@ public class Tokenizer {
             currentToken = new Token(">", Token.Type.MORE);
         else if (firstChar == '=')
             currentToken = new Token("=", Token.Type.EQUAL);
-        else if(Character.isLetter(firstChar)){
+        else if(Character.isLetter(firstChar)) {
+            System.out.println("HELLO WORLD");
             StringBuilder letter = new StringBuilder();
-            for(int i=0;i<buffer.length();i++)
-                if(Character.isLetter(buffer.charAt(i))){
+            for (int i = 0; i < buffer.length(); i++)
+                if (Character.isLetter(buffer.charAt(i))) {
                     letter.append(buffer.charAt(i));
+                } else {
+                    break;
                 }
-            else{
-                break;
-                }
+
+            currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
+
         }
             // Check for a digit
         else if(Character.isDigit(firstChar)){
+            System.out.println("HELLO NUMBER");
             StringBuilder result = new StringBuilder();
             for(int i=0;i<buffer.length();i++){
                 if(Character.isDigit(buffer.charAt(i))){

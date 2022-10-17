@@ -1,6 +1,7 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 import java.lang.Object;
@@ -35,8 +36,6 @@ public class Parser {
     }
 
     ArrayList<Object> finalList = new ArrayList<>();
-
-    // The tokenizer (class field) this parser will use.
     Tokenizer tokenizer;
 
     /**
@@ -82,8 +81,9 @@ public class Parser {
         }
     }
 
-    public ArrayList<Object> getFinalList(){return finalList;}
-
+    public ArrayList<Object> getFinalList(){
+        return finalList;
+    }
 
 
     /**
@@ -93,18 +93,10 @@ public class Parser {
      * @return type: Exp.
      */
     public Exp parseExp() {
-        /*
-         TODO: Implement parse function for <exp>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         Hint 1: you know that the first item will always be a term (according to the grammar).
-         Hint 2: the possible grammar return '<term> + <exp>' correlates with the class (AddExp(term, exp)).
-         */
-        // ########## YOUR CODE STARTS HERE ##########
 
-        Exp termSol = parseTerm();
-        if (this.tokenizer.current() == null) {
-            return termSol;
-
+        if(this.tokenizer.current().getType().equals(Token.Type.TEXT)){
+            tokenizer.next();
+            parseOperators();
         }
 
         if(this.tokenizer.hasNext()){
@@ -114,125 +106,10 @@ public class Parser {
             tokenizer.next();
 
         }
-//        if(Objects.equals(this.tokenizer.current().getToken(), "city"))
-//        {
-//            if(tokenizer.hasNext()){
-//                tokenizer.next();
-//                if(tokenizer.current().getType() == Token.Type.EQUAL){
-//                    parseOperators();
-//                }
-//            }
-//
-//        }
-//
-//        if(Objects.equals(this.tokenizer.current().getToken(), "rent"))
-//        {
-//            if(tokenizer.hasNext()){
-//                tokenizer.next();
-//                if(tokenizer.current().getType() == Token.Type.EQUAL){
-//                    parseOperators();
-//                }
-//            }
-//
-//        }
-//        if(this.tokenizer.current().getType() == Token.Type.ADD)
-//        {
-//            this.tokenizer.next();
-//            Exp exp = parseExp();
-//            return new AndExp(termSol, exp);
-//        }
-//        if (this.tokenizer.current().getType() == Token.Type.SUB)
-//        {
-//            this.tokenizer.next();
-//            Exp exp = parseExp();
-//            return new SubExp(termSol, exp);
-//        }
-
-        // 2 integers cannot be together without any arithmetic operator
-        if(this.tokenizer.current().getType()== Token.Type.INT){
-            throw new IllegalProductionException("Incorrect");
-        }
-
-
-
-        return termSol;
-
-
-        // Change this return (if you want). It is simply a placeholder to prevent an error.
-        // ########## YOUR CODE ENDS HERE ##########
+        return null;
     }
 
-    /**
-     * Adheres to the grammar rule:
-     * <term>   ::=  <city=><letter> | <rent>
-     *
-     * @return type: Exp.
-     */
-    public Exp parseTerm() {
-        /*
-         TODO: Implement parse function for <term>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         Hint: you know that the first item will always be a factor (according to the grammar).
-         */
-        // ########## YOUR CODE STARTS HERE ##########
 
-        Exp rent = parseRent();
-        if (this.tokenizer.hasNext()) {
-            if (this.tokenizer.current() == null) {
-                return rent;
-            }
-//            if (this.tokenizer.current().getType() == Token.Type.MUL) {
-//                this.tokenizer.next();
-//                Exp term = parseTerm();
-//                return new MultExp(factor, term);
-//            }
-//            if (this.tokenizer.current().getType() == Token.Type.DIV) {
-//                this.tokenizer.next();
-//                Exp term = parseTerm();
-//                return new DivExp(factor, term);
-//            }
-        }
-        return rent;
-
-        // Change this return (if you want). It is simply a placeholder to prevent an error.
-        // ########## YOUR CODE ENDS HERE ##########
-    }
-
-    /**
-     * Adheres to the grammar rule:
-     * <rents> ::=  <operator> <coefficient>
-     *
-     * @return type: Exp.
-     */
-    public Exp parseRent() {
-        /*
-         TODO: Implement parse function for <factor>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         Hint 1: you can use Integer.parseInt() to convert a string into an integer.
-         Fun fact: Integer.parseInt() is using a parser!
-         Hint 2: you know that the first item will always be a coefficient (according to the grammar).
-         */
-        // ########## YOUR CODE STARTS HERE ##########
-
-        Exp coefficient = parseCoefficient();
-        Exp operator = parseOperators();
-//        this.tokenizer.next();
-//        if (this.tokenizer.current()!=null) {
-//            if (this.tokenizer.current().getType() == Token.Type.FAC) {
-//                this.tokenizer.next();
-//                if (tokenizer.current() != null && this.tokenizer.current().getType() == Token.Type.FAC) {
-//                    throw new IllegalProductionException("Incorrect");
-//                }
-//                //return new FacExp(coefficient);
-//            }
-//        }
-
-
-        return coefficient;
-
-        // Change this return (if you want). It is simply a placeholder to prevent an error.
-        // ########## YOUR CODE ENDS HERE ##########
-    }
 
     /**
      * Adheres to the grammar rule:
@@ -241,65 +118,58 @@ public class Parser {
      * @return type: Exp.
      */
     public Exp parseOperators() {
-        /*
-         TODO: Implement parse function for <coefficient>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         */
-        // ########## YOUR CODE STARTS HERE ##########
-
-        // Check for the corner cases
 
         if (this.tokenizer.current().getType() == Token.Type.LESS) {
+            Less less = new Less();
+            finalList.add(less);
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                Less less = new Less();
-                finalList.add(less);
+                parseCoefficient();
+
             }
             return new Less();
         }
         else if (this.tokenizer.current().getType() == Token.Type.MORE) {
+            More more = new More();
+            finalList.add(more);
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                More more = new More();
-                finalList.add(more);
-            }
+                parseCoefficient();
 
+            }
             return new More();
         }
         else if (this.tokenizer.current().getType() == Token.Type.EQUAL) {
+            EqualExp equalExp = new EqualExp();
+            finalList.add(equalExp);
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                EqualExp equalExp = new EqualExp();
-                finalList.add(equalExp);
-            }
+                parseCoefficient();
 
+            }
             return new EqualExp();
 
         }
         else if (this.tokenizer.current().getType() == Token.Type.AND) {
+            AndExp andExp = new AndExp();
+            finalList.add(andExp);
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                AndExp andExp = new AndExp();
-                finalList.add(andExp);
+                parseCoefficient();
             }
-
             return new AndExp();
         }
 
         else if (this.tokenizer.current().getType() == Token.Type.OR) {
+            OrExp orExp = new OrExp();
+            finalList.add(orExp);
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                OrExp orExp = new OrExp();
-                finalList.add(orExp);
+                parseCoefficient();
             }
-
             return new OrExp();
         }
-
-        else{
-            throw new IllegalProductionException("Incorrect");
-        }
-
+        return null;
 
     }
 
@@ -310,23 +180,22 @@ public class Parser {
      * @return type: Exp.
      */
     public Exp parseCoefficient() {
-        /*
-         TODO: Implement parse function for <coefficient>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         */
-        // ########## YOUR CODE STARTS HERE ##########
         IntExp result;
 
         // Check for the corner cases
 
         if (this.tokenizer.current().getType() == Token.Type.INT) {
             result = new IntExp(Integer.parseInt(this.tokenizer.current().getToken()));
-            finalList.add(tokenizer.current().getToken());
+            finalList.add(result.evaluateInt());
+            System.out.println("FINAL LIST : " + Arrays.toString(finalList.toArray()));
             return result;
         }
-        else{
-            throw new IllegalProductionException("Incorrect");
+        if (this.tokenizer.current().getType() == Token.Type.TEXT) {
+            parseLetter();
         }
+
+        return null;
+
 
     }
 
@@ -338,13 +207,6 @@ public class Parser {
      */
 
     public Exp parseLetter() {
-        /*
-         TODO: Implement parse function for <coefficient>.
-         TODO: Throw an IllegalProductionException if provided with tokens not conforming to the grammar.
-         */
-        // ########## YOUR CODE STARTS HERE ##########
-
-        // Check for the corner cases
 
         if(Objects.equals(this.tokenizer.current().getToken(), "city"))
         {
@@ -361,14 +223,24 @@ public class Parser {
         {
             if(tokenizer.hasNext()){
                 tokenizer.next();
-                if(tokenizer.current().getType() == Token.Type.EQUAL
-                        || tokenizer.current().getType() == Token.Type.MORE ||
-                        tokenizer.current().getType() == Token.Type.LESS){
-                    parseOperators();
+                if(tokenizer.current().getType() == Token.Type.EQUAL || tokenizer.current().getType() == Token.Type.MORE || tokenizer.current().getType() == Token.Type.LESS)
+                {
+                        parseOperators();
+                    }
                 }
             }
 
+
+        else if(this.tokenizer.current().getType() == Token.Type.TEXT){
+            finalList.add(tokenizer.current().getToken());
+            if(tokenizer.hasNext()){
+                tokenizer.next();
+                if(this.tokenizer.current().getType()==Token.Type.AND){
+                    parseOperators();
+                }
+            }
         }
+
 
         else if(tokenizer.hasNext()){
             tokenizer.next();

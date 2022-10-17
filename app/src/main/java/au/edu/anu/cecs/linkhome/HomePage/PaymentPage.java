@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import java.util.Calendar;
 
@@ -25,39 +23,32 @@ public class PaymentPage extends AppCompatActivity {
         dateEdt = findViewById(R.id.paymentDates);
         // on below line we are adding click listener
         // for our pick date button
-        dateEdt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // on below line we are getting
-                // the instance of our calendar.
-                final Calendar c = Calendar.getInstance();
+        dateEdt.setOnClickListener(v -> {
+            // on below line we are getting
+            // the instance of our calendar.
+            final Calendar c = Calendar.getInstance();
 
-                // on below line we are getting
-                // our day, month and year.
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+            // on below line we are getting
+            // our day, month and year.
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
 
-                // on below line we are creating a variable for date picker dialog.
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
-                        PaymentPage.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // on below line we are setting date to our edit text.
-                                dateEdt.setText( (monthOfYear + 1) + "/" + year);
-                                System.out.println("here!");
-                            }
-                        },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
-                        year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
-                datePickerDialog.show();
-            }
+            // on below line we are creating a variable for date picker dialog.
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    // on below line we are passing context.
+                    PaymentPage.this,
+                    (view, year1, monthOfYear, dayOfMonth) -> {
+                        // on below line we are setting date to our edit text.
+                        dateEdt.setText( (monthOfYear + 1) + "/" + year1);
+                        System.out.println("here!");
+                    },
+                    // on below line we are passing year,
+                    // month and day for selected date in our date picker.
+                    year, month, day);
+            // at last we are calling show to
+            // display our date picker dialog.
+            datePickerDialog.show();
         });
     }
 }
