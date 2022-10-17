@@ -1,10 +1,11 @@
 package au.edu.anu.cecs.linkhome;
-
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Less;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
 
@@ -21,14 +22,24 @@ public class ParserTest {
 
 
     private static final String COMPLEX_CASE2 = "Canberra && Sydney && Melbourne && rent>=200 && rent<=500 || rent>600 ";
-    private static final String[] testExample = new String[]{"rent<=300", "rent>=300", "Sydney", "Melbourne"};
+    private static final String[] testExample = new String[]{"rent<300", "rent>300", "Sydney", "Melbourne"};
 
 
     @Test(timeout=1000)
     public void testSimleAdd() {
+
         Tokenizer mathTokenizer = new Tokenizer(testExample[0]);
-        Exp t1 = new Parser(mathTokenizer).parseExp();
-        assertEquals(testExample, t1.evaluate());
+        Parser parser = new Parser(mathTokenizer);
+        parser.parseExp();
+
+
+
+        ArrayList list = new ArrayList<Object>();
+        Less less = new Less();
+        list.add(less);
+        list.add(300);
+
+        assertEquals(list, parser.getFinalList());
     }
 
     @Test(timeout=1000)

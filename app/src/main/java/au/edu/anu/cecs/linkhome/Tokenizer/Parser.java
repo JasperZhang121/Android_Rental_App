@@ -82,6 +82,10 @@ public class Parser {
         }
     }
 
+    public ArrayList<Object> getFinalList(){return finalList;}
+
+
+
     /**
      * Adheres to the grammar rule:
      * <exp>    ::= <term> || <exp> | <term> && <exp> | <term>
