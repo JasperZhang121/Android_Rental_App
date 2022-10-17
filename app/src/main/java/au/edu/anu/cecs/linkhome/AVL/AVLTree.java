@@ -52,6 +52,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             throw new IllegalArgumentException("Input cannot be null");
 
         // Using the property of the BST
+        System.out.println(element + " " + value);
         if (element.compareTo(value) > 0) {
             newTreeCopy.rightNode=newTreeCopy.rightNode.insert(element);
         }
