@@ -26,7 +26,6 @@ import au.edu.anu.cecs.linkhome.R;
  */
 
 public class DetailedPage extends AppCompatActivity {
-    ImageButton book_btn;
     Button pay_btn;
     DatabaseReference favour;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -42,7 +41,6 @@ public class DetailedPage extends AppCompatActivity {
         TextView rentText = (TextView) findViewById(R.id.detailedPageRent);
         ImageView image = (ImageView) findViewById(R.id.detailedPageImage);
 
-        book_btn = (ImageButton)findViewById(R.id.imageButton);
         pay_btn = findViewById(R.id.detailedPagePayButton);
 
 
