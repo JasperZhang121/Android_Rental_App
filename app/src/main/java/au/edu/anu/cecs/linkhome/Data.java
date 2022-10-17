@@ -27,7 +27,7 @@ public class Data implements Comparable<Data>{
      */
     @Override
     public int compareTo(Data data) {
-        return Float.compare(Float.parseFloat(data.rent.substring(1)),
+        return Float.compare(Float.parseFloat(rent.substring(1)),
                 Float.parseFloat(data.rent.substring(1)));
     }
 

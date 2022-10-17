@@ -10,12 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import au.edu.anu.cecs.linkhome.R;
@@ -80,17 +77,14 @@ public class SignUpTabFragment extends Fragment {
 
         // Checks for if a user has signed up successfully or not
         else{
-            mAuth.createUserWithEmailAndPassword(emailID,passwordConfirm).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getContext(),"User Registered ", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getContext(), LoginTabFragment.class));
-                    }
-                    else{
-                        Toast.makeText(getContext(),"Registration error " +
-                                task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            mAuth.createUserWithEmailAndPassword(emailID,passwordConfirm).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    Toast.makeText(getContext(),"User Registered ", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getContext(), LoginTabFragment.class));
+                }
+                else{
+                    Toast.makeText(getContext(),"Registration error " +
+                            task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
