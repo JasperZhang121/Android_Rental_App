@@ -11,7 +11,9 @@ package au.edu.anu.cecs.linkhome.Tokenizer;
 public abstract class Exp {
 
     public abstract String show();
-    public abstract int evaluate();
+    public abstract boolean evaluate();
+    public abstract String evaluateString();
+    public abstract int evaluateInt();
 
 }
 

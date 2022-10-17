@@ -22,7 +22,18 @@ public class IntExp extends Exp {
     }
 
     @Override
-    public int evaluate() {
+    public boolean evaluate() {
+        return false;
+    }
+
+
+    @Override
+    public String evaluateString() {
+        return null;
+    }
+
+    @Override
+    public int evaluateInt() {
         return value;
     }
 }

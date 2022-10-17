@@ -13,18 +13,26 @@ public class AndExp extends Exp {
     private Exp term;
     private Exp exp;
 
-    public AndExp(Exp term, Exp exp) {
-        this.term = term;
-        this.exp = exp;
+    public AndExp() {
     }
 
     @Override
     public String show() {
-        return "(" + term.show() + " + " + exp.show() + ")";
+        return "(" + term.show() + " && " + exp.show() + ")";
     }
 
     @Override
-    public int evaluate() {
-        return (term.evaluate() + exp.evaluate());
+    public boolean evaluate() {
+        return (term.evaluate() && exp.evaluate());
+    }
+
+    @Override
+    public String evaluateString() {
+        return null;
+    }
+
+    @Override
+    public int evaluateInt() {
+        return 0;
     }
 }

@@ -43,9 +43,9 @@ public class Tokenizer {
         /*
          Continue to get the user's input until they exit.
          To exit press: Control + D or providing the string 'q'
-         Example input you can try: ((1 + 2) * 5)/2
+         Example input you can try: city='Canberra' && rent < '350'
          */
-        System.out.println("Provide a mathematical string to be tokenized:");
+        System.out.println("Provide an expression string to be tokenized:");
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
 
@@ -91,11 +91,16 @@ public class Tokenizer {
         To help you, we have already written the first few steps in the tokenization process.
         The rest will follow a similar format.
          */
+
+        //String parameters = buffer.substring(0,5);
+
         char firstChar = buffer.charAt(0);
-        if (firstChar == '+')
-            currentToken = new Token("+", Token.Type.ADD);
-        else if (firstChar == '-')
-            currentToken = new Token("-", Token.Type.SUB);
+        String firstTwoChars = buffer.substring(0,2);
+        if (firstTwoChars.equals("&&"))
+            currentToken = new Token("&&", Token.Type.AND);
+        else if (firstTwoChars.equals("||"))
+        currentToken = new Token("||", Token.Type.OR);
+
 
         /*
          TODO: Implement multiplication and division tokenizing.
@@ -107,17 +112,22 @@ public class Tokenizer {
          */
             // ########## YOUR CODE STARTS HERE ##########
 
-        else if (firstChar == '*')
-            currentToken = new Token("*", Token.Type.MUL);
-        else if (firstChar == '/')
-            currentToken = new Token("/", Token.Type.DIV);
-        else if (firstChar == '(')
-            currentToken = new Token("(", Token.Type.LBRA);
-        else if (firstChar == ')')
-            currentToken = new Token(")", Token.Type.RBRA);
-        else if (firstChar == '!')
-            currentToken = new Token("!", Token.Type.FAC);
-
+        else if (firstChar == '<')
+            currentToken = new Token("<", Token.Type.LESS);
+        else if (firstChar == '>')
+            currentToken = new Token(">", Token.Type.MORE);
+        else if (firstChar == '=')
+            currentToken = new Token("=", Token.Type.EQUAL);
+        else if(Character.isLetter(firstChar)){
+            StringBuilder letter = new StringBuilder();
+            for(int i=0;i<buffer.length();i++)
+                if(Character.isLetter(buffer.charAt(i))){
+                    letter.append(buffer.charAt(i));
+                }
+            else{
+                break;
+                }
+        }
             // Check for a digit
         else if(Character.isDigit(firstChar)){
             StringBuilder result = new StringBuilder();
@@ -131,53 +141,10 @@ public class Tokenizer {
             currentToken = new Token(result.toString().trim(), Token.Type.INT);
 
         }
-        //If nothing matches with the above, then throw an exception
+
         else{
             throw new Token.IllegalTokenException("Incorrect");
         }
-
-        // This means it is of type Integer
-//        if(firstChar >= '0' && firstChar <= '9')
-//        {
-//            StringBuilder result = new StringBuilder();
-//            for(int i=0;i<buffer.length();i++){
-//                if(buffer.charAt(i)!='*' && buffer.charAt(i)!='-'
-//                        && buffer.charAt(i)!='+' && buffer.charAt(i)!='!'
-//                        && buffer.charAt(i)!='/' && buffer.charAt(i)!=')' && buffer.charAt(i)!='('){
-//                    result.append(buffer.charAt(i));
-//                }
-//                else
-//                    break;
-//            }
-//
-//            currentToken = new Token(result.toString().trim(), Token.Type.INT);
-//        }
-
-
-//        if(currentToken == null) {
-//            throw new Token.IllegalTokenException("Incorrect");
-//        }
-
-//        StringBuilder finalResult = new StringBuilder();
-//        for(int i=0;i<buffer.length();i++){
-//            if(!Character.isDigit(buffer.charAt(i))){
-//                finalResult.append(buffer.charAt(i));
-//            }
-//        }
-//        String result = finalResult.toString();
-//        buffer = buffer.replaceAll("\\s+","");
-
-//        for (int i = 0; i < buffer.length(); i++) {
-//            if (!(Character.isDigit(buffer.charAt(i)))) {
-//                if ( !Character.isDigit(buffer.charAt(i)) && buffer.charAt(i) != '*' && buffer.charAt(i) != '-'
-//                        && buffer.charAt(i) != '+' && buffer.charAt(i) != '!'
-//                        && buffer.charAt(i) != '/' && buffer.charAt(i) != ')' && buffer.charAt(i) != '(') {
-//                    if (result.indexOf(buffer.charAt(i)) != -1) {
-//                        throw new Token.IllegalTokenException("Incorrect");
-//                    }
-//                }
-//            }
-//        }
 
         // ########## YOUR CODE ENDS HERE ##########
         // Remove the extracted token from buffer

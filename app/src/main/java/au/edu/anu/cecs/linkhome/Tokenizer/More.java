@@ -1,22 +1,21 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-public class OrExp extends Exp {
-
+public class More extends Exp {
     private Exp term;
     private Exp exp;
 
-    public OrExp() {
+    public More() {
 
     }
 
     @Override
     public String show() {
-        return "(" + term.show() + " || " + exp.show() + ")";
+        return "(" + term.show() + " > " + exp.show() + ")";
     }
 
     @Override
     public boolean evaluate() {
-        return (term.evaluate() || exp.evaluate());
+        return true;
     }
 
     @Override
@@ -29,4 +28,3 @@ public class OrExp extends Exp {
         return 0;
     }
 }
-

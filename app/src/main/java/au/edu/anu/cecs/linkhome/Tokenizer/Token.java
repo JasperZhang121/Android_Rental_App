@@ -7,17 +7,15 @@ import java.util.Objects;
  * and type saved in {@code type} which is one of the predefined type in Type enum.
  * The following are the different types of tokens:
  * INT: integer
- * ADD: +
- * SUB: -
- * MUL: *
- * DIV: /
- * FAC: !
- * LBRA: (
- * RBRA: )
+ * AND: &&
+ * OR: ||
+ * LESS: <
+ * MORE: >
+ * EQUAL: =
  */
 public class Token {
     // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
-    public enum Type {INT, ADD, SUB, MUL, DIV, FAC, LBRA, RBRA}
+    public enum Type {INT, LESS, MORE, EQUAL, AND, OR}
 
     /**
      * The following exception should be thrown if a tokenizer attempts to tokenize something that is not of one
