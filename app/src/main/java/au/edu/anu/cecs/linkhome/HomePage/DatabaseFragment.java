@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -86,7 +88,6 @@ public class DatabaseFragment extends Fragment {
                 }
 
                 DataAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -112,16 +113,23 @@ public class DatabaseFragment extends Fragment {
                 Tokenizer tokenizer = new Tokenizer(query);
                 Parser parser = new Parser(tokenizer);
                 parser.parseExp();
-                ArrayList<Object> list = parser.getFinalList();
-                if(list.get(0) instanceof EqualExp && list.get(1) instanceof String){
-                    AVLTree<Data> hashTree = hashMapAVL.get( (String) list.get(1));
+                ArrayList<Object> finalList = parser.getFinalList();
+                if(finalList.get(0) instanceof EqualExp && finalList.get(1) instanceof String){
+                    AVLTree<Data> hashTree = hashMapAVL.get( (String) finalList.get(1));
+                    if(hashTree != null){
+                        list = hashTree.treeToListInOrder(hashTree);
+                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), list, listImages, listener);
+                        recyclerView.setAdapter(dataAdapter2);
+                    } else {
+                        Toast.makeText(getContext(), "Invalid", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                recyclerView.setAdapter(DataAdapter);
                 return false;
             }
         });

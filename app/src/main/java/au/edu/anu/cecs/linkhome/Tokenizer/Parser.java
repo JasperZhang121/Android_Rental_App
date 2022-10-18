@@ -77,7 +77,6 @@ public class Parser {
         return finalList;
     }
 
-
     /**
      * Adheres to the grammar rule:
      * <exp>    ::= <term> || <exp> | <term> && <exp> | <term>
@@ -92,14 +91,10 @@ public class Parser {
         }
 
         if (this.tokenizer.hasNext()) {
-            if (tokenizer.current().equals(Less.class)) {
-                parseLetter();
-            }
             tokenizer.next();
         }
         return null;
     }
-
 
     /**
      * Adheres to the grammar rule:

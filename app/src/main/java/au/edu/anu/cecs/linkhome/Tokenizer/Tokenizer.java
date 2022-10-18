@@ -47,13 +47,6 @@ public class Tokenizer {
             return;
         }
 
-        /*
-        To help you, we have already written the first few steps in the tokenization process.
-        The rest will follow a similar format.
-         */
-
-        //String parameters = buffer.substring(0,5);
-
         char firstChar = buffer.charAt(0);
         String firstTwoChars = buffer.substring(0, 2);
         if (firstTwoChars.equals("&&"))
