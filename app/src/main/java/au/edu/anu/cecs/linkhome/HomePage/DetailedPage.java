@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,9 @@ import au.edu.anu.cecs.linkhome.R;
 
 public class DetailedPage extends AppCompatActivity {
     Button pay_btn;
+    ImageButton mastercard;
+    ImageButton payapal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,11 @@ public class DetailedPage extends AppCompatActivity {
         TextView rentText = (TextView) findViewById(R.id.detailedPageRent);
         ImageView image = (ImageView) findViewById(R.id.detailedPageImage);
 
-        pay_btn = findViewById(R.id.detailedPagePayButton);
+
+        //pay_btn = findViewById(R.id.detailedPagePayButton);
+        mastercard = (ImageButton) findViewById(R.id.imageButton3);
+        payapal = (ImageButton) findViewById(R.id.imageButton4);
+
 
 
         String city = "";
@@ -61,9 +69,18 @@ public class DetailedPage extends AppCompatActivity {
         postalText.setText(postal);
         rentText.setText(rent);
 
-        pay_btn.setOnClickListener(v -> {
+        /*pay_btn.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
             startActivity(intent);
+        });*/
+        mastercard.setOnClickListener(v -> {
+            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+            startActivity(intent);
+        });
+        payapal.setOnClickListener(v -> {
+            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+                startActivity(intent);
+
         });
 
     }

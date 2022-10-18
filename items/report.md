@@ -144,9 +144,9 @@ The following is a report template to help your team successfully provide all th
 **Data Structures**
 
 *[What data structures did your team utilise? Where and why?]*
-* ** We have used the AVL tree Data Structure** 
-* **We have used it for search function and for increasing the search efficiency**
-* **We are using the AVl tree in DatabaseFragment**
+* ** We have used the AVL tree Data Structure ** 
+* ** We have used it for search function and for increasing the search efficiency **
+* ** We are using the AVl tree in DatabaseFragment **
 
 **Design Patterns**
 

@@ -10,10 +10,11 @@
         android:id="@+id/detailedPageImage"
         android:layout_width="0dp"
         android:layout_height="250dp"
+        android:layout_marginTop="8dp"
         android:scaleType="fitXY"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -120,7 +121,54 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
-    <Button
+
+    <!--&lt;!&ndash;app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_googlePay"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"&ndash;&gt;<![CDATA[
+        app:layout_constraintVertical_bias="0.501" />
+-->
+
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="99dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailedPageRent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/mastercard" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="94dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="235dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginRight="99dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/paypal" />
+
+
+    <!--<Button
         android:id="@+id/detailedPagePayButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,7 +180,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
         app:layout_constraintVertical_bias="0.718"
-        app:srcCompat="@drawable/ic_baseline_turned_in_not_24" />
+        app:srcCompat="@drawable/ic_baseline_turned_in_not_24" />-->
+    <!--android:id="@+id/payment_paypal"
+    android:layout_width="82dp"
+    android:layout_height="61dp"
+    android:src="@drawable/paypal"
+    app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+    app:layout_constraintEnd_toStartOf="@+id/imageView_googlePay"
+    app:layout_constraintHorizontal_bias="0.55"
+    app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
+    app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+    app:layout_constraintVertical_bias="0.501"-->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
