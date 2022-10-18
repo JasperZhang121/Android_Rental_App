@@ -63,7 +63,7 @@ public class DatabaseFragment extends Fragment {
         listImages = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         setOnClickListener();
-        DataAdapter = new DataAdapter(getContext(), list, listImages, listener);
+        DataAdapter = new DataAdapter(getContext(), list, listener);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(DataAdapter);
 
@@ -106,7 +106,7 @@ public class DatabaseFragment extends Fragment {
     }
 
     ArrayList<Object> finalList = new ArrayList<>();
-    HashSet<Data> hashSet = new HashSet();
+    HashSet<Data> hashSet = new HashSet<>();
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
@@ -131,8 +131,8 @@ public class DatabaseFragment extends Fragment {
                             if(finalList.get(2) instanceof OrExp){
                                 if(finalList.get(3) instanceof Less || finalList.get(3) instanceof More){
                                     if(finalList.get(4) instanceof Integer){
-                                        Data data = new Data("", "", "",  "$"+String.valueOf(finalList.get(4)));
-                                        for (AVLTree value : hashMapAVL.values()) {
+                                        Data data = new Data("", "", "",  "$"+finalList.get(4));
+                                        for (AVLTree<Data> value : hashMapAVL.values()) {
                                             AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(3), data);
                                             if(filteredTree!=null) {
                                                 hashSet.addAll(filteredTree.treeToListInOrder(filteredTree));
@@ -159,7 +159,7 @@ public class DatabaseFragment extends Fragment {
                         hashSetList.addAll(hashSet);
 
                         System.out.println("HASHSET: " + hashSet);
-                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), hashSetList, listImages, listener);
+                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), hashSetList, listener);
                         recyclerView.setAdapter(dataAdapter2);
                     } else {
                         Toast.makeText(getContext(), "Invalid", Toast.LENGTH_SHORT).show();
@@ -174,15 +174,15 @@ public class DatabaseFragment extends Fragment {
                         || finalList.get(i) instanceof More
                         || finalList.get(i) instanceof EqualExp){
                     if(finalList.get(j) instanceof Integer){
-                        Data data = new Data("", "", "",  "$"+String.valueOf(finalList.get(j)));
+                        Data data = new Data("", "", "",  "$"+finalList.get(j));
                         ArrayList<Data> result = new ArrayList<>();
-                        for (AVLTree value : hashMapAVL.values()) {
+                        for (AVLTree<Data> value : hashMapAVL.values()) {
                             AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(i), data);
                             if(filteredTree!=null) {
                                 result.addAll(filteredTree.treeToListInOrder(filteredTree));
                             }
                         }
-                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), result, listImages, listener);
+                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), result, listener);
                         recyclerView.setAdapter(dataAdapter2);
                     }
                 }

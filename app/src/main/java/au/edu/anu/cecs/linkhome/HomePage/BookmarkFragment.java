@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.BookmarkAdapter;
 import au.edu.anu.cecs.linkhome.Data;
@@ -33,23 +35,21 @@ public class BookmarkFragment extends Fragment {
     DatabaseReference database;
     au.edu.anu.cecs.linkhome.BookmarkAdapter BookmarkAdapter;
     ArrayList<Data> list;
-    ArrayList<Integer> listImages;
     au.edu.anu.cecs.linkhome.BookmarkAdapter.ItemClickListener listener;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.bookmark_fragment, container, false);
         recyclerView = root.findViewById(R.id.rv_bookmark);
-        database = FirebaseDatabase.getInstance().getReference("Bookmarks");
-        list = new ArrayList<>();
-        listImages = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        setOnClickListener();
-        BookmarkAdapter = new BookmarkAdapter(getContext(), list, listImages, listener);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(BookmarkAdapter);
 
+        list = new ArrayList<>();
+
+        setOnClickListener();
         setHasOptionsMenu(true);
 
+        String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        database = FirebaseDatabase.getInstance().getReference("Bookmarks/" + user);
         database.addValueEventListener(new ValueEventListener() {
             /**
              * Read data from the JSON file in firebase and create new objects of type Data
@@ -57,19 +57,14 @@ public class BookmarkFragment extends Fragment {
              */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
                     Data data = dataSnapshot.getValue(Data.class);
-
                     list.add(data);
-                    int max = 1000;
-                    int min = 0;
-                    listImages.add((int) (Math.random() * ((max - min) + 1) + min));
                 }
-                System.out.println("LIST: " + list);
-
+                BookmarkAdapter = new BookmarkAdapter(getContext(), list, listener);
+                recyclerView.setAdapter(BookmarkAdapter);
                 BookmarkAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -99,7 +94,7 @@ public class BookmarkFragment extends Fragment {
         return true;
     }
 
-    public void setOnClickListener() {
+    private void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getContext(), DetailedPage.class);
             intent.putExtra("city", list.get(position).getCity());

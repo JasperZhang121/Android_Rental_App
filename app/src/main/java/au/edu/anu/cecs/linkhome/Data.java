@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
  */
 
 public class Data implements Comparable<Data> {
-    String address, city, postalZip, rent, image;
+    String address, city, postalZip, rent, image, id;
 
     public Data() {
 
@@ -49,13 +49,20 @@ public class Data implements Comparable<Data> {
         return rent;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public String getId() {return id;}
+
     public void setImage(String image) {
         this.image = image;
     }
 
-    public String getImage() {
-        return image;
+    public void setId(String id) {
+        this.id = id;
     }
+
 
     @NonNull
     @Override

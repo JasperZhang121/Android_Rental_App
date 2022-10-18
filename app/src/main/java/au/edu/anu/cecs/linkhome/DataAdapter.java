@@ -15,27 +15,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
 
     private final ItemClickListener listener;
-    private final Context context;
+    private static Context context;
     private final ArrayList<Data> list;
-    private final ArrayList<Integer> listImages;
-    DatabaseReference databaseReference;
-    FirebaseDatabase firebaseDatabase;
+    private static DatabaseReference databaseReference;
+    private static FirebaseDatabase firebaseDatabase;
 
-    public DataAdapter(Context context, ArrayList<Data> list, ArrayList<Integer> listImages, ItemClickListener listener) {
-        this.context = context;
+    public DataAdapter(Context context, ArrayList<Data> list, ItemClickListener listener) {
+        DataAdapter.context = context;
         this.list = list;
-        this.listImages = listImages;
         this.listener = listener;
     }
 
@@ -43,9 +40,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-
         return new MyViewHolder(v);
     }
 
@@ -57,12 +52,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         holder.postalZip.setText(user.getPostalZip());
         holder.rent.setText(user.getRent());
 
-        Glide.with(context).load("https://picsum.photos/id/" + listImages.get(position) + "/300/200").apply(new RequestOptions()
+        Glide.with(context).load(user.getImage()).apply(new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true))
                 .into(holder.getImageView());
-
-        user.setImage("https://picsum.photos/id/" + listImages.get(position) + "/300/200");
     }
 
     @Override
@@ -83,7 +76,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             super(itemView);
 
             imageView = itemView.findViewById(R.id.DatabaseimageView);
-
             address = itemView.findViewById(R.id.Databaseaddress);
             city = itemView.findViewById(R.id.Databasecity);
             postalZip = itemView.findViewById(R.id.DatabasepostalZip);
@@ -106,45 +98,35 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         public void checkBox() {
             cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) {
-                    addDataToFirebase(address.getText().toString(),
-                            city.getText().toString(),
-                            postalZip.getText().toString(),
-                            rent.getText().toString(),
-                            getAdapterPosition());
+                    addDataToFirebase(list.get(getAdapterPosition()));
                 } else {
-                    deleteDataFromFirebase(getAdapterPosition());
+                    deleteDataFromFirebase(list.get(getAdapterPosition()).getId());
                 }
             });
         }
     }
 
-
-    private void addDataToFirebase(String address, String city, String postalZip, String rent, int id) {
-        Data data = new Data(address, city, postalZip, rent);
-
-        databaseReference = firebaseDatabase.getReference("Bookmarks/" + id);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+    public static void addDataToFirebase(Data data) {
+        String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        System.out.println(user);
+        databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + data.getId());
+        databaseReference.setValue(data).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
                 Toast.makeText(context, "Item added to wishlist", Toast.LENGTH_SHORT).show();
-                databaseReference.setValue(data);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(context, "Failed to add item to wishlist" + databaseError, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Failed to add item to wishlist", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void deleteDataFromFirebase(int id) {
-        databaseReference = firebaseDatabase.getReference("Bookmarks");
-        databaseReference.child(Integer.toString(id)).removeValue().addOnCompleteListener(task -> {
+    public static void deleteDataFromFirebase(String id) {
+        String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + id);
+        databaseReference.removeValue().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(context, "Item Removed from wishlist", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Failed to delete item to wishlist ", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
