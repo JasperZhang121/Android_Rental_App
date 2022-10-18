@@ -23,7 +23,7 @@ import au.edu.anu.cecs.linkhome.R;
 public class DetailedPage extends AppCompatActivity {
     Button pay_btn;
     ImageButton mastercard;
-    ImageButton payapal;
+    ImageButton paypal;
 
 
     @Override
@@ -40,7 +40,7 @@ public class DetailedPage extends AppCompatActivity {
 
         //pay_btn = findViewById(R.id.detailedPagePayButton);
         mastercard = (ImageButton) findViewById(R.id.imageButton3);
-        payapal = (ImageButton) findViewById(R.id.imageButton4);
+        paypal = (ImageButton) findViewById(R.id.imageButton4);
 
 
 
@@ -73,11 +73,11 @@ public class DetailedPage extends AppCompatActivity {
             startActivity(intent);
         });*/
         mastercard.setOnClickListener(v -> {
-            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+            Intent intent = new Intent(DetailedPage.this, Mastercard.class);
             startActivity(intent);
         });
-        payapal.setOnClickListener(v -> {
-            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+        paypal.setOnClickListener(v -> {
+            Intent intent = new Intent(DetailedPage.this, Paypal.class);
                 startActivity(intent);
 
         });
