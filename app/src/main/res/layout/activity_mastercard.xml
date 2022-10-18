@@ -108,8 +108,8 @@
 
     <TextView
         android:id="@+id/et_information"
-        android:layout_width="358dp"
-        android:layout_height="55dp"
+        android:layout_width="355dp"
+        android:layout_height="44dp"
         android:layout_marginTop="116dp"
         android:layout_marginBottom="41dp"
         android:ems="10"
@@ -122,25 +122,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/et_welcome_mastercard"
-        android:layout_width="408dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="38dp"
+        android:layout_width="379dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="9dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Welcome to Mastercard Payemnt Page"
+        android:text="Welcome to Mastercard Payment"
         android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="63dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="332dp"
+        android:layout_marginRight="332dp"
+        android:layout_marginBottom="18dp"
         app:layout_constraintBottom_toTopOf="@+id/et_information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_welcome_mastercard"
+        app:srcCompat="@drawable/mastercard" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
         android:id="@+id/paymentCardNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="208dp"
         android:ems="10"
         android:hint="@string/card_number"
         android:inputType="number"
@@ -107,39 +107,59 @@
 
     <TextView
         android:id="@+id/et_information"
-        android:layout_width="358dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="41dp"
+        android:layout_width="342dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Add your payment details:"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/paymentCardNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <TextView
         android:id="@+id/et_welcome_mastercard"
-        android:layout_width="408dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="38dp"
+        android:layout_width="329dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="7dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Welcome to Paypal Payemnt Page"
+        android:text="Welcome to Paypal Payment"
         android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="49dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="346dp"
+        android:layout_marginRight="346dp"
+        android:layout_marginBottom="17dp"
         app:layout_constraintBottom_toTopOf="@+id/et_information"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_welcome_mastercard"
+        app:srcCompat="@drawable/paypal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
