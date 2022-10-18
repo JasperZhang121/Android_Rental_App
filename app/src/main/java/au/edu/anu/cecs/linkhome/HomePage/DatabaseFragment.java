@@ -27,17 +27,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.AVL.AVLTree;
-import au.edu.anu.cecs.linkhome.AVL.Tree;
 import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.DataAdapter;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.Tokenizer.AndExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Less;
 import au.edu.anu.cecs.linkhome.Tokenizer.More;
+import au.edu.anu.cecs.linkhome.Tokenizer.OrExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
 
@@ -103,6 +105,9 @@ public class DatabaseFragment extends Fragment {
         return root;
     }
 
+    ArrayList<Object> finalList = new ArrayList<>();
+    HashSet<Data> hashSet = new HashSet();
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
@@ -111,41 +116,76 @@ public class DatabaseFragment extends Fragment {
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to Search");
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Tokenizer tokenizer = new Tokenizer(query);
                 Parser parser = new Parser(tokenizer);
                 parser.parseExp();
-                ArrayList<Object> finalList = parser.getFinalList();
+                finalList = parser.getFinalList();
                 if(finalList.get(0) instanceof EqualExp && finalList.get(1) instanceof String){
                     AVLTree<Data> hashTree = hashMapAVL.get( (String) finalList.get(1));
                     if(hashTree != null){
-                        list = hashTree.treeToListInOrder(hashTree);
-                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), list, listImages, listener);
+                        if(finalList.size()>2){
+                            if(finalList.get(2) instanceof OrExp){
+                                if(finalList.get(3) instanceof Less || finalList.get(3) instanceof More){
+                                    if(finalList.get(4) instanceof Integer){
+                                        Data data = new Data("", "", "",  "$"+String.valueOf(finalList.get(4)));
+                                        for (AVLTree value : hashMapAVL.values()) {
+                                            AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(3), data);
+                                            if(filteredTree!=null) {
+                                                hashSet.addAll(filteredTree.treeToListInOrder(filteredTree));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            // && Operator
+                            if(finalList.get(2) instanceof AndExp){
+                                if(finalList.get(3) instanceof Less || finalList.get(3) instanceof More){
+                                    if(finalList.get(4) instanceof Integer){
+                                        Data data = new Data("","","","$"+(finalList.get(4)));
+                                        AVLTree<Data> filteredTree = hashTree.filterData(hashTree, (Exp) finalList.get(3), data);
+                                        if(filteredTree!=null) {
+                                            hashSet.addAll(filteredTree.treeToListInOrder(filteredTree));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        hashSet.addAll(hashTree.treeToListInOrder(hashTree));
+                        ArrayList<Data> hashSetList = new ArrayList<>();
+                        hashSetList.addAll(hashSet);
+
+                        System.out.println("HASHSET: " + hashSet);
+                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), hashSetList, listImages, listener);
                         recyclerView.setAdapter(dataAdapter2);
                     } else {
                         Toast.makeText(getContext(), "Invalid", Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(finalList.get(0) instanceof Less
-                        || finalList.get(0) instanceof More
-                        || finalList.get(0) instanceof EqualExp){
-                    if(finalList.get(1) instanceof Integer){
-                        Data data = new Data("", "", "",  String.valueOf(finalList.get(1)));
-                        ArrayList<Data> result = new ArrayList<Data>();
+                filterByRent(0,1);
+                return true;
+            }
+
+            public void filterByRent(int i, int j){
+                if(finalList.get(i) instanceof Less
+                        || finalList.get(i) instanceof More
+                        || finalList.get(i) instanceof EqualExp){
+                    if(finalList.get(j) instanceof Integer){
+                        Data data = new Data("", "", "",  "$"+String.valueOf(finalList.get(j)));
+                        ArrayList<Data> result = new ArrayList<>();
                         for (AVLTree value : hashMapAVL.values()) {
-                            AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(0), data);
+                            AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(i), data);
                             if(filteredTree!=null) {
                                 result.addAll(filteredTree.treeToListInOrder(filteredTree));
                             }
                         }
-                        System.out.println("Result: " + result);
+                        DataAdapter dataAdapter2 = new DataAdapter(getContext(), result, listImages, listener);
+                        recyclerView.setAdapter(dataAdapter2);
                     }
                 }
-
-
-                return true;
             }
 
             @Override

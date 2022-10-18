@@ -11,6 +11,7 @@ import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Less;
 import au.edu.anu.cecs.linkhome.Tokenizer.Letter;
 import au.edu.anu.cecs.linkhome.Tokenizer.More;
+import au.edu.anu.cecs.linkhome.Tokenizer.OrExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
 
@@ -18,7 +19,7 @@ public class ParserTest {
 
     private static Tokenizer tokenizer;
 
-    private static final String SIMPLE_CASE = "city=Canberra && rent<400";
+    private static final String SIMPLE_CASE = "city=Canberra || rent<400";
     private static final String[] testExample = new String[]{"rent<300", "rent>300", "city=Sydney", "city=Melbourne"};
     //private static final String SIMPLE_ASSOCIATIVE_CASE = "Canberra && rent<=500";
     //private static final String COMPLEX_CASE1 = " Canberra && Sydney && Melbourne && rent<=500 || rent>600 ";
@@ -36,7 +37,7 @@ public class ParserTest {
         ArrayList list = parser.getFinalList();
           assertTrue(list.get(0)instanceof EqualExp);
           assertEquals(list.get(1),"Canberra");
-          assertTrue(list.get(2)instanceof AndExp);
+          assertTrue(list.get(2)instanceof OrExp);
           assertTrue(list.get(3)instanceof Less);
           assertEquals(list.get(4), 400);
     }

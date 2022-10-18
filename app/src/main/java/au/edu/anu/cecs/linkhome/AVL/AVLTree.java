@@ -259,39 +259,30 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T rent){
-        // rent = 500, value = 400
-//        Data data = new Data("","","",rent);
-        if(exp instanceof Less){
-            if( value.compareTo(rent) < 0 ){
-                if(!(tree.leftNode instanceof EmptyAVL)) {
-                    return filterData((AVLTree<T>) tree.leftNode, exp, rent);
+        if(exp instanceof Less) {
+            if (value.compareTo(rent) < 0) {
+                if (tree.rightNode instanceof EmptyAVL) {
+                    return tree;
+                } else {
+                    return new AVLTree<T>(value, this.leftNode, filterData((AVLTree<T>) tree.rightNode, exp, rent));
                 }
-            }
-            else{
-                return (AVLTree<T>) tree;
-            }
-        }
-        else if(exp instanceof More){
-            if( value.compareTo(rent) > 0 ){
-                if(!(tree.rightNode instanceof EmptyAVL)) {
-                    return filterData((AVLTree<T>) tree.rightNode, exp, rent);
-                }
-            }
-            else{
-                return (AVLTree<T>) tree;
+
+            } else {
+                return null;
             }
         }
-        else if(exp instanceof EqualExp) {
-            if (value.compareTo(rent) == 0) {
-                return new AVLTree<>(value);
-            } else if (value.compareTo(rent) > 0) {
-                if (!(tree.rightNode instanceof EmptyAVL)) {
-                    return filterData((AVLTree<T>) tree.rightNode, exp, rent);
+
+
+        if(exp instanceof More) {
+            if (value.compareTo(rent) > 0) {
+                if (tree.leftNode instanceof EmptyAVL) {
+                    return tree;
+                } else {
+                    return new AVLTree<T>(value, this.leftNode, filterData((AVLTree<T>) tree.leftNode, exp, rent));
                 }
-            } else if (value.compareTo(rent) < 0) {
-                if (!(tree.leftNode instanceof EmptyAVL)) {
-                    return filterData((AVLTree<T>) tree.leftNode, exp, rent);
-                }
+
+            } else {
+                return null;
             }
         }
 

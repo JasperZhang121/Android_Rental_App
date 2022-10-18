@@ -208,6 +208,9 @@ public class Parser {
                 if (this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.AND) {
                     parseOperators();
                 }
+                else if(this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.OR){
+                    parseOperators();
+                }
                 if(this.tokenizer.current()==null){
                     return new OrExp();
                 }
