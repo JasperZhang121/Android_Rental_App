@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
+import au.edu.anu.cecs.linkhome.Facade.PaymentMaker;
 import au.edu.anu.cecs.linkhome.R;
 
 /**
@@ -23,8 +24,8 @@ import au.edu.anu.cecs.linkhome.R;
 public class DetailedPage extends AppCompatActivity {
     Button pay_btn;
     ImageButton mastercard;
-    ImageButton payapal;
-
+    ImageButton paypal;
+    PaymentMaker paymentMaker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class DetailedPage extends AppCompatActivity {
 
         //pay_btn = findViewById(R.id.detailedPagePayButton);
         mastercard = (ImageButton) findViewById(R.id.imageButton3);
-        payapal = (ImageButton) findViewById(R.id.imageButton4);
+        paypal = (ImageButton) findViewById(R.id.imageButton4);
 
 
 
@@ -70,19 +71,18 @@ public class DetailedPage extends AppCompatActivity {
 
         /*pay_btn.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+            intent.putExtra("payMastercard","mastercard");
             startActivity(intent);
         });*/
         mastercard.setOnClickListener(v -> {
-            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+            Intent intent = new Intent(DetailedPage.this, Mastercard.class);
+            intent.putExtra("payMasterCard","mastercard");
             startActivity(intent);
         });
-        payapal.setOnClickListener(v -> {
-            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
-                startActivity(intent);
-
+        paypal.setOnClickListener(v -> {
+            Intent intent = new Intent(DetailedPage.this, Paypal.class);
+            intent.putExtra("payPaypal","payPal");
+            startActivity(intent);
         });
-
     }
-
-
 }
