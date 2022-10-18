@@ -40,18 +40,18 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        if (element.equals(value)){
+        if (element.equals(value)) {
             return this;
         } else if (element.compareTo(value) <= 0) {
 
             //If element not in tree
-            if(leftNode == null)
+            if (leftNode == null)
                 return null;
             return leftNode.find(element);
         } else {
 
             //If element not in tree
-            if(rightNode == null)
+            if (rightNode == null)
                 return null;
             return rightNode.find(element);
         }

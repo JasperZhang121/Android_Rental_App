@@ -1,11 +1,8 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
 /**
- * LitExp: it is extended from the abstract class Exp,
- * 		   This class is used to represented the expression of 32-bit unsigned integer
- *
- * You are not required to implement any function inside this class.
- * Please do not change any thing inside this class as well.
+ * IntExp: it is extended from the abstract class Exp,
+ * This class is used to represented the expression of 32-bit unsigned integer
  */
 
 public class IntExp extends Exp {
@@ -26,11 +23,6 @@ public class IntExp extends Exp {
         return false;
     }
 
-
-    @Override
-    public String evaluateString() {
-        return null;
-    }
 
     @Override
     public int evaluateInt() {

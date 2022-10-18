@@ -28,7 +28,7 @@ import au.edu.anu.cecs.linkhome.BookmarkAdapter;
 import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.R;
 
-public class BookmarkFragment extends Fragment  {
+public class BookmarkFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
     au.edu.anu.cecs.linkhome.BookmarkAdapter BookmarkAdapter;
@@ -57,14 +57,14 @@ public class BookmarkFragment extends Fragment  {
              */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     Data data = dataSnapshot.getValue(Data.class);
 
                     list.add(data);
                     int max = 1000;
                     int min = 0;
-                    listImages.add((int)(Math.random()*((max-min)+1)+min));
+                    listImages.add((int) (Math.random() * ((max - min) + 1) + min));
                 }
                 System.out.println("LIST: " + list);
 
@@ -81,25 +81,25 @@ public class BookmarkFragment extends Fragment  {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu,menu);
-        super.onCreateOptionsMenu(menu,inflater);
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id==R.id.Sort1){
-            Collections.sort(list, (o1, o2) -> o1.getRent().compareTo(o2.getRent()));
+        if (id == R.id.Sort1) {
+            Collections.sort(list, Data::compareTo);
             BookmarkAdapter.notifyDataSetChanged();
-        } else if (id==R.id.Sort2){
-            Collections.sort(list, (o1, o2) -> o2.getRent().compareTo(o1.getRent()));
+        } else if (id == R.id.Sort2) {
+            Collections.sort(list, (o1, o2) -> o2.compareTo(o1));
             BookmarkAdapter.notifyDataSetChanged();
         }
         return true;
     }
 
-    public void setOnClickListener(){
+    public void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getContext(), DetailedPage.class);
             intent.putExtra("city", list.get(position).getCity());

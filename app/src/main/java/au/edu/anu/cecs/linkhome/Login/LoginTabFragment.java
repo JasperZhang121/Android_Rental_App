@@ -34,9 +34,9 @@ public class LoginTabFragment extends Fragment {
 
     @Override
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment,container,false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment, container, false);
 
         /*
         To store all the components of UI with respect to their data type
@@ -52,39 +52,37 @@ public class LoginTabFragment extends Fragment {
     /**
      * loginUer method checks for certain conditions if a user is trying to log in
      */
-    private void loginUser(){
-        String emailID= email.getText().toString();
-        String passwordNew= password.getText().toString();
+    private void loginUser() {
+        String emailID = email.getText().toString();
+        String passwordNew = password.getText().toString();
 
         // Check for Email
-        if(TextUtils.isEmpty(emailID)){
+        if (TextUtils.isEmpty(emailID)) {
             email.setError("Email cannot be empty");
             email.requestFocus();
         }
 
         // Check for Password
-        else if(TextUtils.isEmpty(passwordNew)){
+        else if (TextUtils.isEmpty(passwordNew)) {
             password.setError("Password cannot be empty");
             password.requestFocus();
         }
 
         // Checks for if a user has logged in successfully or not
-        else{
+        else {
             mAuth.signInWithEmailAndPassword(emailID, passwordNew).addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getContext(),"User logged in successfully ", Toast.LENGTH_SHORT).show();
-                        User user = User.getInstance();
-                        user.login(mAuth.getCurrentUser());
-                        user.changeState(new LoginState(user));
-                        Intent intent = new Intent(getContext(), HomePage.class);
-                        intent.putExtra("USER", user);
-                        startActivity(intent);
-                    }
-
-                    else{
-                        Toast.makeText(getContext(),"Login Error" +
-                                task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                if (task.isSuccessful()) {
+                    Toast.makeText(getContext(), "User logged in successfully ", Toast.LENGTH_SHORT).show();
+                    User user = User.getInstance();
+                    user.login(mAuth.getCurrentUser());
+                    user.changeState(new LoginState(user));
+                    Intent intent = new Intent(getContext(), HomePage.class);
+                    intent.putExtra("USER", user);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "Login Error" +
+                            task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             });
         }
     }

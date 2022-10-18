@@ -10,7 +10,7 @@ import au.edu.anu.cecs.linkhome.Data;
 public abstract class UserState implements Serializable {
     protected User user;
 
-    public UserState(User user){
+    public UserState(User user) {
         this.user = user;
     }
 

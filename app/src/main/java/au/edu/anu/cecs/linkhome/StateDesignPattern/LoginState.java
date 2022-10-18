@@ -11,7 +11,7 @@ import au.edu.anu.cecs.linkhome.Data;
  * To implement to State Design Pattern for User's Login state
  * Adapted from Design Pattern Lecture Slides
  */
-public class LoginState extends UserState{
+public class LoginState extends UserState {
 
     public LoginState(User user) {
         super(user);

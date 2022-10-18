@@ -45,7 +45,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     public AVLTree<T> insert(T element) {
 
         // To ensure immutability
-        AVLTree<T> newTreeCopy= new AVLTree<>(this.value,this.leftNode,this.rightNode);
+        AVLTree<T> newTreeCopy = new AVLTree<>(this.value, this.leftNode, this.rightNode);
 
         // Ensure input is not null
         if (element == null)
@@ -54,29 +54,26 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         // Using the property of the BST
         System.out.println(element + " " + value);
         if (element.compareTo(value) > 0) {
-            newTreeCopy.rightNode=newTreeCopy.rightNode.insert(element);
-        }
-        else if (element.compareTo(value) < 0) {
-            newTreeCopy.leftNode=newTreeCopy.leftNode.insert(element);
-        }
-        else {
+            newTreeCopy.rightNode = newTreeCopy.rightNode.insert(element);
+        } else if (element.compareTo(value) < 0) {
+            newTreeCopy.leftNode = newTreeCopy.leftNode.insert(element);
+        } else {
             return newTreeCopy;
         }
 
         // For Advanced Rotations, check the balance factor
-        if(newTreeCopy.getBalanceFactor()<-1){
+        if (newTreeCopy.getBalanceFactor() < -1) {
             assert newTreeCopy.rightNode.value != null;
-            if(element.compareTo(newTreeCopy.rightNode.value)<=0) {
+            if (element.compareTo(newTreeCopy.rightNode.value) <= 0) {
                 AVLTree<T> rightNode = (AVLTree<T>) newTreeCopy.rightNode;
                 newTreeCopy.rightNode = rightNode.rightRotate();
             }
             return newTreeCopy.leftRotate();
-        }
-        else if(newTreeCopy.getBalanceFactor()>1){
+        } else if (newTreeCopy.getBalanceFactor() > 1) {
             assert newTreeCopy.leftNode.value != null;
-            if(element.compareTo(newTreeCopy.leftNode.value)>=0) {
+            if (element.compareTo(newTreeCopy.leftNode.value) >= 0) {
                 AVLTree<T> leftNode = (AVLTree<T>) newTreeCopy.leftNode;
-                newTreeCopy.leftNode= leftNode.leftRotate();
+                newTreeCopy.leftNode = leftNode.leftRotate();
             }
             return newTreeCopy.rightRotate();
         }
@@ -87,31 +84,31 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * Deletes the given element and returns a new instance of itself without the new node.
      * Adapted from code written by Peicheng Liu on stubents.
      *
-     * @author Peicheng Liu
      * @param element the element to be removed from the tree
      * @return A new AVLTree without the element
+     * @author Peicheng Liu
      */
-    public AVLTree<T> delete(T element){
-        if(element == null)
+    public AVLTree<T> delete(T element) {
+        if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        if(find(element) == null)
+        if (find(element) == null)
             throw new IllegalArgumentException("No such element in the tree");
 
         AVLTree<T> avlTree = new AVLTree<>(value, this.leftNode, this.rightNode);
 
         //element is in current position
-        if(element.equals(this.value)){
+        if (element.equals(this.value)) {
             //Case 0: no child
-            if(this.leftNode.value == null && this.rightNode.value == null){
+            if (this.leftNode.value == null && this.rightNode.value == null) {
                 return null;
             }
             //Case 1: one right child
-            else if (this.leftNode.value == null){
+            else if (this.leftNode.value == null) {
                 return new AVLTree<>(this.rightNode.value, this.rightNode.leftNode, this.rightNode.rightNode);
             }
             //Case 1: one left child
-            else if (this.rightNode.value == null){
+            else if (this.rightNode.value == null) {
                 return new AVLTree<>(this.leftNode.value, this.leftNode.leftNode, this.leftNode.rightNode);
             }
             //Case 2: both children
@@ -119,7 +116,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
                 AVLTree<T> right = new AVLTree<>(avlTree.rightNode.value, avlTree.rightNode.leftNode, avlTree.rightNode.rightNode);
                 T successor = right.findLeftMost();
                 right = right.delete(successor);
-                if(right == null || right.value == null){
+                if (right == null || right.value == null) {
                     return new AVLTree<>(successor, this.leftNode, new EmptyAVL<>());
                 } else {
                     return new AVLTree<>(successor, this.leftNode, right);
@@ -127,11 +124,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             }
         }
         //element is in the right subtree
-        else if (element.compareTo(this.value) > 0){
+        else if (element.compareTo(this.value) > 0) {
             AVLTree<T> right = new AVLTree<>(avlTree.rightNode.value, avlTree.rightNode.leftNode, avlTree.rightNode.rightNode);
             right = right.delete(element);
 
-            if(right == null || right.value == null) {
+            if (right == null || right.value == null) {
                 //Case 0: element has no child
                 avlTree.rightNode = new EmptyAVL<>();
             } else {
@@ -144,7 +141,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             AVLTree<T> left = new AVLTree<>(avlTree.leftNode.value, avlTree.leftNode.leftNode, avlTree.leftNode.rightNode);
             left = left.delete(element);
 
-            if(left == null || left.value == null) {
+            if (left == null || left.value == null) {
                 //Case 0: element has no child
                 avlTree.leftNode = new EmptyAVL<>();
             } else {
@@ -153,19 +150,18 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             }
         }
 
-        if(avlTree.getBalanceFactor()<-1){
+        if (avlTree.getBalanceFactor() < -1) {
             assert avlTree.rightNode.value != null;
-            if(element.compareTo(avlTree.rightNode.value)>=0) {
+            if (element.compareTo(avlTree.rightNode.value) >= 0) {
                 AVLTree<T> rightNode = (AVLTree<T>) avlTree.rightNode;
                 avlTree.rightNode = rightNode.rightRotate();
             }
             return avlTree.leftRotate();
-        }
-        else if(avlTree.getBalanceFactor()>1){
+        } else if (avlTree.getBalanceFactor() > 1) {
             assert avlTree.leftNode.value != null;
-            if(element.compareTo(avlTree.leftNode.value)<=0) {
+            if (element.compareTo(avlTree.leftNode.value) <= 0) {
                 AVLTree<T> leftNode = (AVLTree<T>) avlTree.leftNode;
-                avlTree.leftNode= leftNode.leftRotate();
+                avlTree.leftNode = leftNode.leftRotate();
             }
             return avlTree.rightRotate();
         }
@@ -175,11 +171,12 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Helper function for delete(), recursive, finds the leftmost (smallest) element in current tree
-     * @author Peicheng Liu
+     *
      * @return the leftmost element
+     * @author Peicheng Liu
      */
-    public T findLeftMost(){
-        if(this.leftNode.value == null){
+    public T findLeftMost() {
+        if (this.leftNode.value == null) {
             return this.value;
         } else {
             return new AVLTree<T>(this.leftNode.value, this.leftNode.leftNode, this.leftNode.rightNode).findLeftMost();
@@ -194,8 +191,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     public AVLTree<T> leftRotate() {
         Tree<T> newParent = this.rightNode;
         Tree<T> newRightOfCurrent = newParent.leftNode;
-        newParent.leftNode=this;
-        newParent.leftNode.rightNode=newRightOfCurrent;
+        newParent.leftNode = this;
+        newParent.leftNode.rightNode = newRightOfCurrent;
         return (AVLTree<T>) newParent;
     }
 
@@ -207,8 +204,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     public AVLTree<T> rightRotate() {
         Tree<T> newParent = this.leftNode;
         Tree<T> newRightOfCurrent = newParent.rightNode;
-        newParent.rightNode=this;
-        newParent.rightNode.leftNode=newRightOfCurrent;
+        newParent.rightNode = this;
+        newParent.rightNode.leftNode = newRightOfCurrent;
         return (AVLTree<T>) newParent;
     }
 

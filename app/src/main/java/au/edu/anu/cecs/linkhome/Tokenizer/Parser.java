@@ -8,21 +8,13 @@ import java.lang.Object;
 
 /**
  * Note: You will need to have completed task 1 to complete this task.
- *
+ * <p>
  * Welcome to task 2. In this task your job is to implement a simple parser.
  * It should be able to parser the following grammar rule:
  * <exp>    ::=  <term> | <term> + <exp> | <term> - <exp>
  * <term>   ::=  <factor> | <factor> * <term> | <factor> / <term>
  * <factor> ::=  <coefficient> | <coefficient> !
  * <coefficient> ::= <unsigned integer> | ( <exp> )
- *
- * Here are some rules you must abide by for this task:
- * 1. You may NOT modify any other classes in this task 2 package.
- * 2. You may create additional fields or methods to finish you implementation within this class.
- * <p>
- * Parsing, within the context of this lab, is the process of taking a bunch of tokens and
- * evaluating them. You will not need to 'evaluate' them within this class, instead, just
- * return an expression which can be evaluated.
  */
 public class Parser {
     /**
@@ -52,36 +44,36 @@ public class Parser {
      * which you can run. Once running, provide a mathematical string to the terminal and you will
      * receive back the result of your parsing.
      */
-    public static void main(String[] args) {
-        // Create a scanner to get the user's input.
-        Scanner scanner = new Scanner(System.in);
+//    public static void main(String[] args) {
+//        // Create a scanner to get the user's input.
+//        Scanner scanner = new Scanner(System.in);
+//
+//        /*
+//         Continue to get the user's input until they exit.
+//         To exit press: Control + D or providing the string 'q'
+//         Example input you can try: ((1 + 2) * 5)/2
+//         Note that evaluations will round down to negative infinity (because they are integers).
+//         */
+//        System.out.println("Provide a mathematical string to be parsed:");
+//        while (scanner.hasNext()) {
+//            String input = scanner.nextLine();
+//
+//            // Check if 'quit' is provided.
+//            if (input.equals("q"))
+//                break;
+//
+//            // Create an instance of the tokenizer.
+//            Tokenizer tokenizer = new Tokenizer(input);
+//
+//            // Print out the expression from the parser.
+//            Parser parser = new Parser(tokenizer);
+//            Exp expression = parser.parseExp();
+//            System.out.println("Parsing: " + expression.show());
+//            System.out.println("Evaluation: " + expression.evaluate());
+//        }
+//    }
 
-        /*
-         Continue to get the user's input until they exit.
-         To exit press: Control + D or providing the string 'q'
-         Example input you can try: ((1 + 2) * 5)/2
-         Note that evaluations will round down to negative infinity (because they are integers).
-         */
-        System.out.println("Provide a mathematical string to be parsed:");
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-
-            // Check if 'quit' is provided.
-            if (input.equals("q"))
-                break;
-
-            // Create an instance of the tokenizer.
-            Tokenizer tokenizer = new Tokenizer(input);
-
-            // Print out the expression from the parser.
-            Parser parser = new Parser(tokenizer);
-            Exp expression = parser.parseExp();
-            System.out.println("Parsing: " + expression.show());
-            System.out.println("Evaluation: " + expression.evaluate());
-        }
-    }
-
-    public ArrayList<Object> getFinalList(){
+    public ArrayList<Object> getFinalList() {
         return finalList;
     }
 
@@ -94,21 +86,19 @@ public class Parser {
      */
     public Exp parseExp() {
 
-        if(this.tokenizer.current().getType().equals(Token.Type.TEXT)){
+        if (this.tokenizer.current().getType().equals(Token.Type.TEXT)) {
             tokenizer.next();
-            parseOperators();
+            return parseOperators();
         }
 
-        if(this.tokenizer.hasNext()){
-            if(tokenizer.current().equals(Less.class)){
+        if (this.tokenizer.hasNext()) {
+            if (tokenizer.current().equals(Less.class)) {
                 parseLetter();
             }
             tokenizer.next();
-
         }
         return null;
     }
-
 
 
     /**
@@ -119,58 +109,52 @@ public class Parser {
      */
     public Exp parseOperators() {
 
-        if (this.tokenizer.current().getType() == Token.Type.LESS) {
-            Less less = new Less();
-            finalList.add(less);
-            if(tokenizer.hasNext()){
-                tokenizer.next();
-                parseCoefficient();
+        switch (this.tokenizer.current().getType()) {
+            case LESS:
+                Less less = new Less();
+                finalList.add(less);
+                if (tokenizer.hasNext()) {
+                    tokenizer.next();
+                    parseCoefficient();
 
-            }
-            return new Less();
-        }
-        else if (this.tokenizer.current().getType() == Token.Type.MORE) {
-            More more = new More();
-            finalList.add(more);
-            if(tokenizer.hasNext()){
-                tokenizer.next();
-                parseCoefficient();
+                }
+                return new Less();
+            case MORE:
+                More more = new More();
+                finalList.add(more);
+                if (tokenizer.hasNext()) {
+                    tokenizer.next();
+                    parseCoefficient();
 
-            }
-            return new More();
-        }
-        else if (this.tokenizer.current().getType() == Token.Type.EQUAL) {
-            EqualExp equalExp = new EqualExp();
-            finalList.add(equalExp);
-            if(tokenizer.hasNext()){
-                tokenizer.next();
-                parseCoefficient();
+                }
+                return new More();
+            case EQUAL:
+                EqualExp equalExp = new EqualExp();
+                finalList.add(equalExp);
+                if (tokenizer.hasNext()) {
+                    tokenizer.next();
+                    parseCoefficient();
 
-            }
-            return new EqualExp();
-
-        }
-        else if (this.tokenizer.current().getType() == Token.Type.AND) {
-            AndExp andExp = new AndExp();
-            finalList.add(andExp);
-            if(tokenizer.hasNext()){
-                tokenizer.next();
-                parseCoefficient();
-            }
-            return new AndExp();
-        }
-
-        else if (this.tokenizer.current().getType() == Token.Type.OR) {
-            OrExp orExp = new OrExp();
-            finalList.add(orExp);
-            if(tokenizer.hasNext()){
-                tokenizer.next();
-                parseCoefficient();
-            }
-            return new OrExp();
+                }
+                return new EqualExp();
+            case AND:
+                AndExp andExp = new AndExp();
+                finalList.add(andExp);
+                if (tokenizer.hasNext()) {
+                    tokenizer.next();
+                    parseCoefficient();
+                }
+                return new AndExp();
+            case OR:
+                OrExp orExp = new OrExp();
+                finalList.add(orExp);
+                if (tokenizer.hasNext()) {
+                    tokenizer.next();
+                    parseCoefficient();
+                }
+                return new OrExp();
         }
         return null;
-
     }
 
     /**
@@ -183,7 +167,6 @@ public class Parser {
         IntExp result;
 
         // Check for the corner cases
-
         if (this.tokenizer.current().getType() == Token.Type.INT) {
             result = new IntExp(Integer.parseInt(this.tokenizer.current().getToken()));
             finalList.add(result.evaluateInt());
@@ -195,8 +178,6 @@ public class Parser {
         }
 
         return null;
-
-
     }
 
     /**
@@ -208,49 +189,42 @@ public class Parser {
 
     public Exp parseLetter() {
 
-        if(Objects.equals(this.tokenizer.current().getToken(), "city"))
-        {
-            if(tokenizer.hasNext()){
+        if (Objects.equals(this.tokenizer.current().getToken(), "city")) {
+            if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if(tokenizer.current().getType() == Token.Type.EQUAL){
+                if (tokenizer.current().getType() == Token.Type.EQUAL) {
                     parseOperators();
                 }
             }
 
-        }
-
-        else if(Objects.equals(this.tokenizer.current().getToken(), "rent"))
-        {
-            if(tokenizer.hasNext()){
+        } else if (Objects.equals(this.tokenizer.current().getToken(), "rent")) {
+            if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if(tokenizer.current().getType() == Token.Type.EQUAL || tokenizer.current().getType() == Token.Type.MORE || tokenizer.current().getType() == Token.Type.LESS)
-                {
-                        parseOperators();
-                    }
+                if (tokenizer.current().getType() == Token.Type.EQUAL
+                        || tokenizer.current().getType() == Token.Type.MORE
+                        || tokenizer.current().getType() == Token.Type.LESS) {
+                    parseOperators();
                 }
             }
-
-
-        else if(this.tokenizer.current().getType() == Token.Type.TEXT){
+        } else if (this.tokenizer.current().getType() == Token.Type.TEXT) {
             finalList.add(tokenizer.current().getToken());
-            if(tokenizer.hasNext()){
+            if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if(this.tokenizer.current().getType()==Token.Type.AND){
+                if (this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.AND) {
                     parseOperators();
                 }
+                if(this.tokenizer.current()==null){
+                    return new OrExp();
+                }
             }
-        }
 
-
-        else if(tokenizer.hasNext()){
+        } else if (tokenizer.hasNext()) {
             tokenizer.next();
             parseOperators();
             finalList.add(tokenizer.current().getToken());
         }
 
         return new Letter(tokenizer.current().getToken());
-
     }
-
 }
 

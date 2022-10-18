@@ -15,4 +15,14 @@
     <string name="home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="sort_low_to_high">Sort Low to High</string>
+    <string name="sort_high_to_low">Sort High to Low</string>
+    <string name="filter">filter</string>
+    <string name="search">Search</string>
+    <string name="confirm">Confirm</string>
+    <string name="email">Email</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="cvv">CVV</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="card_number">Card number</string>
 </resources>

@@ -96,7 +96,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
                 if (!isChecked) {
                     databaseReference = firebaseDatabase.getReference("Bookmarks");
                     databaseReference.child(Integer.toString(getAdapterPosition())).removeValue().addOnCompleteListener(task -> {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(context, "Item Removed from wishlist", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(context, "Failed to delete item from wishlist ", Toast.LENGTH_SHORT).show();

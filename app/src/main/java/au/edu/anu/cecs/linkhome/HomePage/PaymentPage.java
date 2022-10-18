@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.widget.EditText;
+
 import java.util.Calendar;
 
 
@@ -40,7 +41,8 @@ public class PaymentPage extends AppCompatActivity {
                     PaymentPage.this,
                     (view, year1, monthOfYear, dayOfMonth) -> {
                         // on below line we are setting date to our edit text.
-                        dateEdt.setText( (monthOfYear + 1) + "/" + year1);
+                        String text = (monthOfYear + 1) + "/" + year1;
+                        dateEdt.setText(text);
                         System.out.println("here!");
                     },
                     // on below line we are passing year,
