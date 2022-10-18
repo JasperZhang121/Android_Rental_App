@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.501" />
 
     <Button
-        android:id="@+id/paymentConfirm"
+        android:id="@+id/paymentConfirmPaypal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/confirm"
@@ -161,5 +161,15 @@
         app:layout_constraintTop_toBottomOf="@+id/et_welcome_mastercard"
         app:srcCompat="@drawable/paypal" />
 
+    <TextView
+        android:id="@+id/text_alert_paypal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

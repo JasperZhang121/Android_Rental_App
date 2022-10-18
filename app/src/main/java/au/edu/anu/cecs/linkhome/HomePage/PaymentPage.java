@@ -2,9 +2,14 @@ package au.edu.anu.cecs.linkhome.HomePage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
@@ -15,6 +20,8 @@ public class PaymentPage extends AppCompatActivity {
 
 
     private EditText dateEdt;
+    private Button confirm;
+    private TextView alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +58,6 @@ public class PaymentPage extends AppCompatActivity {
             // at last we are calling show to
             // display our date picker dialog.
             datePickerDialog.show();
-
-
         });
     }
 }

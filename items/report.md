@@ -67,7 +67,25 @@ HomePage.class
 BookmarkAdapter.class
 MainActivity.class
 
-u6523462, Hao Zhang contributed [x] of the code. Here are the 
+u6523462, Hao Zhang contributed [x] of the code. Here are the
+Facade.Mastercard.class
+Facade.Payment.interface
+Facade.PaymentMaker.class
+Facade.Paypal.class
+DataAdapter.class
+Data.class
+Homepage.Mastercard.class
+Homepage.Paypal.class
+Homepage.paymentPage.class
+ParserTest.class
+method: void onDataChange() in DatabaseFragment
+method: boolean onOptionsItemSelected(MenuItem item)
+help to design all classes in Tokenizer
+activity_database.xml
+item.xml
+make draft for activity_mastercard.xml
+make draft for activity_paypal.xml
+make draft for activity_payment_page.xml
 
 
 *you should ALSO provide links to the specified classes and/or functions*
