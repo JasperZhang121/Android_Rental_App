@@ -30,10 +30,14 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.AVL.AVLTree;
+import au.edu.anu.cecs.linkhome.AVL.Tree;
 import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.DataAdapter;
 import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Less;
+import au.edu.anu.cecs.linkhome.Tokenizer.More;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
 
@@ -124,6 +128,23 @@ public class DatabaseFragment extends Fragment {
                         Toast.makeText(getContext(), "Invalid", Toast.LENGTH_SHORT).show();
                     }
                 }
+                if(finalList.get(0) instanceof Less
+                        || finalList.get(0) instanceof More
+                        || finalList.get(0) instanceof EqualExp){
+                    if(finalList.get(1) instanceof Integer){
+                        Data data = new Data("", "", "",  String.valueOf(finalList.get(1)));
+                        ArrayList<Data> result = new ArrayList<Data>();
+                        for (AVLTree value : hashMapAVL.values()) {
+                            AVLTree<Data> filteredTree = value.filterData(value, (Exp) finalList.get(0), data);
+                            if(filteredTree!=null) {
+                                result.addAll(filteredTree.treeToListInOrder(filteredTree));
+                            }
+                        }
+                        System.out.println("Result: " + result);
+                    }
+                }
+
+
                 return true;
             }
 
