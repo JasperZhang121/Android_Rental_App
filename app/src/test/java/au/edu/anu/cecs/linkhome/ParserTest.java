@@ -25,6 +25,7 @@ public class ParserTest {
     //private static final String COMPLEX_CASE2 = "Canberra && Sydney && Melbourne && rent>=200 && rent<=500 || rent>600 ";
 
 
+
     @Test
     public void testSimpleCase() {
 
