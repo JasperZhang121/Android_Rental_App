@@ -1,26 +1,19 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-public class EqualExp extends Exp{
-        private Exp term;
-        private Exp exp;
+public class EqualExp extends Exp {
 
-        public EqualExp() {
+    public EqualExp() {
 
-        }
-
-        @Override
-        public String show() {
-            return "(" + term.show() + " = " + exp.show() + ")";
-        }
-
-        @Override
-        public boolean evaluate() {
-            return true;
-        }
+    }
 
     @Override
-    public String evaluateString() {
-        return null;
+    public String show() {
+        return "=";
+    }
+
+    @Override
+    public boolean evaluate() {
+        return true;
     }
 
     @Override

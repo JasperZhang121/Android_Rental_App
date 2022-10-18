@@ -1,11 +1,5 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * Welcome to Task 1.
  * In this task your job is to implement the next() method. Just some rules:
@@ -28,40 +22,6 @@ public class Tokenizer {
     public static class IllegalTokenException extends IllegalArgumentException {
         public IllegalTokenException(String errorMessage) {
             super(errorMessage);
-        }
-    }
-
-    /**
-     * To help you both test and understand what this tokenizer is doing, we have included a main method
-     * which you can run. Once running, provide a mathematical string to the terminal and you will
-     * receive back the result of your tokenization.
-     */
-    public static void main(String[] args) {
-        // Create a scanner to get the user's input.
-        Scanner scanner = new Scanner(System.in);
-
-        /*
-         Continue to get the user's input until they exit.
-         To exit press: Control + D or providing the string 'q'
-         Example input you can try: city='Canberra' && rent < '350'
-         */
-        System.out.println("Provide an expression string to be tokenized:");
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-
-            // Check if 'quit' is provided.
-            if (input.equals("q"))
-                break;
-
-            // Create an instance of the tokenizer.
-            Tokenizer tokenizer = new Tokenizer(input);
-
-            // Print all the tokens.
-            while (tokenizer.hasNext()) {
-                System.out.print(tokenizer.current() + " ");
-                tokenizer.next();
-            }
-            System.out.println();
         }
     }
 
@@ -95,31 +55,18 @@ public class Tokenizer {
         //String parameters = buffer.substring(0,5);
 
         char firstChar = buffer.charAt(0);
-        String firstTwoChars = buffer.substring(0,2);
+        String firstTwoChars = buffer.substring(0, 2);
         if (firstTwoChars.equals("&&"))
             currentToken = new Token("&&", Token.Type.AND);
         else if (firstTwoChars.equals("||"))
-        currentToken = new Token("||", Token.Type.OR);
-
-
-        /*
-         TODO: Implement multiplication and division tokenizing.
-         TODO: Implement left round bracket and right round bracket.
-         TODO: Implement Factorial tokenizing
-         TODO: Implement integer literal tokenizing.
-         TODO: Throw an IllegalTokenException when a character which does not correlate to any token type is provided.
-         Hint: Character.isDigit() may be useful.
-         */
-            // ########## YOUR CODE STARTS HERE ##########
-
+            currentToken = new Token("||", Token.Type.OR);
         else if (firstChar == '<')
             currentToken = new Token("<", Token.Type.LESS);
         else if (firstChar == '>')
             currentToken = new Token(">", Token.Type.MORE);
         else if (firstChar == '=')
             currentToken = new Token("=", Token.Type.EQUAL);
-        else if(Character.isLetter(firstChar)) {
-            System.out.println("HELLO WORLD");
+        else if (Character.isLetter(firstChar)) {
             StringBuilder letter = new StringBuilder();
             for (int i = 0; i < buffer.length(); i++)
                 if (Character.isLetter(buffer.charAt(i))) {
@@ -127,30 +74,22 @@ public class Tokenizer {
                 } else {
                     break;
                 }
-
             currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
-
         }
-            // Check for a digit
-        else if(Character.isDigit(firstChar)){
-            System.out.println("HELLO NUMBER");
+        // Check for a digit
+        else if (Character.isDigit(firstChar)) {
             StringBuilder result = new StringBuilder();
-            for(int i=0;i<buffer.length();i++){
-                if(Character.isDigit(buffer.charAt(i))){
+            for (int i = 0; i < buffer.length(); i++) {
+                if (Character.isDigit(buffer.charAt(i))) {
                     result.append(buffer.charAt(i));
-                }
-                else
+                } else
                     break;
             }
             currentToken = new Token(result.toString().trim(), Token.Type.INT);
-
-        }
-
-        else{
+        } else {
             throw new Token.IllegalTokenException("Incorrect");
         }
 
-        // ########## YOUR CODE ENDS HERE ##########
         // Remove the extracted token from buffer
         int tokenLen = currentToken.getToken().length();
         buffer = buffer.substring(tokenLen);

@@ -15,51 +15,51 @@ public class User implements Serializable {
     // Instance of the User class
     private static User instance;
 
-    UserState userState;
-    String username;
+    private UserState userState;
+    private String username;
 
     public UserState getUserState() {
         return userState;
     }
 
-    public String getUsername(){
-        return  username;
+    public String getUsername() {
+        return username;
     }
 
-    public User(){
+    public User() {
         UserState defaultState = new LogoutState(this);
         changeState(defaultState);
     }
 
     // Make use of Singleton Design Pattern
-    public static User getInstance(){
-        if(instance == null){
+    public static User getInstance() {
+        if (instance == null) {
             instance = new User();
         }
         return instance;
     }
 
-    public void changeState(UserState state){
+    public void changeState(UserState state) {
         this.userState = state;
     }
 
-    public boolean login(FirebaseUser firebaseUser){
+    public boolean login(FirebaseUser firebaseUser) {
         boolean loginOk = userState.login(firebaseUser);
-        if(loginOk){
+        if (loginOk) {
             this.username = firebaseUser.getEmail();
         }
         return loginOk;
     }
 
-    public boolean logout(){
+    public boolean logout() {
         boolean logoutOk = userState.logout();
-        if(logoutOk){
+        if (logoutOk) {
             this.username = null;
         }
         return logoutOk;
     }
 
-    public List<Data> bookmarksPage(){
+    public List<Data> bookmarksPage() {
         return userState.bookmarksPage();
     }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -89,7 +88,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             city = itemView.findViewById(R.id.Databasecity);
             postalZip = itemView.findViewById(R.id.DatabasepostalZip);
             rent = itemView.findViewById(R.id.Databaserent);
-            cbHeart = (CheckBox) itemView.findViewById(R.id.cbHeart);
+            cbHeart = itemView.findViewById(R.id.cbHeart);
 
             itemView.setOnClickListener(this);
             checkBox();
@@ -105,25 +104,22 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         }
 
         public void checkBox() {
-            cbHeart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        addDataToFirebase(address.getText().toString(),
-                                city.getText().toString(),
-                                postalZip.getText().toString(),
-                                rent.getText().toString(),
-                                getAdapterPosition());
-                    } else {
-                        deleteDataFromFirebase(getAdapterPosition());
-                    }
+            cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    addDataToFirebase(address.getText().toString(),
+                            city.getText().toString(),
+                            postalZip.getText().toString(),
+                            rent.getText().toString(),
+                            getAdapterPosition());
+                } else {
+                    deleteDataFromFirebase(getAdapterPosition());
                 }
             });
         }
     }
 
 
-    private void addDataToFirebase(String address, String city, String postalZip, String rent, int id){
+    private void addDataToFirebase(String address, String city, String postalZip, String rent, int id) {
         Data data = new Data(address, city, postalZip, rent);
 
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + id);
@@ -141,10 +137,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         });
     }
 
-    private void deleteDataFromFirebase(int id){
+    private void deleteDataFromFirebase(int id) {
         databaseReference = firebaseDatabase.getReference("Bookmarks");
         databaseReference.child(Integer.toString(id)).removeValue().addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
+            if (task.isSuccessful()) {
                 Toast.makeText(context, "Item Removed from wishlist", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Failed to delete item to wishlist ", Toast.LENGTH_SHORT).show();

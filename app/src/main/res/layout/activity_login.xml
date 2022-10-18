@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1">
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"/>
+            app:layout_constraintVertical_bias="0" />
 
         <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
         <!--            android:id="@+id/fab_google"-->
@@ -94,15 +94,15 @@
         app:layout_constraintTop_toTopOf="@+id/logo_app" />
 
     <!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Welcome to the MarketPlaceApp"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/logo_app"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/constraintLayout"/>-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Welcome to the MarketPlaceApp"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="18sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/logo_app"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/constraintLayout"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

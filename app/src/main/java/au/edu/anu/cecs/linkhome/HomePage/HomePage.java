@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -25,11 +27,11 @@ import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
  * HomePage stores all the details related to the navigation
  * All the different states such as going from login to clicking on logout are implemented
  * Each user can navigate to different pages in the app as per their preference
- *
  */
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new DatabaseFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
@@ -57,11 +59,10 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     /**
      * onBackPressed method helps to open or close the
      * navigation menu by clicking on hamburger menu icon
-     *
      */
     @Override
     public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -70,6 +71,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
     /**
      * onNavigationItemSelected helps to navigate from the item selected to the destination page
+     *
      * @param item MenuItem
      * @return true or false
      */
@@ -79,9 +81,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         // Creating an instance of a User class to access where an instance of a user is required
         User user = User.getInstance();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_bookmarks:
-                if(user.bookmarksPage() != null){
+                if (user.bookmarksPage() != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             new BookmarkFragment()).commit();
                 } else {
@@ -93,7 +95,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                         new DatabaseFragment()).commit();
                 break;
             case R.id.nav_login:
-                if(user.bookmarksPage() == null){
+                if (user.bookmarksPage() == null) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.putExtra("USER", user);
                     startActivity(intent);
@@ -102,7 +104,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 }
                 break;
             case R.id.nav_logout:
-                if(user.bookmarksPage() != null){
+                if (user.bookmarksPage() != null) {
                     FirebaseAuth mAuth = FirebaseAuth.getInstance();
                     mAuth.signOut();
                     user.changeState(new LogoutState(user));

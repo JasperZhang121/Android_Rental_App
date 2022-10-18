@@ -1,6 +1,6 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-public class Letter extends Exp{
+public class Letter extends Exp {
 
     private String value;
 
@@ -10,7 +10,7 @@ public class Letter extends Exp{
 
     @Override
     public String show() {
-        return value.toString();
+        return value;
     }
 
     @Override
@@ -18,11 +18,6 @@ public class Letter extends Exp{
         return false;
     }
 
-
-    @Override
-    public String evaluateString() {
-        return value;
-    }
 
     @Override
     public int evaluateInt() {

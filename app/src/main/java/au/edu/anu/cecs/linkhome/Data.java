@@ -6,12 +6,12 @@ import androidx.annotation.NonNull;
  * Data class to store all the fields of type Data to be displayed on the UI
  */
 
-public class Data implements Comparable<Data>{
+public class Data implements Comparable<Data> {
     String address, city, postalZip, rent, image;
 
-    public Data(){
+    public Data() {
 
-    };
+    }
 
     public Data(String address, String city, String postalZip, String rent) {
         this.address = address;
@@ -22,6 +22,7 @@ public class Data implements Comparable<Data>{
 
     /**
      * compareTo method compares the value of rent
+     *
      * @param data Data
      * @return int value
      */
@@ -48,11 +49,11 @@ public class Data implements Comparable<Data>{
         return rent;
     }
 
-    public void setImage(String image){
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public String getImage(){
+    public String getImage() {
         return image;
     }
 

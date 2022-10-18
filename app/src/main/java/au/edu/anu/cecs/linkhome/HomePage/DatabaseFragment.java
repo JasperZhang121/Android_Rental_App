@@ -31,7 +31,7 @@ import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.DataAdapter;
 import au.edu.anu.cecs.linkhome.R;
 
-public class DatabaseFragment extends Fragment  {
+public class DatabaseFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
     au.edu.anu.cecs.linkhome.DataAdapter DataAdapter;
@@ -64,12 +64,12 @@ public class DatabaseFragment extends Fragment  {
              */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     Data data = dataSnapshot.getValue(Data.class);
                     //Adds the data to an AVL tree according to its city.
                     assert data != null;
-                    if(hashMapAVL.containsKey(data.getCity())){
+                    if (hashMapAVL.containsKey(data.getCity())) {
                         Objects.requireNonNull(hashMapAVL.get(data.getCity())).insert(data);
                     } else {
                         hashMapAVL.put(data.getCity(), new AVLTree<>(data));
@@ -78,7 +78,7 @@ public class DatabaseFragment extends Fragment  {
                     list.add(data);
                     int max = 1000;
                     int min = 0;
-                    listImages.add((int)(Math.random()*((max-min)+1)+min));
+                    listImages.add((int) (Math.random() * ((max - min) + 1) + min));
                 }
                 System.out.println("LIST: " + list);
                 System.out.println("HASH: " + hashMapAVL.keySet());
@@ -97,25 +97,25 @@ public class DatabaseFragment extends Fragment  {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu,menu);
-        super.onCreateOptionsMenu(menu,inflater);
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id==R.id.Sort1){
-            Collections.sort(list, (o1, o2) -> o1.getRent().compareTo(o2.getRent()));
+        if (id == R.id.Sort1) {
+            Collections.sort(list, Data::compareTo);
             DataAdapter.notifyDataSetChanged();
-        } else if (id==R.id.Sort2){
-            Collections.sort(list, (o1, o2) -> o2.getRent().compareTo(o1.getRent()));
+        } else if (id == R.id.Sort2) {
+            Collections.sort(list, (o1, o2) -> o2.compareTo(o1));
             DataAdapter.notifyDataSetChanged();
         }
         return true;
     }
 
-    public void setOnClickListener(){
+    public void setOnClickListener() {
         listener = (v, position) -> {
             Intent intent = new Intent(getContext(), DetailedPage.class);
             intent.putExtra("city", list.get(position).getCity());

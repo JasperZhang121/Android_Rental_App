@@ -4,16 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-
 import au.edu.anu.cecs.linkhome.Login.LoginActivity;
-import au.edu.anu.cecs.linkhome.StateDesignPattern.LogoutState;
 import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
 /**
@@ -33,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();

@@ -1,4 +1,7 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
+
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -45,6 +48,7 @@ public class Token {
         return type;
     }
 
+    @NonNull
     @Override
     public String toString() {
         if (type == Type.INT) {

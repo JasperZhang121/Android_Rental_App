@@ -17,7 +17,6 @@ import au.edu.anu.cecs.linkhome.R;
 /**
  * DetailedPage class gives a detailed view
  * of the current image being clicked
- *
  */
 
 public class DetailedPage extends AppCompatActivity {
@@ -28,11 +27,11 @@ public class DetailedPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_page);
 
-        TextView cityText = (TextView) findViewById(R.id.detiledPageCity);
-        TextView addressText = (TextView) findViewById(R.id.detailedPageAddress);
-        TextView postalText = (TextView) findViewById(R.id.detailedPagePostal);
-        TextView rentText = (TextView) findViewById(R.id.detailedPageRent);
-        ImageView image = (ImageView) findViewById(R.id.detailedPageImage);
+        TextView cityText = findViewById(R.id.detiledPageCity);
+        TextView addressText = findViewById(R.id.detailedPageAddress);
+        TextView postalText = findViewById(R.id.detailedPagePostal);
+        TextView rentText = findViewById(R.id.detailedPageRent);
+        ImageView image = findViewById(R.id.detailedPageImage);
 
         pay_btn = findViewById(R.id.detailedPagePayButton);
 
@@ -44,14 +43,14 @@ public class DetailedPage extends AppCompatActivity {
         String postal = "";
         Bundle extras = getIntent().getExtras();
 
-        if(extras != null){
+        if (extras != null) {
             city = extras.getString("city");
             address = extras.getString("address");
             postal = extras.getString("postal");
             rent = extras.getString("rent");
             Glide.with(this).load(extras.getString("image")).apply(new RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true))
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true))
                     .into(image);
         }
 
@@ -67,7 +66,6 @@ public class DetailedPage extends AppCompatActivity {
         });
 
     }
-
 
 
 }

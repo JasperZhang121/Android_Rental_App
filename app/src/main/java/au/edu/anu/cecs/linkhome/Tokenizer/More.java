@@ -1,8 +1,6 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
 public class More extends Exp {
-    private Exp term;
-    private Exp exp;
 
     public More() {
 
@@ -10,17 +8,12 @@ public class More extends Exp {
 
     @Override
     public String show() {
-        return "(" + term.show() + " > " + exp.show() + ")";
+        return ">";
     }
 
     @Override
     public boolean evaluate() {
         return true;
-    }
-
-    @Override
-    public String evaluateString() {
-        return null;
     }
 
     @Override
