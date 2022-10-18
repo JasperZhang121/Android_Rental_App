@@ -71,7 +71,7 @@ The following is a report template to help your team successfully provide all th
 
 *[What is your application, what does it do? Include photos or diagrams if necessary]*
 
-*Here is a pet specific application example*
+*LinkHome is an online accommodation property buying application, which specialises in rental housing in Australia*
 
 *PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
 
@@ -81,6 +81,7 @@ The following is a report template to help your team successfully provide all th
 
 *Here is a pet training application example*
 
+*If a user wants to *
 *Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
 1. *Molly notices that McPurr has been hostile since...*
 2. *She makes a post about... with the tag...*
@@ -88,10 +89,20 @@ The following is a report template to help your team successfully provide all th
 4. ...
 5. *Molly gives Lachlan's reply a 'tick' response*
 
+*If any user wants to buy a house or rented house the app helps to find the houses present in that particular city *
+*First time users need to Sign Up into the application, after that user can choose from number of housing options available, they can also narrow down the search and filter by just typing the name of the city or rent range *
+*All the housing options available in that location will appear to user*
+*If user likes a house then they can save it for further preference in WishList, where it will be saved into Wishlist *
+*Incase, The user wannts to buy a house using LinkHome application they just to click on the LinkHome property and do the payment*
+
+
+*If user decided to buy/rent a house they just need to confirm and make the payment*
+*Incase, the user has liked property but the user is not able to buy the property that moment then the user can also save that property in wishlist  *
 *Here is a map navigation application example*
 
-*Targets Users: Drivers*
-
+*Targets Users: Tenant*
+* *
+*
 * *Users can use it to navigate in order to reach the destinations.*
 * *Users can learn the traffic conditions*
 * ...
@@ -133,14 +144,25 @@ The following is a report template to help your team successfully provide all th
 **Data Structures**
 
 *[What data structures did your team utilise? Where and why?]*
+* ** We have used the AVL tree Data Structure** 
+* **We have used it for search function and for increasing the search efficiency**
+* **We are using the AVl tree in DatabaseFragment**
 
 **Design Patterns**
 
 *[What design patterns did your team utilise? Where and why?]*
+* ** We have decided to use the State, Singleton, Facade Design Patterns in out project**
+* ** State Design Pattern is used in the Login page **
+* ** Singleton Design Pattern is used in User class for making sure that only single user is logged in for each session  **
 
 **Grammar(s)**
 
 Production Rules:
+** <exp>    ::= <term> || <exp> | <term> && <exp> |  **
+     ** <operator> ::= < < | > | = > **
+     * <coefficient> ::= <unsigned integer>*
+     * <letter> ::= <alphabets>*
+
     
     <Non-Terminal> ::= <some output>
     <Non-Terminal> ::= <some output>
@@ -152,6 +174,8 @@ Production Rules:
 **Tokenizer and Parsers**
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
+**the following enum defines different types of tokens. Example of accessing these: Token.Type.INT
+Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 
 **Surprise Item**
 
@@ -180,6 +204,8 @@ Production Rules:
 ## Testing Summary
 
 *[What features have you tested? What is your testing coverage?]*
+**city=Canberra && rent<400"**
+**"rent<300", "rent>300", "city=Sydney", "city=Melbourne"}**
 
 *Here is an example:*
 
@@ -187,7 +213,7 @@ Production Rules:
 
 - *Code coverage: ...*
 
-- *Types of tests created: ...*
+- *Types of tests created: AVLTree test, Parser test *
 
 *Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
 
@@ -228,7 +254,8 @@ Feature Category: Firebase Integration <br>
 *Implemented features:* <br>
 1. **Use Firebase to implement user Authentication/Authorisation. (easy)**
    * Class A: methods A, B, C, lines of code: whole file
-   * …
+   * We have used the firebase in DatabaseFragement Class*
+   * It is used to store the data of more than 2500 instances of properties available in the LinkHome app*
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
