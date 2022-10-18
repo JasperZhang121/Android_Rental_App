@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
+import au.edu.anu.cecs.linkhome.Facade.PaymentMaker;
 import au.edu.anu.cecs.linkhome.R;
 
 /**
@@ -24,7 +25,7 @@ public class DetailedPage extends AppCompatActivity {
     Button pay_btn;
     ImageButton mastercard;
     ImageButton paypal;
-
+    PaymentMaker paymentMaker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +71,18 @@ public class DetailedPage extends AppCompatActivity {
 
         /*pay_btn.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
+            intent.putExtra("payMastercard","mastercard");
             startActivity(intent);
         });*/
         mastercard.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Mastercard.class);
+            intent.putExtra("payMasterCard","mastercard");
             startActivity(intent);
         });
         paypal.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Paypal.class);
-                startActivity(intent);
-
+            intent.putExtra("payPaypal","payPal");
+            startActivity(intent);
         });
-
     }
-
-
 }
