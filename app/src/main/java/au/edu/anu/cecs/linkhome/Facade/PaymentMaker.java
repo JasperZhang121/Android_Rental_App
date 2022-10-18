@@ -10,8 +10,9 @@ public class PaymentMaker {
     }
 
     public void pay_mastercard(){
+        mastercard.pay();
     }
     public void pay_paypal(){
-
+        paypal.pay();
     }
 }
