@@ -88,6 +88,19 @@ make draft for activity_paypal.xml
 make draft for activity_payment_page.xml
 
 
+u7395484, Nihar Meshram contributed [x] of the code. Here are the
+DataAdapter.class
+Data.class
+Homepage.Mastercard.class
+Homepage.Paypal.class
+Homepage.paymentPage.class
+make draft for activity_mastercard.xml
+make draft for activity_paypal.xml
+make draft for activity_payment_page.xml
+Data generation 
+Importing data from Firebase into the Data class.
+
+
 *you should ALSO provide links to the specified classes and/or functions*
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
