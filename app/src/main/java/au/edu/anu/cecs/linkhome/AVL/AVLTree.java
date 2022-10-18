@@ -1,8 +1,16 @@
 package au.edu.anu.cecs.linkhome.AVL;
 
+import android.widget.Switch;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import au.edu.anu.cecs.linkhome.Data;
+import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Less;
+import au.edu.anu.cecs.linkhome.Tokenizer.More;
 
 /**
  * AVL tree implementation. Adapted from lab4.
@@ -248,6 +256,46 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         }
 
         return list;
+    }
+
+    public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T rent){
+        // rent = 500, value = 400
+//        Data data = new Data("","","",rent);
+        if(exp instanceof Less){
+            if( value.compareTo(rent) < 0 ){
+                if(!(tree.leftNode instanceof EmptyAVL)) {
+                    return filterData((AVLTree<T>) tree.leftNode, exp, rent);
+                }
+            }
+            else{
+                return (AVLTree<T>) tree;
+            }
+        }
+        else if(exp instanceof More){
+            if( value.compareTo(rent) > 0 ){
+                if(!(tree.rightNode instanceof EmptyAVL)) {
+                    return filterData((AVLTree<T>) tree.rightNode, exp, rent);
+                }
+            }
+            else{
+                return (AVLTree<T>) tree;
+            }
+        }
+        else if(exp instanceof EqualExp) {
+            if (value.compareTo(rent) == 0) {
+                return new AVLTree<>(value);
+            } else if (value.compareTo(rent) > 0) {
+                if (!(tree.rightNode instanceof EmptyAVL)) {
+                    return filterData((AVLTree<T>) tree.rightNode, exp, rent);
+                }
+            } else if (value.compareTo(rent) < 0) {
+                if (!(tree.leftNode instanceof EmptyAVL)) {
+                    return filterData((AVLTree<T>) tree.leftNode, exp, rent);
+                }
+            }
+        }
+
+        return null;
     }
 
 }
