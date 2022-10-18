@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| u7268598 | Devanshi Dhall | UI, Login Screen, Data Structure, Tokenizer and Parser |
+| u7399886 | Avani | UI, Other Functionalities, Data Structure, State Design Pattern, Bookmark |
+| u7395484 | Nihar | UI, Detailed Pages, Data streams into Firebase |
+| u6523462 | Hao Zhang | UI, Detailed Pages, Firebase, Sort Functionality, Tokenizer and Parser |
 
 ## Summary of Individual Contributions
 
@@ -45,9 +45,30 @@ The following is a report template to help your team successfully provide all th
 *Here is an example:*
 
 *UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
+u7268598, Devanshi Dhall contributed [x] of the code. Here are the contributions:
+LoginActivity.class
+LoginAdapter.class
+LoginTabFragment.class
+SignUpTabFragment.class
+User.class: getInstance(), Singleton Method
+AVLTree.class: Creation and Insertion
+MAinActivity.class
+
+
+u7399886, Avani Dhaliwal contributed [x] of the code. Here are the contributions:
+StateDesignPattern includes the following classes:
+LoginState.class
+LogoutState.class
+User.class
+UserState.class
+AVLTree.class: Includes creation, insertion and deletion
+BookmarkFragment.class
+HomePage.class
+BookmarkAdapter.class
+MainActivity.class
+
+u6523462, Hao Zhang contributed [x] of the code. Here are the 
+
 
 *you should ALSO provide links to the specified classes and/or functions*
 

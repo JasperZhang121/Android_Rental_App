@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,9 @@ import au.edu.anu.cecs.linkhome.AVL.AVLTree;
 import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.DataAdapter;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
+import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
 
 public class DatabaseFragment extends Fragment {
     RecyclerView recyclerView;
@@ -80,8 +84,6 @@ public class DatabaseFragment extends Fragment {
                     int min = 0;
                     listImages.add((int) (Math.random() * ((max - min) + 1) + min));
                 }
-                System.out.println("LIST: " + list);
-                System.out.println("HASH: " + hashMapAVL.keySet());
 
                 DataAdapter.notifyDataSetChanged();
 
@@ -99,8 +101,34 @@ public class DatabaseFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.search,menu);
+        MenuItem menuItem = menu.findItem(R.id.search_bar);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to Search");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Tokenizer tokenizer = new Tokenizer(query);
+                Parser parser = new Parser(tokenizer);
+                parser.parseExp();
+                ArrayList<Object> list = parser.getFinalList();
+                if(list.get(0) instanceof EqualExp && list.get(1) instanceof String){
+                    AVLTree<Data> hashTree = hashMapAVL.get( (String) list.get(1));
+                }
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
         super.onCreateOptionsMenu(menu, inflater);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -44,34 +44,34 @@ public class Parser {
      * which you can run. Once running, provide a mathematical string to the terminal and you will
      * receive back the result of your parsing.
      */
-    public static void main(String[] args) {
-        // Create a scanner to get the user's input.
-        Scanner scanner = new Scanner(System.in);
-
-        /*
-         Continue to get the user's input until they exit.
-         To exit press: Control + D or providing the string 'q'
-         Example input you can try: ((1 + 2) * 5)/2
-         Note that evaluations will round down to negative infinity (because they are integers).
-         */
-        System.out.println("Provide a mathematical string to be parsed:");
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-
-            // Check if 'quit' is provided.
-            if (input.equals("q"))
-                break;
-
-            // Create an instance of the tokenizer.
-            Tokenizer tokenizer = new Tokenizer(input);
-
-            // Print out the expression from the parser.
-            Parser parser = new Parser(tokenizer);
-            Exp expression = parser.parseExp();
-            System.out.println("Parsing: " + expression.show());
-            System.out.println("Evaluation: " + expression.evaluate());
-        }
-    }
+//    public static void main(String[] args) {
+//        // Create a scanner to get the user's input.
+//        Scanner scanner = new Scanner(System.in);
+//
+//        /*
+//         Continue to get the user's input until they exit.
+//         To exit press: Control + D or providing the string 'q'
+//         Example input you can try: ((1 + 2) * 5)/2
+//         Note that evaluations will round down to negative infinity (because they are integers).
+//         */
+//        System.out.println("Provide a mathematical string to be parsed:");
+//        while (scanner.hasNext()) {
+//            String input = scanner.nextLine();
+//
+//            // Check if 'quit' is provided.
+//            if (input.equals("q"))
+//                break;
+//
+//            // Create an instance of the tokenizer.
+//            Tokenizer tokenizer = new Tokenizer(input);
+//
+//            // Print out the expression from the parser.
+//            Parser parser = new Parser(tokenizer);
+//            Exp expression = parser.parseExp();
+//            System.out.println("Parsing: " + expression.show());
+//            System.out.println("Evaluation: " + expression.evaluate());
+//        }
+//    }
 
     public ArrayList<Object> getFinalList() {
         return finalList;
@@ -200,7 +200,9 @@ public class Parser {
         } else if (Objects.equals(this.tokenizer.current().getToken(), "rent")) {
             if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if (tokenizer.current().getType() == Token.Type.EQUAL || tokenizer.current().getType() == Token.Type.MORE || tokenizer.current().getType() == Token.Type.LESS) {
+                if (tokenizer.current().getType() == Token.Type.EQUAL
+                        || tokenizer.current().getType() == Token.Type.MORE
+                        || tokenizer.current().getType() == Token.Type.LESS) {
                     parseOperators();
                 }
             }
@@ -208,10 +210,14 @@ public class Parser {
             finalList.add(tokenizer.current().getToken());
             if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if (this.tokenizer.current().getType() == Token.Type.AND) {
+                if (this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.AND) {
                     parseOperators();
                 }
+                if(this.tokenizer.current()==null){
+                    return new OrExp();
+                }
             }
+
         } else if (tokenizer.hasNext()) {
             tokenizer.next();
             parseOperators();
