@@ -1,5 +1,9 @@
 package au.edu.anu.cecs.linkhome.AVL;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * AVL tree implementation. Adapted from lab4.
  *
@@ -221,4 +225,29 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             return new AVLTree<>(element);
         }
     }
+    public ArrayList<T> treeToListInOrder(AVLTree<T> tree) {
+        ArrayList<T> list = new ArrayList<>();
+
+        // Recurse through left subtree.
+        if (tree.leftNode != null) {
+            if (tree.leftNode.value != null) {
+                list.addAll(treeToListInOrder((AVLTree<T>) tree.leftNode));
+            }
+        }
+
+        // Add current node's value
+        if (tree.value != null) {
+            list.add(tree.value);
+        }
+
+        // Recurse through left subtree.
+        if (tree.rightNode != null) {
+            if (tree.rightNode.value != null) {
+                list.addAll(treeToListInOrder((AVLTree<T>) tree.rightNode));
+            }
+        }
+
+        return list;
+    }
+
 }
