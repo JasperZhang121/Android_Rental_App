@@ -131,8 +131,6 @@
 * Data generation
 * Import and create Json File in Firebase
 * UML diagram
-* Json File
-
 
 **Code Design:** Facade Design Pattern, AVL Tree
 
