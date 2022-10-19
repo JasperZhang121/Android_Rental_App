@@ -96,7 +96,6 @@
 * Data.class 
 * homePage/Mastercard.class 
 * homePage/Paypal.class
-* homePage/PaymentPage.class 
 * homePage/DatabaseFragment.class: onDataChange()
 * homePage/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
 * ParserTest.class
@@ -106,6 +105,8 @@
 * activity_mastercard.xml 
 * activity_paypal.xml 
 * activity_payment_page.xml 
+* UML design
+* Import and create Json File in Firebase
 
 **Code Design:** Singleton Design, Facade Design Pattern, AVL Tree
 
@@ -119,10 +120,17 @@
 * Data.class 
 * homePage/Mastercard.class 
 * homePage/Paypal.class 
-* homePage/paymentPage.class 
 * activity_mastercard.xml 
-* activity_paypal.xml 
-* activity_payment_page.xml
+* activity_paypal.xml
+* Import and create Json File in Firebase
+* UML diagram 
+* Json File
+* Facade/Mastercard.class 
+* Facade/Payment.interface 
+* Facade/PaymentMaker.class 
+* Facade/Paypal.class 
+* Data generation
+
 
 **Code Design:** Facade Design Pattern, AVL Tree
 
