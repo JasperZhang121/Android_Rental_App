@@ -131,7 +131,7 @@
 * Data generation
 * Import and create Json File in Firebase
 * UML diagram
-
+ 
 **Code Design:** Facade Design Pattern, AVL Tree
 
 **Features:** Firebase Realtime Database (Creating and Importing data from Firebase into the Data class)
