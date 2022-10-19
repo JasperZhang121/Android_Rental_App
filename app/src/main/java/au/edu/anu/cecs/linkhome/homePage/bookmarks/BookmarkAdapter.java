@@ -17,16 +17,10 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD:app/src/main/java/au/edu/anu/cecs/linkhome/BookmarkAdapter.java
-/**
- * @author Avani Dhaliwal
- */
-=======
 import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 import au.edu.anu.cecs.linkhome.homePage.posts.DataAdapter;
 
->>>>>>> origin/main:app/src/main/java/au/edu/anu/cecs/linkhome/homePage/bookmarks/BookmarkAdapter.java
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyViewHolder> {
     private final BookmarkAdapter.ItemClickListener listener;
     private final Context context;
@@ -89,9 +83,6 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
             checkBox();
         }
 
-        /**
-         * @author Devanshi Dhall
-         */
         public void checkBox() {
             cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (!isChecked) {

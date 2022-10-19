@@ -1,4 +1,4 @@
-package au.edu.anu.cecs.linkhome.HomePage;
+package au.edu.anu.cecs.linkhome.homePage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import au.edu.anu.cecs.linkhome.Facade.PaymentMaker;
+import au.edu.anu.cecs.linkhome.facade.PaymentMaker;
 import au.edu.anu.cecs.linkhome.R;
 
 /**

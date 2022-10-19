@@ -22,14 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
-<<<<<<< HEAD:app/src/main/java/au/edu/anu/cecs/linkhome/DataAdapter.java
-/**
- * @author Nihar Meshram, Hao Zhang
- */
-=======
 import au.edu.anu.cecs.linkhome.R;
 
->>>>>>> origin/main:app/src/main/java/au/edu/anu/cecs/linkhome/homePage/posts/DataAdapter.java
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
 
     private final ItemClickListener listener;
@@ -114,16 +108,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         }
     }
 
-<<<<<<< HEAD:app/src/main/java/au/edu/anu/cecs/linkhome/DataAdapter.java
-    /**
-     * Add the data of item to firebase
-     * @param data of Data
-     * @author Avani Dhaliwal
-     */
-    public static void addDataToFirebase(Data data) {
-=======
     public static void addDataToFirebase(Data data, Context context) {
->>>>>>> origin/main:app/src/main/java/au/edu/anu/cecs/linkhome/homePage/posts/DataAdapter.java
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + data.getId());
         databaseReference.setValue(data).addOnCompleteListener(task -> {
@@ -135,17 +120,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         });
     }
 
-<<<<<<< HEAD:app/src/main/java/au/edu/anu/cecs/linkhome/DataAdapter.java
-    /**
-     * Delete the data of item to firebase
-     * @param id of String
-     * @author Avani Dhaliwal
-     */
-
-    public static void deleteDataFromFirebase(String id) {
-=======
     public static void deleteDataFromFirebase(String id, Context context) {
->>>>>>> origin/main:app/src/main/java/au/edu/anu/cecs/linkhome/homePage/posts/DataAdapter.java
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + id);
         databaseReference.removeValue().addOnCompleteListener(task -> {

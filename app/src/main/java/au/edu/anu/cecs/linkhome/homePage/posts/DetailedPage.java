@@ -19,7 +19,6 @@ import au.edu.anu.cecs.linkhome.homePage.payement.Paypal;
 /**
  * DetailedPage class gives a detailed view
  * of the current image being clicked
- * @author Avani Dhaliwal
  */
 
 public class DetailedPage extends AppCompatActivity {
@@ -37,17 +36,8 @@ public class DetailedPage extends AppCompatActivity {
         TextView rentText = findViewById(R.id.detailedPageRent);
         ImageView image = findViewById(R.id.detailedPageImage);
 
-<<<<<<< HEAD:app/src/main/java/au/edu/anu/cecs/linkhome/HomePage/DetailedPage.java
-        /**
-         * @author
-         */
-        mastercard = (ImageButton) findViewById(R.id.imageButton3);
-        paypal = (ImageButton) findViewById(R.id.imageButton4);
-
-=======
         mastercard = findViewById(R.id.imageButton3);
         paypal = findViewById(R.id.imageButton4);
->>>>>>> origin/main:app/src/main/java/au/edu/anu/cecs/linkhome/homePage/posts/DetailedPage.java
 
         String city = "";
         String rent = "";
@@ -68,7 +58,6 @@ public class DetailedPage extends AppCompatActivity {
         }
 
         // Detailed information about a specific home to be on rent
-
         cityText.setText(city);
         addressText.setText(address);
         postalText.setText(postal);
@@ -79,7 +68,6 @@ public class DetailedPage extends AppCompatActivity {
             intent.putExtra("payMasterCard","mastercard");
             startActivity(intent);
         });
-
         paypal.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Paypal.class);
             intent.putExtra("payPaypal","payPal");
