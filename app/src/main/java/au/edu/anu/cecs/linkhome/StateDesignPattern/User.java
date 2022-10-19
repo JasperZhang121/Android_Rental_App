@@ -9,6 +9,7 @@ import au.edu.anu.cecs.linkhome.Data;
 
 /**
  * User class to implement state design pattern
+ * @author Avani Dhaliwal, Adapted from Design Pattern Lecture Slides
  */
 public class User implements Serializable {
 
@@ -31,7 +32,12 @@ public class User implements Serializable {
         changeState(defaultState);
     }
 
-    // Make use of Singleton Design Pattern
+
+    /**
+     * Singleton Design Pattern for User
+     * @return User
+     * @author Devanshi Dhall
+     */
     public static User getInstance() {
         if (instance == null) {
             instance = new User();

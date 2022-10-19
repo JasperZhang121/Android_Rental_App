@@ -28,7 +28,7 @@
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
         android:padding="8dp"
-        android:text="please work"
+        android:text="Welcome User"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

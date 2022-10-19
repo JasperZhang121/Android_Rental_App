@@ -19,6 +19,7 @@ import au.edu.anu.cecs.linkhome.R;
 /**
  * DetailedPage class gives a detailed view
  * of the current image being clicked
+ * @author Avani Dhaliwal
  */
 
 public class DetailedPage extends AppCompatActivity {
@@ -38,11 +39,11 @@ public class DetailedPage extends AppCompatActivity {
         TextView rentText = findViewById(R.id.detailedPageRent);
         ImageView image = findViewById(R.id.detailedPageImage);
 
-
-        //pay_btn = findViewById(R.id.detailedPagePayButton);
+        /**
+         * @author
+         */
         mastercard = (ImageButton) findViewById(R.id.imageButton3);
         paypal = (ImageButton) findViewById(R.id.imageButton4);
-
 
 
         String city = "";
@@ -64,21 +65,18 @@ public class DetailedPage extends AppCompatActivity {
         }
 
         // Detailed information about a specific home to be on rent
+
         cityText.setText(city);
         addressText.setText(address);
         postalText.setText(postal);
         rentText.setText(rent);
 
-        /*pay_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(DetailedPage.this, PaymentPage.class);
-            intent.putExtra("payMastercard","mastercard");
-            startActivity(intent);
-        });*/
         mastercard.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Mastercard.class);
             intent.putExtra("payMasterCard","mastercard");
             startActivity(intent);
         });
+
         paypal.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Paypal.class);
             intent.putExtra("payPaypal","payPal");

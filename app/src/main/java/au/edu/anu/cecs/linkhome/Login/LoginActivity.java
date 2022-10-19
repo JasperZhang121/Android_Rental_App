@@ -17,7 +17,9 @@ import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
  * LoginActivity sets up the login tab fragment and sign up fragment
  * for the users to login and sign up accordingly
  * The data is stored on firebase for all the logged in users or those users who sign up
+ * @author Devanshi Dhall
  */
+
 public class LoginActivity extends AppCompatActivity {
 
     // Firebase Authentication

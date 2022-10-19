@@ -27,6 +27,7 @@ import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
  * HomePage stores all the details related to the navigation
  * All the different states such as going from login to clicking on logout are implemented
  * Each user can navigate to different pages in the app as per their preference
+ * @author Avani Dhaliwal
  */
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

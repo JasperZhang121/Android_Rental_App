@@ -16,6 +16,9 @@ import java.util.Calendar;
 
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * @author Nihar Meshram, Hao Zhang
+ */
 public class PaymentPage extends AppCompatActivity {
 
 
@@ -29,34 +32,21 @@ public class PaymentPage extends AppCompatActivity {
         setContentView(R.layout.activity_payment_page);
 
         dateEdt = findViewById(R.id.paymentDates);
-        // on below line we are adding click listener
-        // for our pick date button
-        dateEdt.setOnClickListener(v -> {
-            // on below line we are getting
-            // the instance of our calendar.
-            final Calendar c = Calendar.getInstance();
 
-            // on below line we are getting
-            // our day, month and year.
+        dateEdt.setOnClickListener(v -> {
+            final Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            // on below line we are creating a variable for date picker dialog.
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    // on below line we are passing context.
-                    PaymentPage.this,
-                    (view, year1, monthOfYear, dayOfMonth) -> {
-                        // on below line we are setting date to our edit text.
+            // Creating a variable for date picker dialog
+            DatePickerDialog datePickerDialog = new DatePickerDialog(PaymentPage.this, (view, year1, monthOfYear, dayOfMonth) ->
+            {
                         String text = (monthOfYear + 1) + "/" + year1;
                         dateEdt.setText(text);
-                        System.out.println("here!");
-                    },
-                    // on below line we are passing year,
-                    // month and day for selected date in our date picker.
-                    year, month, day);
-            // at last we are calling show to
-            // display our date picker dialog.
+
+                    }, year, month, day);
+            // Display our date picker dialog.
             datePickerDialog.show();
         });
     }

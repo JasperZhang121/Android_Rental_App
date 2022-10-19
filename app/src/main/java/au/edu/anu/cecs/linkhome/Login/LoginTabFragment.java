@@ -21,6 +21,7 @@ import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 
 /**
  * LoginTabFragment deals with the login state of the users
+ * @author Devanshi Dhall, Avani Dhaliwal
  */
 public class LoginTabFragment extends Fragment {
 

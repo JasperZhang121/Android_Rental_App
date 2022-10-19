@@ -5,6 +5,13 @@ import static org.junit.Assert.*;
 
 import au.edu.anu.cecs.linkhome.AVL.AVLTree;
 
+/**
+ * @author Avani Dhaliwal
+ */
+
+/**
+ * @author Avani Dhaliwal, Devanshi Dhall
+ */
 public class AVLTreeTest {
     @Test(timeout = 1000)
     public void immutableTest() {
@@ -20,6 +27,10 @@ public class AVLTreeTest {
                         "\nYour AVL tree should look like: " + expected + "\nBut it actually looks like: " + avl,
                 avl.find(data2));
     }
+
+    /**
+     * @author Avani Dhaliwal, Devanshi Dhall
+     */
 
     @Test (timeout = 1000)
     public void insertInOrderTest() {

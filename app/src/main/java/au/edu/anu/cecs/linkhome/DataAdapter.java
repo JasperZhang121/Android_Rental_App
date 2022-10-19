@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * @author Nihar Meshram, Hao Zhang
+ */
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
 
     private final ItemClickListener listener;
@@ -106,6 +109,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         }
     }
 
+    /**
+     * Add the data of item to firebase
+     * @param data of Data
+     * @author Avani Dhaliwal
+     */
     public static void addDataToFirebase(Data data) {
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         System.out.println(user);
@@ -118,6 +126,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             }
         });
     }
+
+    /**
+     * Delete the data of item to firebase
+     * @param id of String
+     * @author Avani Dhaliwal
+     */
 
     public static void deleteDataFromFirebase(String id) {
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();

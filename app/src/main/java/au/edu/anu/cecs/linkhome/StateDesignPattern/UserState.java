@@ -7,6 +7,9 @@ import java.util.List;
 
 import au.edu.anu.cecs.linkhome.Data;
 
+/**
+ * @author Avani Dhaliwal, Adapted from Design Pattern Lecture Slides,
+ */
 public abstract class UserState implements Serializable {
     protected User user;
 

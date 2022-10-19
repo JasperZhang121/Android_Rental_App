@@ -42,50 +42,74 @@ The following is a report template to help your team successfully provide all th
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-*Here is an example:*
-
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-u7268598, Devanshi Dhall contributed [x] of the code. Here are the contributions:
-LoginActivity.class
-LoginAdapter.class
-LoginTabFragment.class
-SignUpTabFragment.class
-User.class: getInstance(), Singleton Method
-AVLTree.class: Creation and Insertion
-BinarySearchTree.class
-EmptyTree.class
-Tree.class
+u7268598, Devanshi Dhall contributed 25% of the code. Here are the contributions:
+Login/LoginActivity.class
+Login/LoginAdapter.class
+Login/LoginTabFragment.class
+Login/SignUpTabFragment.class
+Tokenizer/Token.class
+Tokenizer/Tokenizer.class
+Tokenizer/Parser.class
+Tokenizer/AndExp.class
+Tokenizer/EqualExp.class
+Tokenizer/Exp.class
+Tokenizer/IntExp.class
+Tokenizer/LessExp.class
+Tokenizer/Letter.class
+Tokenizer/MoreExp.class
+Tokenizer/OrExp.class
+Data.class: compareTo()
+StateDesignPattern/User.class: getInstance()
+HomePage/DatabaseFragment.class: onCreateOptionsMenu()
+Facade/PaymentMaker.class
+BookmarkAdapter.class: checkBox()
+AVL/AVLTree.class: Creation and Insertion
+AVL/BinarySearchTree.class
+AVL/EmptyTree.class
+AVL/Tree.class
+AVLTreeTest.class: immutableTest(), insertInOrderTest()
+ParserTest.class
+Firebase Login Authentication
 MAinActivity.class
 
 
-u7399886, Avani Dhaliwal contributed [x] of the code. Here are the contributions:
-LoginState.class
-LogoutState.class
-User.class
-UserState.class
-AVLTree.class: Includes creation, insertion and deletion
-BinarySearchTree.class
-EmptyTree.class
-Tree.class
+u7399886, Avani Dhaliwal contributed 25% of the code. Here are the contributions:
+StateDesignPattern/LoginState.class
+StateDesignPattern/LogoutState.class
+StateDesignPattern/User.class
+StateDesignPattern/UserState.class
+AVL/AVLTree.class: Includes creation, insertion and deletion
+AVL/BinarySearchTree.class
+AVL/EmptyTree.class
+AVL/Tree.class
+Login/LoginAdapter.class
+Login/LoginTabFragment.class
 BookmarkFragment.class
-HomePage.class
+HomePage/DatabaseFragment.class
+HomePage/DetailedPage.class
+HomePage/HomePage.class
 BookmarkAdapter.class
+DataAdapter.class: addDataToFirebase()
+DataAdapter.class: deleteDataFromFirebase()
+Data.class: compareTo()
+AVLTreeTest.class
+Firebase Login Authentication
 MainActivity.class
 
-u6523462, Hao Zhang contributed [x] of the code. Here are the
-Facade.Mastercard.class
-Facade.Payment.interface
-Facade.PaymentMaker.class
-Facade.Paypal.class
+u6523462, Hao Zhang contributed 25% of the code. Here are the contributions:
+Facade/Mastercard.class
+Facade/Payment.interface
+Facade/PaymentMaker.class
+Facade/Paypal.class
 DataAdapter.class
 Data.class
-Homepage.Mastercard.class
-Homepage.Paypal.class
-Homepage.paymentPage.class
+Homepage/Mastercard.class
+Homepage/Paypal.class
+Homepage/PaymentPage.class
 ParserTest.class
-method: void onDataChange() in DatabaseFragment
-method: boolean onOptionsItemSelected(MenuItem item)
-help to design all classes in Tokenizer
+HomePage/DatabaseFragment.class: onDataChange()
+HomePage/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
+Help to design all classes in Tokenizer
 activity_database.xml
 item.xml
 make draft for activity_mastercard.xml
@@ -93,18 +117,17 @@ make draft for activity_paypal.xml
 make draft for activity_payment_page.xml
 
 
-u7395484, Nihar Meshram contributed [x] of the code. Here are the
+u7395484, Nihar Meshram contributed 25% of the code. Here are the contributions:
 DataAdapter.class
 Data.class
-Homepage.Mastercard.class
-Homepage.Paypal.class
-Homepage.paymentPage.class
+Homepage/Mastercard.class
+Homepage/Paypal.class
+Homepage/paymentPage.class
 make draft for activity_mastercard.xml
 make draft for activity_paypal.xml
 make draft for activity_payment_page.xml
-Data generation 
-Importing data from Firebase into the Data class.
-
+Data generation
+Importing data from Firebase into the Data class
 
 *you should ALSO provide links to the specified classes and/or functions*
 

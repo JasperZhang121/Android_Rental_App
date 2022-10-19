@@ -14,6 +14,7 @@ import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
 /**
  * MainActivity to create connection
  * with the Firebase and jump to the LoginActivity class
+ * @author Devanshi Dhall, Avani Dhaliwal
  */
 public class MainActivity extends AppCompatActivity {
 

@@ -18,6 +18,7 @@ import au.edu.anu.cecs.linkhome.R;
 
 /**
  * SignUpTabFragment deals with the new users registration
+ * @author Devanshi Dhall
  */
 public class SignUpTabFragment extends Fragment {
 
@@ -78,9 +79,7 @@ public class SignUpTabFragment extends Fragment {
         else {
             mAuth.createUserWithEmailAndPassword(emailID, passwordConfirm).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    System.out.println("HELLO WORLD DEVANSHI");
                     Toast.makeText(getContext(), "User Registered ", Toast.LENGTH_SHORT).show();
-                    System.out.println("HELLO WORLD");
                     startActivity(new Intent(getContext(), LoginTabFragment.class));
                 } else {
                     Toast.makeText(getContext(), "Registration error " +

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 /**
  * Data class to store all the fields of type Data to be displayed on the UI
+ * @author Nihar Meshram, Hao Zhang
  */
 
 public class Data implements Comparable<Data> {
@@ -22,7 +23,7 @@ public class Data implements Comparable<Data> {
 
     /**
      * compareTo method compares the value of rent
-     *
+     * @author Avani Dhaliwal, Devanshi Dhall
      * @param data Data
      * @return int value
      */

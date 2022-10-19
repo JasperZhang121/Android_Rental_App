@@ -8,7 +8,7 @@ import au.edu.anu.cecs.linkhome.Data;
 
 /**
  * To implement to State Design Pattern for User's Logout state
- * Adapted from Design Pattern Lecture Slides
+ * @author Avani Dhaliwal, Adapted from Design Pattern Lecture Slides
  */
 public class LogoutState extends UserState {
     public LogoutState(User user) {

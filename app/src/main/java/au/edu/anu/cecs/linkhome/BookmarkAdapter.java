@@ -17,6 +17,9 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
+/**
+ * @author Avani Dhaliwal
+ */
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyViewHolder> {
     private final BookmarkAdapter.ItemClickListener listener;
     private final Context context;
@@ -79,6 +82,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
             checkBox();
         }
 
+        /**
+         * @author Devanshi Dhall
+         */
         public void checkBox() {
             cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (!isChecked) {

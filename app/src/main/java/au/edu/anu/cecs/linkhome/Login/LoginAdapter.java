@@ -14,6 +14,7 @@ import java.util.ArrayList;
 /**
  * LoginAdapter class acts as a bridge between adapterView and the data for that particular view
  * It provided access to each data item
+ * @author Devanshi Dhall, Avani Dhaliwal
  */
 public class LoginAdapter extends FragmentStateAdapter {
 

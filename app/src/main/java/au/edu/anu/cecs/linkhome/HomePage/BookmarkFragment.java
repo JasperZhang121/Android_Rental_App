@@ -1,5 +1,6 @@
 package au.edu.anu.cecs.linkhome.HomePage;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,12 +31,16 @@ import au.edu.anu.cecs.linkhome.BookmarkAdapter;
 import au.edu.anu.cecs.linkhome.Data;
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * @author Avani Dhaliwal
+ */
 public class BookmarkFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
     au.edu.anu.cecs.linkhome.BookmarkAdapter BookmarkAdapter;
     ArrayList<Data> list;
     au.edu.anu.cecs.linkhome.BookmarkAdapter.ItemClickListener listener;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.bookmark_fragment, container, false);
@@ -81,6 +86,13 @@ public class BookmarkFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     * To sort the records based on ascending or descending order
+     * @param item of the MenuItem
+     * @return boolean
+     * @author Hao Zhang
+     */
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

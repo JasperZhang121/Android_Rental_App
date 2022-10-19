@@ -8,7 +8,6 @@ import au.edu.anu.cecs.linkhome.Tokenizer.MoreExp;
 
 /**
  * AVL tree implementation. Adapted from lab4.
- *
  * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
 public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
@@ -38,11 +37,12 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * @return balance factor of the current node.
      */
     public int getBalanceFactor() {
-        /*
-             Note:
-             Calculating the balance factor and height each time they are needed is less efficient than
-             simply storing the height and balance factor as fields within each tree node (as some
-             implementations of the AVLTree do). However, although it is inefficient, it is easier to implement.
+
+        /**
+         *  Note:
+         *  Calculating the balance factor and height each time they are needed is less efficient than
+         *  simply storing the height and balance factor as fields within each tree node (as some
+         *  implementations of the AVLTree do). However, although it is inefficient, it is easier to implement.
          */
         return leftNode.getHeight() - rightNode.getHeight();
     }
@@ -89,7 +89,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     /**
      * Deletes the given element and returns a new instance of itself without the new node.
      * Adapted from code written by Peicheng Liu on stubents.
-     *
      * @param element the element to be removed from the tree
      * @return A new AVLTree without the element
      * @author Peicheng Liu
@@ -177,7 +176,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Helper function for delete(), recursive, finds the leftmost (smallest) element in current tree
-     *
      * @return the leftmost element
      * @author Peicheng Liu
      */
@@ -191,7 +189,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Conducts a left rotation on the current node.
-     *
      * @return the new 'current' or 'top' node after rotation.
      */
     public AVLTree<T> leftRotate() {
@@ -204,7 +201,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Conducts a right rotation on the current node.
-     *
      * @return the new 'current' or 'top' node after rotation.
      */
     public AVLTree<T> rightRotate() {
@@ -227,6 +223,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             return new AVLTree<>(element);
         }
     }
+
     public ArrayList<T> treeToListInOrder(AVLTree<T> tree) {
         ArrayList<T> list = new ArrayList<>();
 
@@ -252,6 +249,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         return list;
     }
 
+    /**
+     * Filter Data method is used to filter records on the UI by meeting the search condition in AVL tree
+     * @param  tree, exp, rent
+     * @return  AVLTree
+     */
     public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T rent){
         if(exp instanceof LessExp) {
             if (value.compareTo(rent) < 0) {
@@ -265,7 +267,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
                 return null;
             }
         }
-
 
         if(exp instanceof MoreExp) {
             if (value.compareTo(rent) > 0) {
