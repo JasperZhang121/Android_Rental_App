@@ -3,7 +3,8 @@ package au.edu.anu.cecs.linkhome;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import au.edu.anu.cecs.linkhome.AVL.AVLTree;
+import au.edu.anu.cecs.linkhome.avl.AVLTree;
+import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 
 public class AVLTreeTest {
     @Test(timeout = 1000)
@@ -311,8 +312,7 @@ public class AVLTreeTest {
         Data data1 = new Data("something", "Canberra", "2612", "$350");
         Data data2 = new Data("something", "Canberra", "2612", "$300");
         Data data3 = new Data("something", "Canberra", "2612", "$400");
-        AVLTree<Data> avl = new AVLTree<>(data1).insert(data2).insert(data3).delete(new Data("something else ", "Canberra", "2612", "$300"));
-        String expected = "{rent=$350, leftNode={rent=$300, leftNode={}, rightNode={}}, rightNode={rent=$400, leftNode={}, rightNode={}}}";
+        new AVLTree<>(data1).insert(data2).insert(data3).delete(new Data("something else ", "Canberra", "2612", "$300"));
     }
 
     @Test(timeout = 1000)
@@ -347,7 +347,7 @@ public class AVLTreeTest {
     }
 
     @Test(timeout = 1000)
-    public void advancedDeletionTest() {;
+    public void advancedDeletionTest() {
         Data dataToBeDeleted = new Data("something", "Canberra", "2612", "$250");
         Data data1 = new Data("something", "Canberra", "2612", "$400");
         Data data2 = new Data("something", "Canberra", "2612", "$500");

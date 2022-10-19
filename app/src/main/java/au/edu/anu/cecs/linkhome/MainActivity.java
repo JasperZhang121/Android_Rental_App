@@ -8,8 +8,8 @@ import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import au.edu.anu.cecs.linkhome.Login.LoginActivity;
-import au.edu.anu.cecs.linkhome.StateDesignPattern.User;
+import au.edu.anu.cecs.linkhome.login.LoginActivity;
+import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
 
 /**
  * MainActivity to create connection
@@ -42,5 +42,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("USER", user);
         startActivity(intent);
     }
-
 }
