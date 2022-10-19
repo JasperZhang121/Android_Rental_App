@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage.DetailedPage">
+    tools:context=".homePage.posts.DetailedPage">
 
     <ImageView
         android:id="@+id/detailedPageImage"
@@ -29,10 +29,10 @@
         android:textColor="@color/green_500"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/detiledPageCity" />
+        app:layout_constraintTop_toBottomOf="@+id/detailedPageCity" />
 
     <TextView
-        android:id="@+id/detiledPageCity"
+        android:id="@+id/detailedPageCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="postalzip"
+        android:text="Postal Zip"
         android:textColor="@color/green_500"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -120,17 +120,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-
-
-    <!--&lt;!&ndash;app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_googlePay"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
-        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"&ndash;&gt;<![CDATA[
-        app:layout_constraintVertical_bias="0.501" />
--->
-
-
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="99dp"
@@ -147,7 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailedPageRent"
         app:layout_constraintVertical_bias="0.508"
-        app:srcCompat="@drawable/mastercard" />
+        app:srcCompat="@drawable/mastercard"/>
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -197,7 +186,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Description: Luxurious Townhome with High-End Amenities and Elegant Finishes"
+        android:text="Description: Luxurious Town Home with High-End Amenities and Elegant Finishes"
         android:textColor="@color/black"
         android:textSize="19dp"
         android:textStyle="italic"
@@ -207,32 +196,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
         app:layout_constraintVertical_bias="0.445" />
-
-
-    <!--<Button
-        android:id="@+id/detailedPagePayButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Pay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
-        app:layout_constraintVertical_bias="0.718"
-        app:srcCompat="@drawable/ic_baseline_turned_in_not_24" />-->
-    <!--android:id="@+id/payment_paypal"
-    android:layout_width="82dp"
-    android:layout_height="61dp"
-    android:src="@drawable/paypal"
-    app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
-    app:layout_constraintEnd_toStartOf="@+id/imageView_googlePay"
-    app:layout_constraintHorizontal_bias="0.55"
-    app:layout_constraintStart_toEndOf="@+id/imageView_mastercard"
-    app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
-    app:layout_constraintVertical_bias="0.501"-->
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

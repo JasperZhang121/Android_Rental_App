@@ -17,35 +17,35 @@
         android:windowSoftInputMode="stateVisible"
         tools:targetApi="31">
         <activity
-            android:name=".HomePage.Mastercard"
+            android:name=".homePage.payement.Mastercard"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomePage.Paypal"
+            android:name=".homePage.payement.Paypal"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomePage.PaymentPage"
+            android:name=".homePage.payement.PaymentPage"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HomePage.HomePage"
+            android:name=".homePage.HomePage"
             android:exported="true"
             android:theme="@style/Theme.LinkHome.NoActionBar" />
         <activity
-            android:name=".HomePage.DetailedPage"
+            android:name=".homePage.posts.DetailedPage"
             android:exported="true" />
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

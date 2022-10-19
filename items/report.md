@@ -173,11 +173,11 @@ Importing data from Firebase into the Data class
 *First time users need to Sign Up into the application, after that user can choose from number of housing options available, they can also narrow down the search and filter by just typing the name of the city or rent range *
 *All the housing options available in that location will appear to user*
 *If user likes a house then they can save it for further preference in WishList, where it will be saved into Wishlist *
-*Incase, The user wannts to buy a house using LinkHome application they just to click on the LinkHome property and do the payment*
+*In case, The user wants to buy a house using LinkHome application they just to click on the LinkHome property and do the payment*
 
 
 *If user decided to buy/rent a house they just need to confirm and make the payment*
-*Incase, the user has liked property but the user is not able to buy the property that moment then the user can also save that property in wishlist  *
+*In case, the user has liked property but the user is not able to buy the property that moment then the user can also save that property in wishlist  *
 *Here is a map navigation application example*
 
 *Targets Users: Tenant*
@@ -334,7 +334,7 @@ Feature Category: Firebase Integration <br>
 *Implemented features:* <br>
 1. **Use Firebase to implement user Authentication/Authorisation. (easy)**
    * Class A: methods A, B, C, lines of code: whole file
-   * We have used the firebase in DatabaseFragement Class*
+   * We have used the firebase in DatabaseFragment Class*
    * It is used to store the data of more than 2500 instances of properties available in the LinkHome app*
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
