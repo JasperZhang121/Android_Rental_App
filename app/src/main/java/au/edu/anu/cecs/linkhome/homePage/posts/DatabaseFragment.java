@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.avl.AVLTree;
@@ -39,6 +41,9 @@ import au.edu.anu.cecs.linkhome.tokenizer.expressions.MoreExp;
 import au.edu.anu.cecs.linkhome.tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.tokenizer.Tokenizer;
 
+/**
+ * @author Avani Dhaliwal
+ */
 public class DatabaseFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -68,18 +73,18 @@ public class DatabaseFragment extends Fragment {
              * Read data from the JSON file in firebase and create new objects of type Data
              * @param snapshot of the Data
              */
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int i = 0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
                     Data data = dataSnapshot.getValue(Data.class);
                     //Adds the data to an AVL tree according to its city.
                     assert data != null;
-                    if (hashMapAVL.containsKey(data.getCity())) {
-                        Objects.requireNonNull(hashMapAVL.get(data.getCity())).insert(data);
+                    if (hashMapAVL.containsKey(data.getCity().toLowerCase())) {
+                        Objects.requireNonNull(hashMapAVL.get(data.getCity().toLowerCase())).insert(data);
                     } else {
-                        hashMapAVL.put(data.getCity(), new AVLTree<>(data));
+                        hashMapAVL.put(data.getCity().toLowerCase(), new AVLTree<>(data));
                     }
 
                     int max = 1000;
@@ -93,7 +98,6 @@ public class DatabaseFragment extends Fragment {
                     }
                     list.add(data);
                 }
-
                 DataAdapter.notifyDataSetChanged();
             }
 
@@ -111,13 +115,18 @@ public class DatabaseFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
+        /**
+         * @author Devanshi Dhall
+         */
         inflater.inflate(R.menu.menu, menu);
         inflater.inflate(R.menu.search, menu);
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to Search");
 
-
+        /**
+         * @author Avani Dhaliwal, Devanshi Dhall
+         */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -182,6 +191,12 @@ public class DatabaseFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     * @author Avani Dhaliwal, Devanshi Dhall
+     * @param exp of Exp
+     * @param value of Object
+     * @return ArrayList<Data>
+     */
     private ArrayList<Data> filterByRent(Exp exp, Object value) {
         ArrayList<Data> result = new ArrayList<>();
         Data data = new Data("", "", "", "$" + value);
@@ -196,14 +211,15 @@ public class DatabaseFragment extends Fragment {
 
     private ArrayList<Data> filterByCity(String city) {
         ArrayList<Data> result = new ArrayList<>();
+        city = city.toLowerCase();
         AVLTree<Data> hashTree = hashMapAVL.get(city);
-
         if (hashTree != null) {
             result = hashTree.treeToListInOrder(hashTree);
         }
         return result;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

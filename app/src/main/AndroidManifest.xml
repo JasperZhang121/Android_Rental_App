@@ -17,7 +17,7 @@
         android:windowSoftInputMode="stateVisible"
         tools:targetApi="31" >
         <activity
-            android:name=".PaymentSuccessful"
+            android:name=".homePage.payment.PaymentSuccessful"
             android:exported="true" />
         <activity
             android:name=".homePage.payment.Mastercard"

@@ -2,6 +2,8 @@ package au.edu.anu.cecs.linkhome.homePage.posts;
 
 import androidx.annotation.NonNull;
 
+import java.util.Locale;
+
 /**
  * Data class to store all the fields of type Data to be displayed on the UI
  * @author Nihar Meshram, Hao Zhang

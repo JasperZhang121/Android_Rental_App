@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import java.util.Calendar;
 
 import au.edu.anu.cecs.linkhome.facade.PaymentMaker;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.homePage.HomePage;
 
 public class Paypal extends AppCompatActivity {
     private EditText dateEdt;
@@ -55,17 +58,30 @@ public class Paypal extends AppCompatActivity {
         });
 
         Button confirm = findViewById(R.id.paymentConfirmPaypal);
-        alert = findViewById(R.id.text_alert_paypal);
 
+        /**
+         * @author Devanshi Dhall, Hao Zhang
+         */
+        alert = findViewById(R.id.text_alert_paypal);
         confirm.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(Paypal.this);
-
             builder.setCancelable(true);
-            builder.setTitle("Alert!");
-            builder.setMessage("This might be a scam. Would you still like to proceed with the payment?");
+            builder.setTitle(Html.fromHtml("<font color='#8B0000'>Alert!</font>"));
+            builder.setMessage(Html.fromHtml("<font color='#8B0000'>This might be a scam. Would you still like to proceed with the payment?</font>"));
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    Intent homePage = new Intent(getApplicationContext(), HomePage.class);
+                    startActivity(homePage);
+                }
+            });
 
-            builder.setNegativeButton("Cancel", (dialogInterface, which) -> dialogInterface.cancel());
-            builder.setPositiveButton("OK", (dialog, which) -> alert.setVisibility(View.VISIBLE));
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    Intent paySuccess = new Intent(getApplicationContext(), PaymentSuccessful.class);
+                    startActivity(paySuccess);
+                }
+            });
+            builder.create();
             builder.show();
         });
 

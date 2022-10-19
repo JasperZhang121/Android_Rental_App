@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import au.edu.anu.cecs.linkhome.PaymentSuccessful;
 import au.edu.anu.cecs.linkhome.facade.PaymentMaker;
 import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.homePage.HomePage;
@@ -22,6 +22,7 @@ import au.edu.anu.cecs.linkhome.homePage.HomePage;
 public class Mastercard extends AppCompatActivity {
     private EditText dateEdt;
     private TextView alert;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +63,19 @@ public class Mastercard extends AppCompatActivity {
         });
 
 
-
         Button confirm = findViewById(R.id.paymentConfirm);
 
         /**
-         * Button payment
+         * @author Devanshi Dhall, Hao Zhang
          */
 
         alert = findViewById(R.id.alert_text);
 
         confirm.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(Mastercard.this);
-
             builder.setCancelable(true);
-            builder.setTitle("Alert!");
-            builder.setMessage("This might be a scam. Would you still like to proceed with the payment?");
-
+            builder.setTitle(Html.fromHtml("<font color='#8B0000'>Alert!</font>"));
+            builder.setMessage(Html.fromHtml("<font color='#8B0000'>This might be a scam. Would you still like to proceed with the payment?</font>"));
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     Intent homePage = new Intent(getApplicationContext(), HomePage.class);
@@ -91,12 +89,14 @@ public class Mastercard extends AppCompatActivity {
                     startActivity(paySuccess);
                 }
             });
-
+            builder.create();
             builder.show();
+
         });
 
         String payMethod = intent.getStringExtra("payMasterCard");
         PaymentMaker paymentMaker = new PaymentMaker();
         if (payMethod.equals("mastercard")) paymentMaker.pay_mastercard();
     }
+
 }
