@@ -122,14 +122,16 @@
 * homePage/Paypal.class 
 * activity_mastercard.xml 
 * activity_paypal.xml
-* Import and create Json File in Firebase
-* UML diagram 
-* Json File
+* activity_database.xml
+* item.xml
 * Facade/Mastercard.class 
 * Facade/Payment.interface 
 * Facade/PaymentMaker.class 
 * Facade/Paypal.class 
 * Data generation
+* Import and create Json File in Firebase
+* UML diagram
+* Json File
 
 
 **Code Design:** Facade Design Pattern, AVL Tree
