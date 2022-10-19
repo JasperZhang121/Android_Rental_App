@@ -55,7 +55,12 @@ public class Tokenizer {
                 } else {
                     break;
                 }
-            currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
+            String letterString = letter.toString().toLowerCase();
+            if(letterString.equals("rent") || letterString.equals("city")){
+                currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
+            } else {
+                throw new Token.IllegalTokenException("Invalid token");
+            }
         }
 
         // Check for a digit
@@ -70,7 +75,7 @@ public class Tokenizer {
             currentToken = new Token(result.toString().trim(), Token.Type.INT);
         }
         else {
-            throw new Token.IllegalTokenException("Incorrect");
+            throw new Token.IllegalTokenException("Invalid token");
         }
 
         // Remove the extracted token from buffer

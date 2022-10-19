@@ -10,19 +10,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.zip.Inflater;
+import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.homePage.bookmarks.BookmarkFragment;
 import au.edu.anu.cecs.linkhome.homePage.posts.DatabaseFragment;
 import au.edu.anu.cecs.linkhome.login.LoginActivity;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.stateDesignPattern.LoginState;
 import au.edu.anu.cecs.linkhome.stateDesignPattern.LogoutState;
 import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
 
@@ -30,6 +32,7 @@ import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
  * HomePage stores all the details related to the navigation
  * All the different states such as going from login to clicking on logout are implemented
  * Each user can navigate to different pages in the app as per their preference
+ *
  * @author Avani Dhaliwal
  */
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +55,12 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        TextView userEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.textView);
+        User user = User.getInstance();
+        if (user.getUserState() instanceof LoginState) {
+            userEmail.setText(user.getUsername());
+        }
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -87,11 +96,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         User user = User.getInstance();
         switch (item.getItemId()) {
             case R.id.nav_bookmarks:
-                if (user.bookmarksPage() != null) {
+                if (user.getUserState() instanceof LoginState) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             new BookmarkFragment()).commit();
                 } else {
-                    Toast.makeText(this, "Login to bookmark posts", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Login to add posts to Wishlist", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.nav_home:
@@ -99,7 +108,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                         new DatabaseFragment()).commit();
                 break;
             case R.id.nav_login:
-                if (user.bookmarksPage() == null) {
+                if (user.getUserState() instanceof LogoutState) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.putExtra("USER", user);
                     startActivity(intent);
@@ -108,7 +117,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 }
                 break;
             case R.id.nav_logout:
-                if (user.bookmarksPage() != null) {
+                if (user.getUserState() instanceof LoginState) {
                     FirebaseAuth mAuth = FirebaseAuth.getInstance();
                     mAuth.signOut();
                     user.changeState(new LogoutState(user));

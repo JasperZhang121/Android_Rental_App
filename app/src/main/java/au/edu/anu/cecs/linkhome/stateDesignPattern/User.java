@@ -15,9 +15,16 @@ public class User implements Serializable {
 
     // Instance of the User class
     private static User instance;
-
     private UserState userState;
     private String username;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void changeState(UserState state) {
+        this.userState = state;
+    }
 
     public UserState getUserState() {
         return userState;
@@ -32,7 +39,6 @@ public class User implements Serializable {
         changeState(defaultState);
     }
 
-
     /**
      * Singleton Design Pattern for User
      * @return User
@@ -45,14 +51,11 @@ public class User implements Serializable {
         return instance;
     }
 
-    public void changeState(UserState state) {
-        this.userState = state;
-    }
 
     public boolean login(FirebaseUser firebaseUser) {
         boolean loginOk = userState.login(firebaseUser);
         if (loginOk) {
-            this.username = firebaseUser.getEmail();
+            setUsername(firebaseUser.getEmail());
         }
         return loginOk;
     }

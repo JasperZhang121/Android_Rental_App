@@ -7,16 +7,19 @@ import au.edu.anu.cecs.linkhome.avl.AVLTree;
 import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 
 /**
+ * Test cases to check for insertion, rotation, and deletion in AVLTree class.
+ * Code adapted from Lab04
+ *
  * @author Avani Dhaliwal
  */
 
-/**
- * @author Avani Dhaliwal, Devanshi Dhall
- */
 public class AVLTreeTest {
+    /**
+     * Checks for immutability
+     * @author Avani Dhaliwal, Devanshi Dhall
+     */
     @Test(timeout = 1000)
     public void immutableTest() {
-        // Simply check if the implementation is immutable.
         Data data1 = new Data("University Avenue", "Canberra", "2612", "$350");
         AVLTree<Data> avl = new AVLTree<>(data1);
 
@@ -30,12 +33,11 @@ public class AVLTreeTest {
     }
 
     /**
+     * Checks if items in the AVL tree are inserted correctly (No rotations)
      * @author Avani Dhaliwal, Devanshi Dhall
      */
-
     @Test (timeout = 1000)
     public void insertInOrderTest() {
-        // Simply check if the insertion correctly places values (no rotation check).
         Data data1 = new Data("University Avenue", "Canberra", "2612", "$350");
         AVLTree<Data> avl = new AVLTree<>(data1);
         Data data2 = new Data("something", "Canberra", "2612", "$400");

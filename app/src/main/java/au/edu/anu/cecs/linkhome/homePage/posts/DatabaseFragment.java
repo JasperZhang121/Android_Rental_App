@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.avl.AVLTree;
@@ -107,91 +107,101 @@ public class DatabaseFragment extends Fragment {
             }
 
         });
-
         return root;
     }
 
     private ArrayList<Object> parsedList = new ArrayList<>();
-    private final HashSet<Data> hashSet = new HashSet<>();
 
+    /**
+     * @author Avani Dhaliwal, Devanshi Dhall
+     */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
-        /**
-         * @author Devanshi Dhall
-         */
         inflater.inflate(R.menu.menu, menu);
         inflater.inflate(R.menu.search, menu);
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to Search");
 
-        /**
-         * @author Avani Dhaliwal, Devanshi Dhall
-         */
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Tokenizer tokenizer = new Tokenizer(query);
-                Parser parser = new Parser(tokenizer);
-                parser.parseExp();
+                try {
+                    Tokenizer tokenizer = new Tokenizer(query);
+                    Parser parser = new Parser(tokenizer);
+                    parser.parseExp();
 
-                parsedList = parser.getFinalList();
-                HashSet<Data> filteredList = new HashSet<>();
+                    parsedList = parser.getFinalList();
+                    HashSet<Data> filteredList = new HashSet<>();
 
-                boolean isAnd = false;
-                for (int i = 0; i < parsedList.size() - 1; i++) {
-                    Object object = parsedList.get(i);
-                    Object object2 = parsedList.get(i + 1);
+                    boolean isAnd = false;
+                    for (int i = 0; i < parsedList.size() - 1; i++) {
+                        Object object = parsedList.get(i);
+                        Object object2 = parsedList.get(i + 1);
 
-                    if (isAnd) {
-                        if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
-                            ArrayList<Data> copy = new ArrayList<>(filteredList);
-                            Data data = new Data("", "", "", "$" + object2);
-                            for (Data d : copy) {
-                                if (object instanceof LessExp && d.compareTo(data) > 0) {
-                                    filteredList.remove(d);
-                                }
-                                if (object instanceof MoreExp && d.compareTo(data) < 0) {
-                                    filteredList.remove(d);
-                                }
-                            }
-                        }
-                        else if (object instanceof EqualExp && object2 instanceof String) {
-                            ArrayList<Data> copy = new ArrayList<>(filteredList);
-                            for(Data d : copy){
-                                if(!d.getCity().equals(object2)){
-                                    filteredList.remove(d);
+                        if (isAnd) {
+                            if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
+                                ArrayList<Data> copy = new ArrayList<>(filteredList);
+                                Data data = new Data("", "", "", "$" + object2);
+                                for (Data d : copy) {
+                                    if (object instanceof LessExp && d.compareTo(data) > 0) {
+                                        filteredList.remove(d);
+                                    }
+                                    if (object instanceof MoreExp && d.compareTo(data) < 0) {
+                                        filteredList.remove(d);
+                                    }
                                 }
                             }
+                            else if (object instanceof EqualExp && object2 instanceof String) {
+                                ArrayList<Data> copy = new ArrayList<>(filteredList);
+                                for(Data d : copy){
+                                    if(!d.getCity().equals(object2)){
+                                        filteredList.remove(d);
+                                    }
+                                }
+                                filteredList.addAll(filterByCity((String) object2));
+                            }
+                            isAnd = false;
+                        } else if (object instanceof EqualExp && object2 instanceof String) {
                             filteredList.addAll(filterByCity((String) object2));
+                        } else if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
+                            filteredList.addAll(filterByRent((Exp) object, object2));
                         }
-                        isAnd = false;
-                    } else if (object instanceof EqualExp && object2 instanceof String) {
-                        filteredList.addAll(filterByCity((String) object2));
-                    } else if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
-                        filteredList.addAll(filterByRent((Exp) object, object2));
+
+                        if (object instanceof AndExp) {
+                            isAnd = true;
+                        }
                     }
 
-                    if (object instanceof AndExp) {
-                        isAnd = true;
+                    if(filteredList.isEmpty()){
+                        Toast.makeText(getContext(), "No posts related to the search found", Toast.LENGTH_SHORT).show();
                     }
+
+                    allPosts = new ArrayList<>(list);
+                    list = new ArrayList<>(filteredList);
+                    DataAdapter = new DataAdapter(getContext(), new ArrayList<>(filteredList), listener);
+                    recyclerView.setAdapter(DataAdapter);
+                    return true;
+                }
+                catch (Exception e){
+                    Toast.makeText(getContext(), "Invalid Search", Toast.LENGTH_SHORT).show();
                 }
 
-                DataAdapter filteredDataAdapter = new DataAdapter(getContext(), new ArrayList<>(filteredList), listener);
-                recyclerView.setAdapter(filteredDataAdapter);
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                list = allPosts;
+                DataAdapter = new DataAdapter(getContext(), list, listener);
                 recyclerView.setAdapter(DataAdapter);
                 return false;
             }
         });
-
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    ArrayList<Data> allPosts = new ArrayList<>();
     /**
      * @author Avani Dhaliwal, Devanshi Dhall
      * @param exp of Exp
@@ -220,16 +230,17 @@ public class DatabaseFragment extends Fragment {
         return result;
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.Sort1) {
             Collections.sort(list, Data::compareTo);
-            DataAdapter.notifyDataSetChanged();
+            DataAdapter = new DataAdapter(getContext(), list, listener);
+            recyclerView.setAdapter(DataAdapter);
         } else if (id == R.id.Sort2) {
             Collections.sort(list, (o1, o2) -> o2.compareTo(o1));
-            DataAdapter.notifyDataSetChanged();
+            DataAdapter = new DataAdapter(getContext(), list, listener);
+            recyclerView.setAdapter(DataAdapter);
         }
         return true;
     }

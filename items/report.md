@@ -347,7 +347,7 @@ Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 ###Feature Category: Firebase Integration <br>
 ####Implemented features: <br>
 1. Use Firebase to implement user Authentication/Authorisation. (easy)
-   * User can both login and signup through Firebase Authentication/Authorisation. 
+   * User can both login and signup through Firebase Authenticati 2on/Authorisation. 
    * Package login, Class LoginTabFragment, method loginUser, Lines of code:...
    * Package login, Class SignUpTabFragment, method createUser, Lines of Code:...
    * GUI: activity_login.xml, login_tab_fragment.xml, signup_tab_fragment.xml
@@ -366,5 +366,3 @@ Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 - *[Team Meeting 2](./meeting2.md)*
 - *[Team Meeting 3](./meeting3.md)*
 - *[Team Meeting 4](./meeting4.md)*
-
- 
