@@ -3,14 +3,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import au.edu.anu.cecs.linkhome.Tokenizer.AndExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
-import au.edu.anu.cecs.linkhome.Tokenizer.Less;
-import au.edu.anu.cecs.linkhome.Tokenizer.Letter;
-import au.edu.anu.cecs.linkhome.Tokenizer.More;
+import au.edu.anu.cecs.linkhome.Tokenizer.LessExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.MoreExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.OrExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
@@ -38,7 +34,7 @@ public class ParserTest {
           assertTrue(list.get(0)instanceof EqualExp);
           assertEquals(list.get(1),"Canberra");
           assertTrue(list.get(2)instanceof OrExp);
-          assertTrue(list.get(3)instanceof Less);
+          assertTrue(list.get(3)instanceof LessExp);
           assertEquals(list.get(4), 400);
     }
 
@@ -49,7 +45,7 @@ public class ParserTest {
         parser.parseExp();
 
         ArrayList list = parser.getFinalList();
-        assertTrue(list.get(0)instanceof Less);
+        assertTrue(list.get(0)instanceof LessExp);
         assertEquals(list.get(1), 300);
     }
 
@@ -60,7 +56,7 @@ public class ParserTest {
         parser.parseExp();
 
         ArrayList list = parser.getFinalList();
-        assertTrue(list.get(0)instanceof More);
+        assertTrue(list.get(0)instanceof MoreExp);
         assertEquals(list.get(1), 300);
     }
 

@@ -3,8 +3,7 @@ package au.edu.anu.cecs.linkhome.Tokenizer;
 /**
  * Abstract class Exp to represent expressions
  *
- * @author dongwookim
- * @author xuyangshen
+ * @author Adapted from Lab07, Devanshi DHall, Hao Zhang
  */
 public abstract class Exp {
 

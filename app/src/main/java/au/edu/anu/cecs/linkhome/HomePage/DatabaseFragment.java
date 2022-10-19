@@ -37,8 +37,8 @@ import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.Tokenizer.AndExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
-import au.edu.anu.cecs.linkhome.Tokenizer.Less;
-import au.edu.anu.cecs.linkhome.Tokenizer.More;
+import au.edu.anu.cecs.linkhome.Tokenizer.LessExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.MoreExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.OrExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
@@ -129,7 +129,7 @@ public class DatabaseFragment extends Fragment {
                     if(hashTree != null){
                         if(finalList.size()>2){
                             if(finalList.get(2) instanceof OrExp){
-                                if(finalList.get(3) instanceof Less || finalList.get(3) instanceof More){
+                                if(finalList.get(3) instanceof LessExp || finalList.get(3) instanceof MoreExp){
                                     if(finalList.get(4) instanceof Integer){
                                         Data data = new Data("", "", "",  "$"+finalList.get(4));
                                         for (AVLTree<Data> value : hashMapAVL.values()) {
@@ -143,7 +143,7 @@ public class DatabaseFragment extends Fragment {
                             }
                             // && Operator
                             if(finalList.get(2) instanceof AndExp){
-                                if(finalList.get(3) instanceof Less || finalList.get(3) instanceof More){
+                                if(finalList.get(3) instanceof LessExp || finalList.get(3) instanceof MoreExp){
                                     if(finalList.get(4) instanceof Integer){
                                         Data data = new Data("","","","$"+(finalList.get(4)));
                                         AVLTree<Data> filteredTree = hashTree.filterData(hashTree, (Exp) finalList.get(3), data);
@@ -170,8 +170,8 @@ public class DatabaseFragment extends Fragment {
             }
 
             public void filterByRent(int i, int j){
-                if(finalList.get(i) instanceof Less
-                        || finalList.get(i) instanceof More
+                if(finalList.get(i) instanceof LessExp
+                        || finalList.get(i) instanceof MoreExp
                         || finalList.get(i) instanceof EqualExp){
                     if(finalList.get(j) instanceof Integer){
                         Data data = new Data("", "", "",  "$"+finalList.get(j));

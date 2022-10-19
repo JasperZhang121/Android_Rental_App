@@ -78,7 +78,9 @@ public class SignUpTabFragment extends Fragment {
         else {
             mAuth.createUserWithEmailAndPassword(emailID, passwordConfirm).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    System.out.println("HELLO WORLD DEVANSHI");
                     Toast.makeText(getContext(), "User Registered ", Toast.LENGTH_SHORT).show();
+                    System.out.println("HELLO WORLD");
                     startActivity(new Intent(getContext(), LoginTabFragment.class));
                 } else {
                     Toast.makeText(getContext(), "Registration error " +

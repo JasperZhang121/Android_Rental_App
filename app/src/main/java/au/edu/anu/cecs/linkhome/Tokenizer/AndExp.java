@@ -2,7 +2,7 @@ package au.edu.anu.cecs.linkhome.Tokenizer;
 
 /**
  * AndExp: it is extended from the abstract class Exp.
- * This class is used to represent the expression of and operator.
+ * This class is used to represent the expression of && operator.
  */
 
 public class AndExp extends Exp {

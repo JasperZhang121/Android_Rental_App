@@ -53,7 +53,9 @@ public class Data implements Comparable<Data> {
         return image;
     }
 
-    public String getId() {return id;}
+    public String getId(){
+        return id;
+    }
 
     public void setImage(String image) {
         this.image = image;

@@ -1,8 +1,15 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-public class Less extends Exp {
+/**
+ * LessExp: it is extended from the abstract class Exp.
+ * This class is used to represent the expression of < operator.
+ */
+public class LessExp extends Exp {
 
-    public Less() {
+    /**
+     * Empty constructor
+     */
+    public LessExp() {
 
     }
 

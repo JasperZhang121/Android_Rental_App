@@ -3,11 +3,12 @@ package au.edu.anu.cecs.linkhome.Tokenizer;
 /**
  * IntExp: it is extended from the abstract class Exp,
  * This class is used to represented the expression of 32-bit unsigned integer
+ * @author Adapted from Lab07, Devanshi Dhall, Hao Zhang
  */
 
 public class IntExp extends Exp {
 
-    private Integer value;
+    private final Integer value;
 
     public IntExp(Integer value) {
         this.value = value;

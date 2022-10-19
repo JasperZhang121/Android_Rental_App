@@ -1,7 +1,6 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
 import androidx.annotation.NonNull;
-
 import java.util.Objects;
 
 /**
@@ -16,9 +15,12 @@ import java.util.Objects;
  * MORE: >
  * EQUAL: =
  * TEXT: String
+ * @author Adapted from Lab07, Devanshi Dhall, Hao Zhang
  */
 public class Token {
-    // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
+    /**
+     * The following enum defines different types of tokens
+     */
     public enum Type {INT, LESS, MORE, EQUAL, AND, OR, TEXT}
 
     /**
@@ -31,9 +33,14 @@ public class Token {
         }
     }
 
-    // Fields of the class Token.
-    private final String token; // Token representation in String form.
-    private final Type type;    // Type of the token.
+    /**
+     * Fields of the class Token.
+     * String token: Token representation in string form
+     * Type type: Type of the token
+     */
+
+    private final String token;
+    private final Type type;
 
     public Token(String token, Type type) {
         this.token = token;
@@ -60,9 +67,9 @@ public class Token {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true; // Same hashcode.
-        if (!(other instanceof Token)) return false; // Null or not the same type.
-        return this.type == ((Token) other).getType() && this.token.equals(((Token) other).getToken()); // Values are the same.
+        if (this == other) return true;
+        if (!(other instanceof Token)) return false;
+        return this.type == ((Token) other).getType() && this.token.equals(((Token) other).getToken());
     }
 
     @Override

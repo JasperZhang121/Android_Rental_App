@@ -1,8 +1,17 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
-public class More extends Exp {
+/**
+ * MoreExp: it is extended from the abstract class Exp.
+ * This class is used to represent the expression of > operator.
+ * @author Devanshi DHall, Hao Zhang
+ */
 
-    public More() {
+public class MoreExp extends Exp {
+
+    /**
+     * Empty Constructor
+     */
+    public MoreExp() {
 
     }
 

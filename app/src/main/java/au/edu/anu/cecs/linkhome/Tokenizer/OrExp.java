@@ -1,7 +1,14 @@
 package au.edu.anu.cecs.linkhome.Tokenizer;
 
+/**
+ * OrExp: it is extended from the abstract class Exp.
+ * This class is used to represent the expression of || operator.
+ */
 public class OrExp extends Exp {
 
+    /**
+     * Empty Constructor
+     */
     public OrExp() {
 
     }

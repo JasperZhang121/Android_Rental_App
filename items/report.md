@@ -52,16 +52,21 @@ LoginTabFragment.class
 SignUpTabFragment.class
 User.class: getInstance(), Singleton Method
 AVLTree.class: Creation and Insertion
+BinarySearchTree.class
+EmptyTree.class
+Tree.class
 MAinActivity.class
 
 
 u7399886, Avani Dhaliwal contributed [x] of the code. Here are the contributions:
-StateDesignPattern includes the following classes:
 LoginState.class
 LogoutState.class
 User.class
 UserState.class
 AVLTree.class: Includes creation, insertion and deletion
+BinarySearchTree.class
+EmptyTree.class
+Tree.class
 BookmarkFragment.class
 HomePage.class
 BookmarkAdapter.class

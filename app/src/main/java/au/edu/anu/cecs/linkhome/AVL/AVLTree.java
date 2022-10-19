@@ -1,16 +1,10 @@
 package au.edu.anu.cecs.linkhome.AVL;
 
-import android.widget.Switch;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-import au.edu.anu.cecs.linkhome.Data;
-import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
 import au.edu.anu.cecs.linkhome.Tokenizer.Exp;
-import au.edu.anu.cecs.linkhome.Tokenizer.Less;
-import au.edu.anu.cecs.linkhome.Tokenizer.More;
+import au.edu.anu.cecs.linkhome.Tokenizer.LessExp;
+import au.edu.anu.cecs.linkhome.Tokenizer.MoreExp;
 
 /**
  * AVL tree implementation. Adapted from lab4.
@@ -259,7 +253,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T rent){
-        if(exp instanceof Less) {
+        if(exp instanceof LessExp) {
             if (value.compareTo(rent) < 0) {
                 if (tree.rightNode instanceof EmptyAVL) {
                     return tree;
@@ -273,7 +267,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         }
 
 
-        if(exp instanceof More) {
+        if(exp instanceof MoreExp) {
             if (value.compareTo(rent) > 0) {
                 if (tree.leftNode instanceof EmptyAVL) {
                     return tree;
