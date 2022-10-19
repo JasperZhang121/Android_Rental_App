@@ -17,21 +17,16 @@ public class LogoutState extends UserState {
 
     @Override
     public boolean login(FirebaseUser firebaseUser) {
-        return true;
-    }
-
-    @Override
-    public boolean logout() {
         return false;
     }
 
     @Override
-    public List<Data> bookmarksPage() {
-        return null;
+    public boolean logout() {
+        return true;
     }
 
     @Override
-    public List<Data> myPosts() {
+    public List<Data> bookmarksPage() {
         return null;
     }
 }

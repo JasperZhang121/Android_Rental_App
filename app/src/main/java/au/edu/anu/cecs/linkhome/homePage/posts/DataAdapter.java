@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.stateDesignPattern.LoginState;
+import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
 
@@ -98,11 +100,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         }
 
         public void checkBox() {
+            User user = User.getInstance();
             cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) {
-                    addDataToFirebase(list.get(getAdapterPosition()), context);
-                } else {
-                    deleteDataFromFirebase(list.get(getAdapterPosition()).getId(), context);
+                    if(user.getUserState() instanceof LoginState){
+                        addDataToFirebase(list.get(getAdapterPosition()), context);
+                    } else {
+                        cbHeart.setChecked(false);
+                        Toast.makeText(context, "Login to add posts to Wishlist", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -113,9 +119,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + data.getId());
         databaseReference.setValue(data).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(context, "Item added to wishlist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Post saved to Wishlist", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Failed to add item to wishlist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Failed to save item to Wishlist", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -125,9 +131,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + id);
         databaseReference.removeValue().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(context, "Item Removed from wishlist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Post removed from Wishlist", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "Failed to delete item to wishlist ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Failed to remove post to Wishlist ", Toast.LENGTH_SHORT).show();
             }
         });
     }

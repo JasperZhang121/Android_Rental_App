@@ -34,6 +34,7 @@ public class LoginTabFragment extends Fragment {
     TextView email;
     TextView password;
     Button login;
+    Button continueButton;
 
     @Override
 
@@ -41,19 +42,25 @@ public class LoginTabFragment extends Fragment {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment, container, false);
 
-        /*
-        To store all the components of UI with respect to their data type
-         */
+        // To store all the components of UI with respect to their data type
         email = root.findViewById(R.id.email_address);
         password = root.findViewById(R.id.password);
-        login = root.findViewById(R.id.button);
+        login = root.findViewById(R.id.loginButton);
+        continueButton = root.findViewById(R.id.continueButton);
         mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(view -> loginUser());
+        continueButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), HomePage.class);
+            User user = User.getInstance();
+            user.logout();
+            intent.putExtra("USER", user);
+            startActivity(intent);
+        });
         return root;
     }
 
     /**
-     * loginUer method checks for certain conditions if a user is trying to log in
+     * loginUser method checks for certain conditions if a user is trying to log in
      */
     private void loginUser() {
         String emailID = email.getText().toString();
@@ -77,8 +84,8 @@ public class LoginTabFragment extends Fragment {
                 if (task.isSuccessful()) {
                     Toast.makeText(getContext(), "User logged in successfully ", Toast.LENGTH_SHORT).show();
                     User user = User.getInstance();
-                    user.login(mAuth.getCurrentUser());
                     user.changeState(new LoginState(user));
+                    user.login(mAuth.getCurrentUser());
                     Intent intent = new Intent(getContext(), HomePage.class);
                     intent.putExtra("USER", user);
                     startActivity(intent);

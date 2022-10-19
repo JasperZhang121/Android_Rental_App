@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,6 @@ import au.edu.anu.cecs.linkhome.R;
  */
 public class Paypal extends AppCompatActivity {
     private EditText dateEdt;
-    private Button confirm;
     private TextView alert;
 
     @Override
@@ -42,43 +40,29 @@ public class Paypal extends AppCompatActivity {
             // Create a variable for date picker dialog.
             DatePickerDialog datePickerDialog = new DatePickerDialog(Paypal.this, (view, year1, monthOfYear, dayOfMonth) ->
             {
-                        String text = (monthOfYear + 1) + "/" + year1;
-                        dateEdt.setText(text);
-                    }, year, month, day);
+                String text = (monthOfYear + 1) + "/" + year1;
+                dateEdt.setText(text);
+            }, year, month, day);
             datePickerDialog.show();
         });
 
-        confirm = findViewById(R.id.paymentConfirmPaypal);
+        Button confirm = findViewById(R.id.paymentConfirmPaypal);
         alert = findViewById(R.id.text_alert_paypal);
 
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Paypal.this);
-                builder.setCancelable(true);
-                builder.setTitle("Alert Title");
-                builder.setMessage("Alert Message");
+        confirm.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Paypal.this);
+            builder.setCancelable(true);
+            builder.setTitle("Alert Title");
+            builder.setMessage("Alert Message");
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int which) {
-                        dialogInterface.cancel();
-                    }
-                });
+            builder.setNegativeButton("Cancel", (dialogInterface, which) -> dialogInterface.cancel());
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        alert.setVisibility(View.VISIBLE);
-                    }
-                });
-                builder.show();
-            }
+            builder.setPositiveButton("OK", (dialog, which) -> alert.setVisibility(View.VISIBLE));
+            builder.show();
         });
 
         String payMethod = intent.getStringExtra("payPaypal");
         PaymentMaker paymentMaker = new PaymentMaker();
         if (payMethod.equals("payPal")) paymentMaker.pay_paypal();
-
     }
 }

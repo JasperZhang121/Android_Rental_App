@@ -38,13 +38,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * @return balance factor of the current node.
      */
     public int getBalanceFactor() {
-
-        /**
-         *  Note:
-         *  Calculating the balance factor and height each time they are needed is less efficient than
-         *  simply storing the height and balance factor as fields within each tree node (as some
-         *  implementations of the AVLTree do). However, although it is inefficient, it is easier to implement.
-         */
         return leftNode.getHeight() - rightNode.getHeight();
     }
 
@@ -59,7 +52,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             throw new IllegalArgumentException("Input cannot be null");
 
         // Using the property of the BST
-        System.out.println(element + " " + value);
         if (element.compareTo(value) > 0) {
             newTreeCopy.rightNode = newTreeCopy.rightNode.insert(element);
         } else if (element.compareTo(value) < 0) {
