@@ -31,6 +31,7 @@ import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.avl.AVLTree;
 import au.edu.anu.cecs.linkhome.R;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.AndExp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.EqualExp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.Exp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.LessExp;
@@ -124,14 +125,42 @@ public class DatabaseFragment extends Fragment {
                 parsedList = parser.getFinalList();
                 HashSet<Data> filteredList = new HashSet<>();
 
-                for (int i = 0; i < parsedList.size()-1; i++) {
+                boolean isAnd = false;
+                for (int i = 0; i < parsedList.size() - 1; i++) {
                     Object object = parsedList.get(i);
-                    Object object2 = parsedList.get(i+1);
-                    if(object instanceof EqualExp && object2 instanceof String){
+                    Object object2 = parsedList.get(i + 1);
+
+                    if (isAnd) {
+                        if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
+                            ArrayList<Data> copy = new ArrayList<>(filteredList);
+                            Data data = new Data("", "", "", "$" + object2);
+                            for (Data d : copy) {
+                                if (object instanceof LessExp && d.compareTo(data) > 0) {
+                                    filteredList.remove(d);
+                                }
+                                if (object instanceof MoreExp && d.compareTo(data) < 0) {
+                                    filteredList.remove(d);
+                                }
+                            }
+                        }
+                        else if (object instanceof EqualExp && object2 instanceof String) {
+                            ArrayList<Data> copy = new ArrayList<>(filteredList);
+                            for(Data d : copy){
+                                if(!d.getCity().equals(object2)){
+                                    filteredList.remove(d);
+                                }
+                            }
+                            filteredList.addAll(filterByCity((String) object2));
+                        }
+                        isAnd = false;
+                    } else if (object instanceof EqualExp && object2 instanceof String) {
                         filteredList.addAll(filterByCity((String) object2));
-                    }
-                    if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer){
+                    } else if ((object instanceof LessExp || object instanceof MoreExp) && object2 instanceof Integer) {
                         filteredList.addAll(filterByRent((Exp) object, object2));
+                    }
+
+                    if (object instanceof AndExp) {
+                        isAnd = true;
                     }
                 }
 
@@ -166,7 +195,7 @@ public class DatabaseFragment extends Fragment {
         ArrayList<Data> result = new ArrayList<>();
         AVLTree<Data> hashTree = hashMapAVL.get(city);
 
-        if(hashTree!= null){
+        if (hashTree != null) {
             result = hashTree.treeToListInOrder(hashTree);
         }
         return result;

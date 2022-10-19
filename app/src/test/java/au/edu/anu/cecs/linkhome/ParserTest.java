@@ -2,13 +2,13 @@ package au.edu.anu.cecs.linkhome;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-import au.edu.anu.cecs.linkhome.Tokenizer.AndExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.EqualExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.LessExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.MoreExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.OrExp;
-import au.edu.anu.cecs.linkhome.Tokenizer.Parser;
-import au.edu.anu.cecs.linkhome.Tokenizer.Tokenizer;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.AndExp;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.EqualExp;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.LessExp;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.MoreExp;
+import au.edu.anu.cecs.linkhome.tokenizer.expressions.OrExp;
+import au.edu.anu.cecs.linkhome.tokenizer.Parser;
+import au.edu.anu.cecs.linkhome.tokenizer.Tokenizer;
 
 /**
  * @author Hao Zhang, Devanshi Dhall
@@ -36,7 +36,6 @@ public class ParserTest {
 
     @Test
     public void testSimpleCase2() {
-
         Tokenizer mathTokenizer = new Tokenizer(SIMPLE_CASE_2);
         Parser parser = new Parser(mathTokenizer);
         parser.parseExp();

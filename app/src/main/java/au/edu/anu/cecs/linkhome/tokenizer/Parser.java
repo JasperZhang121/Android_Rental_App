@@ -15,9 +15,7 @@ import au.edu.anu.cecs.linkhome.tokenizer.expressions.OrExp;
 
 /**
  * It should be able to parser the following grammar rule:
- * <exp>    ::=  <term> || <exp> | <term> && <exp> | <term>
- *     // We do not have term, how to modify this grammar?
- * <term>   ::=  <factor> | <factor> * <term> | <factor> / <term>
+ * <exp>    ::=  <city> <operator> <letter> | <rent> <operator> <coefficient> | <exp> || <exp> | <exp> && <exp>
  * <operator> ::= < < | > | = >
  * <coefficient> ::= <unsigned integer>
  * <letter> ::= <alphabets>
@@ -68,7 +66,9 @@ public class Parser {
      * @return type: Exp.
      */
     public Exp parseOperators() {
-
+        if(this.tokenizer.current() == null){
+            return null;
+        }
         switch (this.tokenizer.current().getType()) {
             case LESS:
                 LessExp less = new LessExp();
@@ -103,7 +103,7 @@ public class Parser {
                 finalList.add(andExp);
                 if (tokenizer.hasNext()) {
                     tokenizer.next();
-                    parseCoefficient();
+                    parseExp();
                 }
                 return new AndExp();
 
@@ -112,7 +112,7 @@ public class Parser {
                 finalList.add(orExp);
                 if (tokenizer.hasNext()) {
                     tokenizer.next();
-                    parseCoefficient();
+                    parseExp();
                 }
                 return new OrExp();
         }
@@ -131,10 +131,13 @@ public class Parser {
         if (this.tokenizer.current().getType() == Token.Type.INT) {
             result = new IntExp(Integer.parseInt(this.tokenizer.current().getToken()));
             finalList.add(result.evaluateInt());
-            return result;
+            if(tokenizer.hasNext()){
+                tokenizer.next();
+                return parseOperators();
+            }
         }
         if (this.tokenizer.current().getType() == Token.Type.TEXT) {
-            parseLetter();
+            return parseLetter();
         }
 
         return null;
