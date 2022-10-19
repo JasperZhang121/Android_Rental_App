@@ -11,10 +11,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.zip.Inflater;
 
 import au.edu.anu.cecs.linkhome.homePage.bookmarks.BookmarkFragment;
 import au.edu.anu.cecs.linkhome.homePage.posts.DatabaseFragment;
@@ -43,8 +46,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_viewer);
-        navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

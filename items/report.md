@@ -1,7 +1,5 @@
 # indexOutOfBounds Report
 
-The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
-
 *Here are some tips to write a good report:*
 
 * *Try to summarise and list the `bullet points` of your project as many as possible rather than give long, tedious paragraphs that mix up everything together.*
@@ -29,113 +27,114 @@ The following is a report template to help your team successfully provide all th
 
 ## Team Members and Roles
 
-| UID | Name | Role |
-| :--- | :----: | ---: |
+| UID |      Name      | Role |
+| :--- |:--------------:| ---: |
 | u7268598 | Devanshi Dhall | UI, Login Screen, Data Structure, Tokenizer and Parser |
-| u7399886 | Avani | UI, Other Functionalities, Data Structure, State Design Pattern, Bookmark |
-| u7395484 | Nihar | UI, Detailed Pages, Data streams into Firebase |
-| u6523462 | Hao Zhang | UI, Detailed Pages, Firebase, Sort Functionality, Tokenizer and Parser |
+| u7399886 | Avani Dhaliwal | UI, Other Functionalities, Data Structure, State Design Pattern, Bookmark |
+| u7395484 | Nihar Meshram  | UI, Detailed Pages, Data streams into Firebase |
+| u6523462 |   Hao Zhang    | UI, Detailed Pages, Firebase, Sort Functionality, Tokenizer and Parser |
 
 ## Summary of Individual Contributions
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
 
-*[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
+*[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in percentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-u7268598, Devanshi Dhall contributed 25% of the code. Here are the contributions:
-Login/LoginActivity.class
-Login/LoginAdapter.class
-Login/LoginTabFragment.class
-Login/SignUpTabFragment.class
-Tokenizer/Token.class
-Tokenizer/Tokenizer.class
-Tokenizer/Parser.class
-Tokenizer/AndExp.class
-Tokenizer/EqualExp.class
-Tokenizer/Exp.class
-Tokenizer/IntExp.class
-Tokenizer/LessExp.class
-Tokenizer/Letter.class
-Tokenizer/MoreExp.class
-Tokenizer/OrExp.class
-Data.class: compareTo()
-StateDesignPattern/User.class: getInstance()
-HomePage/DatabaseFragment.class: onCreateOptionsMenu()
-Facade/PaymentMaker.class
-BookmarkAdapter.class: checkBox()
-AVL/AVLTree.class: Creation and Insertion
-AVL/BinarySearchTree.class
-AVL/EmptyTree.class
-AVL/Tree.class
-AVLTreeTest.class: immutableTest(), insertInOrderTest()
-ParserTest.class
-Firebase Login Authentication
-MAinActivity.class
+###u7268598, Devanshi Dhall contributed 25% of the code. Here are the contributions:
+
+**Code Implementation:**
+* All classes in login package
+* All classes in tokenizer package
+* Data.class: compareTo()
+* stateDesignPattern/User.class: getInstance()
+* homePage/DatabaseFragment.class: onCreateOptionsMenu()
+* facade/PaymentMaker.class 
+* BookmarkAdapter.class: checkBox()
+* avl/AVLTree.class: Creation and Insertion 
+* avl/BinarySearchTree.class 
+* avl/EmptyTree.class 
+* avl/Tree.class 
+* AVLTreeTest.class: immutableTest(), insertInOrderTest()
+* ParserTest.class
+* MainActivity.class
+
+**Code Design:** Singleton Design pattern, AVL Tree, 
+
+**Features:** Firebase Login Authentication
+
+**Report:** Team members and Roles, Summary of Individual Contributions, Conflict Resolution Protocol, Application Description, Team meetings (2,3,4)
 
 
-u7399886, Avani Dhaliwal contributed 25% of the code. Here are the contributions:
-StateDesignPattern/LoginState.class
-StateDesignPattern/LogoutState.class
-StateDesignPattern/User.class
-StateDesignPattern/UserState.class
-AVL/AVLTree.class: Includes creation, insertion and deletion
-AVL/BinarySearchTree.class
-AVL/EmptyTree.class
-AVL/Tree.class
-Login/LoginAdapter.class
-Login/LoginTabFragment.class
-BookmarkFragment.class
-HomePage/DatabaseFragment.class
-HomePage/DetailedPage.class
-HomePage/HomePage.class
-BookmarkAdapter.class
-DataAdapter.class: addDataToFirebase()
-DataAdapter.class: deleteDataFromFirebase()
-Data.class: compareTo()
-AVLTreeTest.class
-Firebase Login Authentication
-MainActivity.class
+###u7399886, Avani Dhaliwal contributed 25% of the code. Here are the contributions:
 
-u6523462, Hao Zhang contributed 25% of the code. Here are the contributions:
-Facade/Mastercard.class
-Facade/Payment.interface
-Facade/PaymentMaker.class
-Facade/Paypal.class
-DataAdapter.class
-Data.class
-Homepage/Mastercard.class
-Homepage/Paypal.class
-Homepage/PaymentPage.class
-ParserTest.class
-HomePage/DatabaseFragment.class: onDataChange()
-HomePage/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
-Help to design all classes in Tokenizer
-activity_database.xml
-item.xml
-make draft for activity_mastercard.xml
-make draft for activity_paypal.xml
-make draft for activity_payment_page.xml
+**Code Implementation:**
+* All classes in stateDesignPattern package
+* All classes in avl package
+* login/LoginAdapter.class 
+* login/LoginTabFragment.class 
+* BookmarkFragment.class 
+* homePage/DatabaseFragment.class 
+* homePage/DetailedPage.class 
+* homePage/HomePage.class 
+* BookmarkAdapter.class 
+* DataAdapter.class: addDataToFirebase()
+* DataAdapter.class: deleteDataFromFirebase()
+* Data.class: compareTo()
+* AVLTreeTest.class  
+* MainActivity.class
+
+**Code Design:** State Design Pattern, AVL Tree
+
+**Features:** Firebase Login Authentication
+
+**Report:** Summary of Individual Contributions, Team meeting 1, Application Design and Decisions, Summary of Known Errors and Bugs, Implemented Features
+
+###u6523462, Hao Zhang contributed 25% of the code. Here are the contributions:
+**Code Implementation:**
+* All classes in facade package
+* DataAdapter.class 
+* Data.class 
+* homePage/Mastercard.class 
+* homePage/Paypal.class
+* homePage/PaymentPage.class 
+* homePage/DatabaseFragment.class: onDataChange()
+* homePage/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
+* ParserTest.class
+* All classes in tokenizer package 
+* activity_database.xml 
+* item.xml 
+* activity_mastercard.xml 
+* activity_paypal.xml 
+* activity_payment_page.xml 
+
+**Code Design:** Singleton Design, Facade Design Pattern, AVL Tree
+
+**Features:** Firebase Realtime Database (Creating and Importing data from Firebase into the Data class)
+
+**Report:** Summary of Individual Contributions, Application UML
+
+###u7395484, Nihar Meshram contributed 25% of the code. Here are the contributions:
+**Code Implementation:**
+* DataAdapter.class 
+* Data.class 
+* homePage/Mastercard.class 
+* homePage/Paypal.class 
+* homePage/paymentPage.class 
+* activity_mastercard.xml 
+* activity_paypal.xml 
+* activity_payment_page.xml
+
+**Code Design:** Facade Design Pattern, AVL Tree
+
+**Features:** Firebase Realtime Database (Creating and Importing data from Firebase into the Data class)
+
+**Report:** Summary of Individual Contributions, Application Description, Application UML
 
 
-u7395484, Nihar Meshram contributed 25% of the code. Here are the contributions:
-DataAdapter.class
-Data.class
-Homepage/Mastercard.class
-Homepage/Paypal.class
-Homepage/paymentPage.class
-make draft for activity_mastercard.xml
-make draft for activity_paypal.xml
-make draft for activity_payment_page.xml
-Data generation
-Importing data from Firebase into the Data class
+###*you should ALSO provide links to the specified classes and/or functions*
 
-*you should ALSO provide links to the specified classes and/or functions*
-
-*[Code Design. What design patterns, data structures, did the involved member propose?]*
 
 *[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
-
-*[Report Writing. Which part of the report did the involved member write?]*
 
 *[Slide preparation. Were you responsible for the slides?]*
 
@@ -153,7 +152,7 @@ Importing data from Firebase into the Data class
 
 *LinkHome is an online accommodation property buying application, which specialises in rental housing in Australia*
 
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+*PetBook is a social media application specifically targeting pet owners... it provides... certified practitioners, such as veterinarian are indicated by a label next to their profile...*
 
 **Application Use Cases and or Examples**
 
@@ -253,7 +252,7 @@ Production Rules:
 
 **Tokenizer and Parsers**
 
-*[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
+*[Where do you use tokenizers and parsers? How are they built? What are the advantages of the designs?]*
 **the following enum defines different types of tokens. Example of accessing these: Token.Type.INT
 Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 
@@ -299,56 +298,65 @@ Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 
 ## Implemented Features
 
-*[What features have you implemented?]*
 
-*Here are some examples:*
-
-Feature Category: Login Screen and Firebase Integration <br>
-*Implemented features:*
-1: Feature 1: **Users must be able to log in successfully (easy)**
-* Class LoginActivity, methods Z, Y, Lines of code: 10-100
-* Class LoginAdapter, methods K, L, M, Lines of code: 35-150
-* Class LoginTabFragment
-* User Interface for Database which user check for attributes for our database (activity_database.xml)
-* UI for single data (item.xml).
-* Class Data Inserted few attributes like data, city, postalZip, rent
-* Class DataAdapter This file is used to link to the item database file.
-* Class Database Make the list to insert the item into 
-* 
-* 
-* Your description: ...
-  <br>
-2. Feature 2: **Users can sign up if not registered already**
-   * Class SignUpTabFragment, methods Z, Y, Lines of code: 10-100
-   * Class LoginActivity, methods K, L, M, Lines of code: 35-150
-   * Class LoginAdapter, methods K, L, M, Lines of code: 35-150
-   * Class 
-   * Your description: ...
-<br>
-3. Feature 2: **A user can only ... . (medium)**
-4. Feature 3: Access for the Database where we have added the attribute Address, City, PostalZip Code, Rent 
-<br>
+###Feature Category: Search-related features <br>
+####Implemented features: <br>
+1. Sort a list of products returned from a search based on price, popularity, rating, availability, etc.
+   (easy)
+   * The user can sort the posts in descending or ascending order of price
+   * Package homePage/posts, Class DatabaseFragment, method onOptionsItemSelected, Lines of code: ...
+   * GUI: menu.xml
 
 
-Feature Category: Firebase Integration <br>
-*Implemented features:* <br>
-1. **Use Firebase to implement user Authentication/Authorisation. (easy)**
-   * Class A: methods A, B, C, lines of code: whole file
-   * We have used the firebase in DatabaseFragment Class*
-   * It is used to store the data of more than 2500 instances of properties available in the LinkHome app*
+2. Filter a list of products returned from a search based on their categories (e.g., kids, adults, kitchen,
+   bedroom, etc.) (easy)
+   * The user can filter the posts based on different cities. 
+   * Package homePage/posts, Class DatabaseFragment, method onCreateOptionsMenu, filterByCity, Lines of code: ...
+   * GUI: search.xml
 
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
+###Feature Category: User Interactivity <br>
+####Implemented features: <br>
+1. The ability to micro-interact with items in your app (e.g. add to watchlist/add to cart/like an
+   item/report an item/add reviews (stars)) [stored in-memory]. (medium)
+    * The user can save/remove a post to/from their wishlist. 
+    * Package homePage/posts, Class DataAdapter, methods checkBox, addDataToFirebase, removeDataFromFirebase, Lines of code: ... 
+    * Package homePage/bookmarks, Class BookmarkAdapter
+    * Package homePage/bookmarks, Class BookmarkFragment
+    * GUI: menu.xml
+    
+###Feature Category: Creating Processes <br>
+####Implemented features: <br>
+1. Payment process (fake process, do not connect to any payment provider). The user must choose
+   between at least two different payment methods (e.g., credit card, cash, bitcoin). The payment
+   method may add extra costs (e.g., credit card adds 1.5% to the total value). (easy)
+    * The user can pay for a house using either Mastercard or PayPal. 
+    * Package facade, Classes MasterCard, Payment, PaymentMaker, Paypal
+    * Package homePage/payment, Classes MasterCard, PaymentPage, Paypal, PaymentSuccessful
+    * Package homePage/posts, Class BookmarkAdapter
+    * Package homePage/posts, Class BookmarkFragment
+    * GUI: activity_mastercard.xml, activity_payment_page.xml, activity_payment_successful.xml, activity_paypal
+
+###Feature Category: Firebase Integration <br>
+####Implemented features: <br>
+1. Use Firebase to implement user Authentication/Authorisation. (easy)
+   * User can both login and signup through Firebase Authentication/Authorisation. 
+   * Package login, Class LoginTabFragment, method loginUser, Lines of code:...
+   * Package login, Class SignUpTabFragment, method createUser, Lines of Code:...
+   * GUI: activity_login.xml, login_tab_fragment.xml, signup_tab_fragment.xml
+
+
+2. Use Firebase to persist all data used in your app. (medium)
+   * All information about user posts is stored in Firebase realtime database
+   * Package homePage/posts, Class DatabaseFragment, method onCreateView, Lines of Code:...
+   * Package homePage/posts, Class DataAdapter, method addDataToFirebase, deleteDataFromFirebase, Lines of Code:... 
+   * Package homePage/bookmarks, Class BookmarkFragment, method onCreateView, Lines of Code:...
+   * GUI: item.xml, activity_database.xml, bookmark_fragment.xml, 
 
 ## Team Meetings
-
-*Here is an example (you could start numbering your meetings from 1):*
 
 - *[Team Meeting 1](./meeting1.md)*
 - *[Team Meeting 2](./meeting2.md)*
 - *[Team Meeting 3](./meeting3.md)*
 - *[Team Meeting 4](./meeting4.md)*
 
-* Link to the minutes of your meetings as above. There must be at least 4 team meetings. 
-Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.
-Your meetings should also have a reasonable date span across Week 6 to 11.*
  
