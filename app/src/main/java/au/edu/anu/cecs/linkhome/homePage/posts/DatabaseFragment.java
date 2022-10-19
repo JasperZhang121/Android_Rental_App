@@ -98,6 +98,7 @@ public class DatabaseFragment extends Fragment {
                     }
 
                     list.add(data);
+                    allPosts = new ArrayList<>(list);
                 }
                 DataAdapter.notifyDataSetChanged();
             }
@@ -177,7 +178,6 @@ public class DatabaseFragment extends Fragment {
                         Toast.makeText(getContext(), "No posts related to the search found", Toast.LENGTH_SHORT).show();
                     }
 
-                    allPosts = new ArrayList<>(list);
                     list = new ArrayList<>(filteredList);
                     DataAdapter = new DataAdapter(getContext(), new ArrayList<>(filteredList), listener);
                     recyclerView.setAdapter(DataAdapter);
@@ -195,7 +195,7 @@ public class DatabaseFragment extends Fragment {
                 list = allPosts;
                 DataAdapter = new DataAdapter(getContext(), list, listener);
                 recyclerView.setAdapter(DataAdapter);
-                return false;
+                return true;
             }
         });
         super.onCreateOptionsMenu(menu, inflater);
