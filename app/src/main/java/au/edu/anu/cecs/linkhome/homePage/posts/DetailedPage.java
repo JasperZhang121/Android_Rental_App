@@ -13,8 +13,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import au.edu.anu.cecs.linkhome.R;
-import au.edu.anu.cecs.linkhome.homePage.payement.Mastercard;
-import au.edu.anu.cecs.linkhome.homePage.payement.Paypal;
+import au.edu.anu.cecs.linkhome.homePage.payment.Mastercard;
+import au.edu.anu.cecs.linkhome.homePage.payment.Paypal;
 
 /**
  * DetailedPage class gives a detailed view

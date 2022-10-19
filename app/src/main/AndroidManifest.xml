@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="au.edu.anu.cecs.linkhome">
+    package="au.edu.anu.cecs.linkhome" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,24 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LinkHome"
         android:windowSoftInputMode="stateVisible"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".homePage.payement.Mastercard"
-            android:exported="true">
+            android:name=".PaymentSuccessful"
+            android:exported="true" />
+        <activity
+            android:name=".homePage.payment.Mastercard"
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".homePage.payement.Paypal"
-            android:exported="true">
+            android:name=".homePage.payment.Paypal"
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".homePage.payement.PaymentPage"
-            android:exported="false">
+            android:name=".homePage.payment.PaymentPage"
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -49,7 +52,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

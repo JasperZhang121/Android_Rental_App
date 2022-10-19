@@ -88,6 +88,9 @@ public class DatabaseFragment extends Fragment {
                     data.setId(Integer.toString(i));
                     i++;
 
+                    if(i==0){
+                        data.setIsScam("True");
+                    }
                     list.add(data);
                 }
 

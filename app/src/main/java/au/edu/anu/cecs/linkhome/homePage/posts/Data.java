@@ -8,7 +8,13 @@ import androidx.annotation.NonNull;
  */
 
 public class Data implements Comparable<Data> {
-    String address, city, postalZip, rent, image, id;
+    String address;
+    String city;
+    String postalZip;
+    String rent;
+    String image;
+    String id;
+    String isScam;
 
     public Data() {
 
@@ -58,13 +64,19 @@ public class Data implements Comparable<Data> {
         return id;
     }
 
+    public String getIsScam() {
+        return isScam;
+    }
+
     // Setters
     public void setImage(String image){this.image = image;}
 
     public void setId(String id) {
         this.id = id;
     }
-
+    public void setIsScam(String isScam) {
+        this.isScam = isScam;
+    }
 
     @NonNull
     @Override

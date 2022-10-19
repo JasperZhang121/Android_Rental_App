@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homePage.payement.Mastercard">
+    tools:context=".homePage.payment.Mastercard">
 
 
     <EditText
@@ -15,7 +15,7 @@
         android:ems="10"
         android:hint="Enter Card Number"
         android:inputType="number"
-        android:maxLength="12"
+        android:maxLength="16"
         android:maxLines="1"
         android:text=""
         app:layout_constraintTop_toTopOf="parent"
