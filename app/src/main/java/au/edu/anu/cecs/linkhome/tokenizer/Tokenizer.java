@@ -55,12 +55,7 @@ public class Tokenizer {
                 } else {
                     break;
                 }
-            String letterString = letter.toString().toLowerCase();
-            if(letterString.equals("rent") || letterString.equals("city")){
-                currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
-            } else {
-                throw new Token.IllegalTokenException("Invalid token");
-            }
+            currentToken = new Token(letter.toString().trim(), Token.Type.TEXT);
         }
 
         // Check for a digit

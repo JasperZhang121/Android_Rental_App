@@ -29,10 +29,10 @@
 
 | UID |      Name      | Role |
 | :--- |:--------------:| ---: |
-| u7268598 | Devanshi Dhall | UI, Login Screen, Data Structure, Tokenizer and Parser |
-| u7399886 | Avani Dhaliwal | UI, Other Functionalities, Data Structure, State Design Pattern, Bookmark |
-| u7395484 | Nihar Meshram  | UI, Detailed Pages, Data streams into Firebase |
-| u6523462 |   Hao Zhang    | UI, Detailed Pages, Firebase, Sort Functionality, Tokenizer and Parser |
+| u7268598 | Devanshi Dhall | GUI, Login Screen, Data Structure, Singleton Design Pattern, Tokenizer and Parser, Testing, Report Writing, Firebase Authentication, Functionality: Filter a list|
+| u7399886 | Avani Dhaliwal | GUI, Data Structure, State Design Pattern, Report Writing, Bookmarks and Navigation Menu, Testing, Firebase Authentication, Functionality: Filter a list|
+| u7395484 | Nihar Meshram  | GUI, Facade Design Pattern, Firebase Realtime Database, Testing, UML Diagram, Functionality: Payment Process |
+| u6523462 |   Hao Zhang    | GUI, Facade Design Pattern, Firebase Realtime Database, Tokenizer and Parser, Testing, UML Diagram, Functionality: Sort the items, Payment Process |
 
 ## Summary of Individual Contributions
 
@@ -40,16 +40,19 @@
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in percentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-###u7268598, Devanshi Dhall contributed 25% of the code. Here are the contributions:
+**u7268598, Devanshi Dhall contributed 25% of the code. Here are the contributions:**
 
 **Code Implementation:**
 * All classes in login package
 * All classes in tokenizer package
-* Data.class: compareTo()
+* homePage/posts/Data.class: compareTo()
 * stateDesignPattern/User.class: getInstance()
+* homePage/payment/mastercard.class: confirm.setOnClickListener()
+* homePage/payment/Paypal.class: confirm.setOnClickListener()
+* homePage/payment/PaymentSuccessful.class
 * homePage/DatabaseFragment.class: onCreateOptionsMenu()
 * facade/PaymentMaker.class 
-* BookmarkAdapter.class: checkBox()
+* homePage/bookmarks/BookmarkAdapter.class: checkBox()
 * avl/AVLTree.class: Creation and Insertion 
 * avl/BinarySearchTree.class 
 * avl/EmptyTree.class 
@@ -57,81 +60,101 @@
 * AVLTreeTest.class: immutableTest(), insertInOrderTest()
 * ParserTest.class
 * MainActivity.class
+* Graphical User Interface/ Design:
+  * layout/activity_detailed_page.xml
+  * layout/activity_login.xml
+  * layout/bookmark_fragment.xml
+  * layout/activity_payment_successful.xml
+  * layout/login_tab_fragment.xml
+  * layout/signup_tab_fragment.xml
+  * menu/search.xml
 
-**Code Design:** Singleton Design pattern, AVL Tree, 
+**Code Design:** Singleton Design pattern, AVL Tree, Tokenizer and Parser
 
 **Features:** Firebase Login Authentication
 
 **Report:** Team members and Roles, Summary of Individual Contributions, Conflict Resolution Protocol, Application Description, Team meetings (2,3,4)
 
 
-###u7399886, Avani Dhaliwal contributed 25% of the code. Here are the contributions:
+**u7399886, Avani Dhaliwal contributed 25% of the code. Here are the contributions:**
 
 **Code Implementation:**
 * All classes in stateDesignPattern package
 * All classes in avl package
 * login/LoginAdapter.class 
 * login/LoginTabFragment.class 
-* BookmarkFragment.class 
-* homePage/DatabaseFragment.class 
-* homePage/DetailedPage.class 
+* homePage/bookmarks/BookmarkFragment.class 
+* homePage/posts/DatabaseFragment.class 
+* homePage/posts/DetailedPage.class 
 * homePage/HomePage.class 
-* BookmarkAdapter.class 
-* DataAdapter.class: addDataToFirebase()
-* DataAdapter.class: deleteDataFromFirebase()
-* Data.class: compareTo()
+* homePage/bookmarks/BookmarkAdapter.class 
+* homePage/posts/DataAdapter.class: addDataToFirebase()
+* homePage/posts/DataAdapter.class: deleteDataFromFirebase()
+* homePage/posts/Data.class: compareTo()
 * AVLTreeTest.class  
 * MainActivity.class
-
+* Graphical User Interface/ Design:
+  * layout/activity_detailed_page.xml
+  * layout/activity_home_page.xml
+  * layout/activity_login.xml
+  * layout/bookmark_fragment.xml
+  * layout/nav_header.xml
+  * menu/drawer_menu.xml
+  
 **Code Design:** State Design Pattern, AVL Tree
 
 **Features:** Firebase Login Authentication
 
 **Report:** Summary of Individual Contributions, Team meeting 1, Application Design and Decisions, Summary of Known Errors and Bugs, Implemented Features
 
-###u6523462, Hao Zhang contributed 25% of the code. Here are the contributions:
+**u6523462, Hao Zhang contributed 25% of the code. Here are the contributions:**
+
 **Code Implementation:**
 * All classes in facade package
-* DataAdapter.class 
-* Data.class 
+* homePage/posts/DataAdapter.class 
+* homePage/posts/Data.class 
 * homePage/Mastercard.class 
-* homePage/Paypal.class
-* homePage/DatabaseFragment.class: onDataChange()
-* homePage/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
+* homePage/payment/Paypal.class
+* homePage/posts/DatabaseFragment.class: onDataChange()
+* homePage/posts/DatabaseFragment.class: onOptionsItemSelected(MenuItem item)
 * ParserTest.class
 * All classes in tokenizer package 
-* activity_database.xml 
-* item.xml 
-* activity_mastercard.xml 
-* activity_paypal.xml 
-* activity_payment_page.xml 
-* UML design
 * Import and create Json File in Firebase
-
-**Code Design:** Singleton Design, Facade Design Pattern, AVL Tree
+* Graphical User Interface/ Design:
+  * activity_database.xml 
+  * item.xml 
+  * activity_mastercard.xml 
+  * activity_paypal.xml 
+  * activity_payment_page.xml 
+* UML Diagram
+  
+**Code Design:** Facade Design Pattern, Tokenizer and Parser
 
 **Features:** Firebase Realtime Database (Creating and Importing data from Firebase into the Data class)
 
 **Report:** Summary of Individual Contributions, Application UML
 
-###u7395484, Nihar Meshram contributed 25% of the code. Here are the contributions:
+**u7395484, Nihar Meshram contributed 25% of the code. Here are the contributions:**
+
 **Code Implementation:**
-* DataAdapter.class 
-* Data.class 
-* homePage/Mastercard.class 
-* homePage/Paypal.class 
-* activity_mastercard.xml 
-* activity_paypal.xml
-* activity_database.xml
-* item.xml
-* Facade/Mastercard.class 
-* Facade/Payment.interface 
-* Facade/PaymentMaker.class 
-* Facade/Paypal.class 
-* Data generation
+* homePage/posts/DataAdapter.class
+* homePage/posts/Data.class 
+* homePage/payment/Mastercard.class 
+* homePage/payment/Paypal.class 
+* homePage/posts/DetailedPage: mastercard.setOnClickListener(), paypal.setOnClickListener()
+* facade/payment/Mastercard.class
+* facade/payment/Payment.interface
+* facade/PaymentMaker.class
+* facade/Paypal.class
 * Import and create Json File in Firebase
 * UML diagram
- 
+* Graphical User Interface/ Design:
+  * activity_mastercard.xml 
+  * activity_paypal.xml
+  * activity_database.xml
+  * item.xml
+  * Data generation
+  
 **Code Design:** Facade Design Pattern, AVL Tree
 
 **Features:** Firebase Realtime Database (Creating and Importing data from Firebase into the Data class)
@@ -150,54 +173,55 @@
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem?
-(If you choose to make this an external document, link to it here)]*
+We as a group feel it is vital to follow some guidelines/ rules while working on a group project.
+If our group met with conflicts, following are the ways we used:
+1. We catered the conflict with group meetings and productive discussions 
+2. Every team member would patiently listen to other members speaking
+3. Post listening to all the team members, our group would discuss the pros and cons of the idea
+4. We would clarify the issue as a team and identify a feasible yet optimised solution to the problem
 
+Following is an example of Conflict Resolution Protocol in our group:
+
+Problem: Our group initially was confused which data structure to choose for our application. 
+Solution: The members of the group discussed the strengths and weaknesses of the data structure that could be used to meet the requirements in our application. 
+After a healthy discussion, we decided to go ahead with self balancing tree: AVL tree
 
 ## Application Description
 
 *[What is your application, what does it do? Include photos or diagrams if necessary]*
 
-*LinkHome is an online accommodation property buying application, which specialises in rental housing in Australia*
+Description:
 
-*PetBook is a social media application specifically targeting pet owners... it provides... certified practitioners, such as veterinarian are indicated by a label next to their profile...*
+Our application named "LinkHome" is a booking accommodation application that specialises in rental housing. 
+Our application is focused towards building a strong and diverse culture among group of people by offering them rental property for their vacation mode or any other requirement.
+
+Application workflow and features:
+1. If a user is new to the app, then the user needs to sign up and create an account to add items to wishlist and confirm their booking as required. 
+2. If the user already has an account on the application, then the user can directly sign in using the credentials. 
+3. User can still view thw properties without logging in the app but cannot wishlist the item.
+4. Post login, the user can view a range of rental beautiful properties for their stay along with their description.
+5. If a user likes one or more properties, then the user has the feature to save those for future preference to the wishlist page and view it later on.
+6. The user can also sort the page basis the value of rent, either from high to low or low to high. 
+7. The user can also filter the list of records basis their search for example: if a user wants to view all the properties in a particular city with rent less than 300, then it would filter those records and after filtering, the user can also sort the filter records in ascending or descending values of rent.
+8. Also, if a user know more information about a particular house, then clicking on the image would navigate to the detailed page of the property. 
+9. The user can choose between two different payment options (MasterCard, Paypal) to confirm the booking. 
+10. Once the payment page is loaded, if the particular property is a scam, an alert box pops up saying it is a scam, would you like to still make the payment? If a user clicks yes, then payment is successful.
 
 **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+Here is a use case of our application: LinkHome
 
-*Here is a pet training application example*
+If a user plans a vacation to any place with his/ her family members and the user's preference is to stay in a large apartment for few days with all the available facilities, 
+then LinkHome helps to meet all these requirements.
 
-*If a user wants to *
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
+*Targets Users: Those who want to find good rental property for their vacation*
 
-*If any user wants to buy a house or rented house the app helps to find the houses present in that particular city *
-*First time users need to Sign Up into the application, after that user can choose from number of housing options available, they can also narrow down the search and filter by just typing the name of the city or rent range *
-*All the housing options available in that location will appear to user*
-*If user likes a house then they can save it for further preference in WishList, where it will be saved into Wishlist *
-*In case, The user wants to buy a house using LinkHome application they just to click on the LinkHome property and do the payment*
-
-
-*If user decided to buy/rent a house they just need to confirm and make the payment*
-*In case, the user has liked property but the user is not able to buy the property that moment then the user can also save that property in wishlist  *
-*Here is a map navigation application example*
-
-*Targets Users: Tenant*
-* *
-*
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
+* Users can use the app to stay at beautiful houses during their stay.
+* Users can build a strong community by meeting people from different cultures at that place.
+* Users can use the app to navigate to their wishlist items and decide later on.
+* Users can see on the navigation tab if they are logged in.
+* Users can filter the list basis their city and rent preference.
+* Users have the option to choose which payment method they are comfortable with.
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 
@@ -327,7 +351,7 @@ Token.Type.INT {INT, LESS, MORE, EQUAL, AND, OR, TEXT}**
 1. The ability to micro-interact with items in your app (e.g. add to watchlist/add to cart/like an
    item/report an item/add reviews (stars)) [stored in-memory]. (medium)
     * The user can save/remove a post to/from their wishlist. 
-    * Package homePage/posts, Class DataAdapter, methods checkBox, addDataToFirebase, removeDataFromFirebase, Lines of code: ... 
+    * Package homePage/posts, Class DataAdapter, methods: checkBox, addDataToFirebase, removeDataFromFirebase, Lines of code: ... 
     * Package homePage/bookmarks, Class BookmarkAdapter
     * Package homePage/bookmarks, Class BookmarkFragment
     * GUI: menu.xml

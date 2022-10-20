@@ -1,6 +1,6 @@
 # indexOutOfBounds
 
-## Team Meeting 2 - Teaching break - 8th Sept, 2022 (12-1:15pm)
+## Team Meeting 2 - Teaching break - 17th Sept, 2022 (1-2pm)
 **Absent: None**
 <br>
 **Lead/scribe: Devanshi**

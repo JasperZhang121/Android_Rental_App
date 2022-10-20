@@ -50,10 +50,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
         holder.postalZip.setText(user.getPostalZip());
         holder.rent.setText(user.getRent());
 
-        Glide.with(context).load(user.getImage()).apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true))
-                .into(holder.getImageView());
+        Glide.with(context).load(user.getImage()).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)).into(holder.getImageView());
     }
 
     @Override

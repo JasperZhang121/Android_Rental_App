@@ -29,30 +29,17 @@ public class Paypal extends AppCompatActivity {
         Intent intent = getIntent();
 
         dateEdt = findViewById(R.id.paymentDates);
-        // adding click listener for our pick date button
         dateEdt.setOnClickListener(v -> {
-
-            // the instance of the calendar.
             final Calendar c = Calendar.getInstance();
-
-            // day, month and year.
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            //variable for date picker dialog.
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    //passing context.
-                    Paypal.this,
-                    (view, year1, monthOfYear, dayOfMonth) -> {
-                        // setting date to the edit text.
-                        String text = (monthOfYear + 1) + "/" + year1;
-                        dateEdt.setText(text);
-                    },
-                    // passing year, month and day for selected date in the date picker.
-                    year, month, day);
-
-            // display the date picker dialog.
+            DatePickerDialog datePickerDialog = new DatePickerDialog(Paypal.this, (view, year1, monthOfYear, dayOfMonth) ->
+            {
+                String text = (monthOfYear + 1) + "/" + year1;
+                dateEdt.setText(text);
+                }, year, month, day);
             datePickerDialog.show();
         });
 
@@ -79,6 +66,7 @@ public class Paypal extends AppCompatActivity {
 
         String payMethod = intent.getStringExtra("payPaypal");
         PaymentMaker paymentMaker = new PaymentMaker();
-        if (payMethod.equals("payPal")) paymentMaker.pay_paypal();
+        if (payMethod.equals("payPal"))
+            paymentMaker.pay_paypal();
     }
 }

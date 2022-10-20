@@ -19,6 +19,7 @@ import au.edu.anu.cecs.linkhome.homePage.payment.Paypal;
 /**
  * DetailedPage class gives a detailed view
  * of the current image being clicked
+ * @author Avani Dhaliwal
  */
 
 public class DetailedPage extends AppCompatActivity {
@@ -63,6 +64,9 @@ public class DetailedPage extends AppCompatActivity {
         postalText.setText(postal);
         rentText.setText(rent);
 
+        /**
+         * @author Hao Zhang, Nihar Meshram
+         */
         mastercard.setOnClickListener(v -> {
             Intent intent = new Intent(DetailedPage.this, Mastercard.class);
             intent.putExtra("payMasterCard","mastercard");

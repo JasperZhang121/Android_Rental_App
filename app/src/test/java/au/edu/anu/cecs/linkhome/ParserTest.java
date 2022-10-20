@@ -2,6 +2,8 @@ package au.edu.anu.cecs.linkhome;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+
+import au.edu.anu.cecs.linkhome.tokenizer.Token;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.AndExp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.EqualExp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.LessExp;
@@ -11,7 +13,7 @@ import au.edu.anu.cecs.linkhome.tokenizer.Parser;
 import au.edu.anu.cecs.linkhome.tokenizer.Tokenizer;
 
 /**
- * @author Hao Zhang, Devanshi Dhall
+ * @author Devanshi Dhall, Hao Zhang
  */
 public class ParserTest {
 
@@ -19,6 +21,41 @@ public class ParserTest {
     private static final String SIMPLE_CASE_2 = "city=Canberra && rent>800";
     private static final String[] testExampleRent = new String[]{"rent<300", "rent>400"};
     private static final String[] testExampleCity = new String[]{"city=Sydney", "city=Melbourne"};
+
+    @Test
+    public void testIllegalTokenException() {
+
+        assertThrows(Token.IllegalTokenException.class, () -> {
+            Tokenizer mathTokenizer = new Tokenizer("--");
+            Parser parser = new Parser(mathTokenizer);
+            parser.parseExp();
+        });
+
+        assertThrows(Token.IllegalTokenException.class, () -> {
+            Tokenizer mathTokenizer = new Tokenizer("//");
+            Parser parser = new Parser(mathTokenizer);
+            parser.parseExp();
+        });
+
+        assertThrows(Token.IllegalTokenException.class, () -> {
+            Tokenizer mathTokenizer = new Tokenizer("**");
+            Parser parser = new Parser(mathTokenizer);
+            parser.parseExp();
+        });
+
+        assertThrows(Token.IllegalTokenException.class, () -> {
+            Tokenizer mathTokenizer = new Tokenizer("!!");
+            Parser parser = new Parser(mathTokenizer);
+            parser.parseExp();
+        });
+
+        assertThrows(Token.IllegalTokenException.class, () -> {
+            Tokenizer mathTokenizer = new Tokenizer("|&");
+            Parser parser = new Parser(mathTokenizer);
+            parser.parseExp();
+        });
+    }
+
 
     @Test
     public void testSimpleCase1() {
