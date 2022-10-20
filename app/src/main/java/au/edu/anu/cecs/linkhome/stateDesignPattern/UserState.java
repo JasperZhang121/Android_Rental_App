@@ -20,6 +20,4 @@ public abstract class UserState implements Serializable {
     public abstract boolean login(FirebaseUser firebaseUser);
 
     public abstract boolean logout();
-
-    public abstract List<Data> bookmarksPage();
 }

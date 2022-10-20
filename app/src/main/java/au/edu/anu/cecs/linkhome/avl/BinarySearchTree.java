@@ -1,10 +1,10 @@
 package au.edu.anu.cecs.linkhome.avl;
 
 /**
+ * Code from lab04
  * An AVL tree is actually an extension of a Binary Search Tree
  * with self balancing properties. Hence, our AVL trees will 'extend'
  * this Binary Search tree data structure.
- * @author Adapted from Lab04, Devanshi Dhall, Avani Dhaliwal
  */
 public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
 
@@ -23,8 +23,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
         /*
             Left is less, right is greater in this implementation.
             compareTo returns 0 if both elements are equal.
-            compareTo returns <= 0 if the element's rent is less than or equal to the node's rent.
-            compareTo returns > 0 if the element's rent is greater than the node's rent.
+            compareTo returns <= 0 if the element's value is less than or equal to the node's value.
+            compareTo returns > 0 if the element's value is greater than the node's value.
          */
 
         // Ensure input is not null.
@@ -34,13 +34,11 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
         if (element.equals(value)) {
             return this;
         } else if (element.compareTo(value) <= 0) {
-
             //If element not in tree
             if (leftNode == null)
                 return null;
             return leftNode.find(element);
         } else {
-
             //If element not in tree
             if (rightNode == null)
                 return null;

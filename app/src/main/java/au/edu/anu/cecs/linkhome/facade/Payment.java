@@ -5,6 +5,5 @@ package au.edu.anu.cecs.linkhome.facade;
  * @author Hao Zhang
  */
 public interface Payment {
-
     void pay();
 }

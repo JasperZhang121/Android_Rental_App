@@ -1,9 +1,12 @@
 package au.edu.anu.cecs.linkhome.tokenizer;
 
 import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
+ * Adapted from Lab07
+ * <p>
  * Token class to save extracted token from tokenizer.
  * Each token has its surface form saved in {@code token}
  * and type saved in {@code type} which is one of the predefined type in Type enum.
@@ -15,7 +18,8 @@ import java.util.Objects;
  * MORE: >
  * EQUAL: =
  * TEXT: String
- * @author Adapted from Lab07, Devanshi Dhall, Hao Zhang
+ *
+ * @author Devanshi Dhall, Hao Zhang
  */
 public class Token {
     /**

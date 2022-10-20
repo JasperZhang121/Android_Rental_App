@@ -22,6 +22,8 @@ import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 import au.edu.anu.cecs.linkhome.homePage.posts.DataAdapter;
 
 /**
+ * Adapter for BookmarkFragment class
+ *
  * @author Avani Dhaliwal
  */
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyViewHolder> {
@@ -44,14 +46,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Data user = list.get(position);
-        holder.address.setText(user.getAddress());
-        holder.city.setText(user.getCity());
-        holder.postalZip.setText(user.getPostalZip());
-        holder.rent.setText(user.getRent());
-
-        Glide.with(context).load(user.getImage()).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)).into(holder.getImageView());
+        Data data = list.get(position);
+        holder.address.setText(data.getAddress());
+        holder.city.setText(data.getCity());
+        holder.postalZip.setText(data.getPostalZip());
+        holder.rent.setText(data.getRent());
+        Glide.with(context).load(data.getImage()).apply(new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true))
+                .into(holder.getImageView());
     }
 
     @Override
@@ -61,6 +64,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        //Contents of an item in the BookmarkFragment
         private final ImageView imageView;
         private final TextView address;
         private final TextView city;
@@ -71,13 +75,12 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.DatabaseImageView);
-
-            address = itemView.findViewById(R.id.DatabaseAddress);
-            city = itemView.findViewById(R.id.DatabaseCity);
-            postalZip = itemView.findViewById(R.id.DatabasePostalZip);
-            rent = itemView.findViewById(R.id.DatabaseRent);
-            cbHeart = itemView.findViewById(R.id.cbHeart);
+            imageView = itemView.findViewById(R.id.database_image_view);
+            address = itemView.findViewById(R.id.database_address);
+            city = itemView.findViewById(R.id.database_city);
+            postalZip = itemView.findViewById(R.id.databse_postal);
+            rent = itemView.findViewById(R.id.database_rent);
+            cbHeart = itemView.findViewById(R.id.cb_heart);
 
             itemView.setOnClickListener(this);
             cbHeart.setChecked(true);
@@ -85,6 +88,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.MyView
         }
 
         /**
+         * When the heart icon is unchecked,
+         * remove the item from the Wishlist Page
+         *
          * @author Devanshi Dhall
          */
         public void checkBox() {

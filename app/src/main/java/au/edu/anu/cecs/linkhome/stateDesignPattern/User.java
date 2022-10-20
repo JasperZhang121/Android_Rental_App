@@ -9,7 +9,9 @@ import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 
 /**
  * User class to implement state design pattern
- * @author Avani Dhaliwal, Adapted from Design Pattern Lecture Slides
+ * Adapted from Design Pattern Lecture Slides
+ *
+ * @author Avani Dhaliwal
  */
 public class User implements Serializable {
 
@@ -18,6 +20,12 @@ public class User implements Serializable {
     private UserState userState;
     private String username;
 
+    public User() {
+        UserState defaultState = new LogoutState(this);
+        changeState(defaultState);
+    }
+
+    //Setters
     public void setUsername(String username) {
         this.username = username;
     }
@@ -26,6 +34,7 @@ public class User implements Serializable {
         this.userState = state;
     }
 
+    //Getters
     public UserState getUserState() {
         return userState;
     }
@@ -34,13 +43,9 @@ public class User implements Serializable {
         return username;
     }
 
-    public User() {
-        UserState defaultState = new LogoutState(this);
-        changeState(defaultState);
-    }
-
     /**
      * Singleton Design Pattern for User
+     *
      * @return User
      * @author Devanshi Dhall
      */
@@ -51,7 +56,11 @@ public class User implements Serializable {
         return instance;
     }
 
-
+    /**
+     * @param firebaseUser the current user
+     * @return if the user can login
+     * @author Avani Dhaliwal
+     */
     public boolean login(FirebaseUser firebaseUser) {
         boolean loginOk = userState.login(firebaseUser);
         if (loginOk) {
@@ -60,15 +69,15 @@ public class User implements Serializable {
         return loginOk;
     }
 
+    /**
+     * @return if the user can logout
+     * @author Avani Dhaliwal
+     */
     public boolean logout() {
         boolean logoutOk = userState.logout();
         if (logoutOk) {
             this.username = null;
         }
         return logoutOk;
-    }
-
-    public List<Data> bookmarksPage() {
-        return userState.bookmarksPage();
     }
 }

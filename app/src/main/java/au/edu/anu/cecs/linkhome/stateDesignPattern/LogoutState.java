@@ -8,7 +8,9 @@ import au.edu.anu.cecs.linkhome.homePage.posts.Data;
 
 /**
  * To implement to State Design Pattern for User's Logout state
- * @author Avani Dhaliwal, Adapted from Design Pattern Lecture Slides
+ * Adapted from Design Pattern Lecture Slides
+ *
+ * @author Avani Dhaliwal
  */
 public class LogoutState extends UserState {
     public LogoutState(User user) {
@@ -23,10 +25,5 @@ public class LogoutState extends UserState {
     @Override
     public boolean logout() {
         return true;
-    }
-
-    @Override
-    public List<Data> bookmarksPage() {
-        return null;
     }
 }

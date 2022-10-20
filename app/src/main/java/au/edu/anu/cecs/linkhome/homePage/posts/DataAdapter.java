@@ -26,8 +26,12 @@ import au.edu.anu.cecs.linkhome.R;
 import au.edu.anu.cecs.linkhome.stateDesignPattern.LoginState;
 import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
 
+/**
+ * Adapter for DataFragment class
+ *
+ * @author Hao Zhang, Nihar Meshram
+ */
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> {
-
     private final ItemClickListener listener;
     private final Context context;
     private final ArrayList<Data> list;
@@ -50,13 +54,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Data user = list.get(position);
-        holder.address.setText(user.getAddress());
-        holder.city.setText(user.getCity());
-        holder.postalZip.setText(user.getPostalZip());
-        holder.rent.setText(user.getRent());
-
-        Glide.with(context).load(user.getImage()).apply(new RequestOptions()
+        Data data = list.get(position);
+        holder.address.setText(data.getAddress());
+        holder.city.setText(data.getCity());
+        holder.postalZip.setText(data.getPostalZip());
+        holder.rent.setText(data.getRent());
+        Glide.with(context).load(data.getImage()).apply(new RequestOptions()
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true))
                 .into(holder.getImageView());
@@ -69,6 +72,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        //Contents of an item in the DataFragment
         private final ImageView imageView;
         private final TextView address;
         private final TextView city;
@@ -79,12 +83,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.DatabaseImageView);
-            address = itemView.findViewById(R.id.DatabaseAddress);
-            city = itemView.findViewById(R.id.DatabaseCity);
-            postalZip = itemView.findViewById(R.id.DatabasePostalZip);
-            rent = itemView.findViewById(R.id.DatabaseRent);
-            cbHeart = itemView.findViewById(R.id.cbHeart);
+            imageView = itemView.findViewById(R.id.database_image_view);
+            address = itemView.findViewById(R.id.database_address);
+            city = itemView.findViewById(R.id.database_city);
+            postalZip = itemView.findViewById(R.id.databse_postal);
+            rent = itemView.findViewById(R.id.database_rent);
+            cbHeart = itemView.findViewById(R.id.cb_heart);
 
             itemView.setOnClickListener(this);
             checkBox();
@@ -99,11 +103,19 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
             listener.onItemClick(view, getAdapterPosition());
         }
 
+        /**
+         * When the heart icon is unchecked,
+         * remove the item from the Wishlist Page
+         *
+         * When the heart icon is unchecked,
+         * add the item to the Wishlist Page
+         * @author Devanshi Dhall
+         */
         public void checkBox() {
             User user = User.getInstance();
             cbHeart.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) {
-                    if(user.getUserState() instanceof LoginState){
+                    if (user.getUserState() instanceof LoginState) {
                         addDataToFirebase(list.get(getAdapterPosition()), context);
                     } else {
                         cbHeart.setChecked(false);
@@ -114,6 +126,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         }
     }
 
+    /**
+     * Adds data to firebase
+     * @param data the data to be added
+     * @param context context of the class the method is being called from
+     * @author Avani Dhaliwal
+     */
     public static void addDataToFirebase(Data data, Context context) {
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + data.getId());
@@ -126,6 +144,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MyViewHolder> 
         });
     }
 
+    /**
+     * Removes data from firebase
+     * @param id the id of the data to be deleted
+     * @param context context of the class the method is being called from
+     * @author Avani Dhaliwal
+     */
     public static void deleteDataFromFirebase(String id, Context context) {
         String user = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         databaseReference = firebaseDatabase.getReference("Bookmarks/" + user + "/" + id);

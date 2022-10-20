@@ -3,6 +3,8 @@ package au.edu.anu.cecs.linkhome.tokenizer.expressions;
 /**
  * LessExp: it is extended from the abstract class Exp.
  * This class is used to represent the expression of < operator.
+ *
+ * @author Devanshi Dhall, Hao Zhang
  */
 public class LessExp extends Exp {
 

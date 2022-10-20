@@ -3,12 +3,11 @@ package au.edu.anu.cecs.linkhome.avl;
 import androidx.annotation.NonNull;
 
 /**
+ * Code from lab04
  * The following interface defines required methods of any Tree.
- * Note that this is simplified for this lab (no delete).
  *
  * @param <T> the generic type this Tree uses. It extends comparable
  *            which allows us to order two of the same type.
- * @author lab4
  */
 public abstract class Tree<T extends Comparable<T>> {
     /**

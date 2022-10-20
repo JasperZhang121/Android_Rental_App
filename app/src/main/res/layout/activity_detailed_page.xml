@@ -7,7 +7,7 @@
     tools:context=".homePage.posts.DetailedPage">
 
     <ImageView
-        android:id="@+id/detailedPageImage"
+        android:id="@+id/detailed_page_image"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:scaleType="fitXY"
@@ -16,10 +16,11 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="postImage" />
 
     <TextView
-        android:id="@+id/detailedPageAddress"
+        android:id="@+id/detailed_page_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -27,44 +28,44 @@
         android:text="address"
         android:textColor="@color/green_500"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageCity" />
+        app:layout_constraintStart_toEndOf="@+id/detailed_page_address_title"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_city" />
 
     <TextView
-        android:id="@+id/detailedPageCity"
+        android:id="@+id/detailed_page_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="city"
         android:textColor="@color/green_500"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageImage" />
+        app:layout_constraintStart_toEndOf="@+id/detailed_page_city_title"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_image" />
 
     <TextView
-        android:id="@+id/detailedPagePostal"
+        android:id="@+id/detailed_page_postal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Postal Zip"
         android:textColor="@color/green_500"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageAddress" />
+        app:layout_constraintStart_toEndOf="@+id/detailed_page_postal_title"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_address" />
 
     <TextView
-        android:id="@+id/detailedPageRent"
+        android:id="@+id/detailed_page_rent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="rent"
         android:textColor="@color/green_500"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPagePostal" />
+        app:layout_constraintStart_toEndOf="@+id/detailed_page_rent_title"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_postal" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/detailed_page_city_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -75,10 +76,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageImage" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_image" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/detailed_page_address_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -89,10 +90,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_city_title" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/detailed_page_postal_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -103,10 +104,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_address_title" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/detailed_page_rent_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -117,10 +118,10 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_postal_title" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/mastercard_button"
         android:layout_width="110dp"
         android:layout_height="66dp"
         android:layout_marginStart="85dp"
@@ -131,15 +132,15 @@
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/paypal_button"
         app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageRent"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_rent"
         app:layout_constraintVertical_bias="0.761"
         app:srcCompat="@drawable/mastercard" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/paypal_button"
         android:layout_width="104dp"
         android:layout_height="70dp"
         android:layout_marginStart="52dp"
@@ -152,12 +153,12 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_text_view"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/paypal" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/confirm_text_view"
         android:layout_width="413dp"
         android:layout_height="57dp"
         android:layout_marginStart="104dp"
@@ -173,15 +174,15 @@
         android:gravity="center_horizontal"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        app:layout_constraintBottom_toTopOf="@+id/mastercard_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/description_text_view"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/description_text_view"
         android:layout_width="384dp"
         android:layout_height="124dp"
         android:layout_marginStart="16dp"
@@ -197,7 +198,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedPageImage"
+        app:layout_constraintTop_toBottomOf="@+id/detailed_page_image"
         app:layout_constraintVertical_bias="0.445" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

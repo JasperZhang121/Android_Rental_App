@@ -45,8 +45,8 @@ public class LoginTabFragment extends Fragment {
         // To store all the components of UI with respect to their data type
         email = root.findViewById(R.id.email_address);
         password = root.findViewById(R.id.password);
-        login = root.findViewById(R.id.loginButton);
-        continueButton = root.findViewById(R.id.continueButton);
+        login = root.findViewById(R.id.login_button);
+        continueButton = root.findViewById(R.id.continue_button);
         mAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(view -> loginUser());
         continueButton.setOnClickListener(view -> {
@@ -61,6 +61,7 @@ public class LoginTabFragment extends Fragment {
 
     /**
      * loginUser method checks for certain conditions if a user is trying to log in
+     * @author Devanshi Dhall, Avani Dhaliwal
      */
     private void loginUser() {
         String emailID = email.getText().toString();
@@ -82,7 +83,7 @@ public class LoginTabFragment extends Fragment {
         else {
             mAuth.signInWithEmailAndPassword(emailID, passwordNew).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "User logged in successfully ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Logged in successfully ", Toast.LENGTH_SHORT).show();
                     User user = User.getInstance();
                     user.changeState(new LoginState(user));
                     user.login(mAuth.getCurrentUser());

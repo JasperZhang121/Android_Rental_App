@@ -13,11 +13,11 @@ public class PaymentMaker {
         paypal = new Paypal();
     }
 
-    public void pay_mastercard(){
+    public void payMastercard(){
         mastercard.pay();
     }
 
-    public void pay_paypal(){
+    public void payPaypal(){
         paypal.pay();
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 /**
  * Data class to store all the fields of type Data to be displayed on the UI
+ *
  * @author Nihar Meshram, Hao Zhang
  */
 
@@ -22,10 +23,11 @@ public class Data implements Comparable<Data> {
     }
 
     /**
-     * compareTo method compares the value of rent
-     * @author Avani Dhaliwal, Devanshi Dhall
-     * @param data Data
+     * compareTo method compares the rent of Data objects
+     *
+     * @param data Data being compared
      * @return int value
+     * @author Avani Dhaliwal, Devanshi Dhall
      */
     @Override
     public int compareTo(Data data) {
@@ -33,7 +35,7 @@ public class Data implements Comparable<Data> {
                 Float.parseFloat(data.rent.substring(1)));
     }
 
-    // Getter methods for the fields
+    // Getters
     public String getAddress() {
         return address;
     }
@@ -54,20 +56,26 @@ public class Data implements Comparable<Data> {
         return image;
     }
 
-    public String getId(){
+    public String getId() {
         return id;
     }
 
-    public String getIsScam(){return isScam;}
+    public String getIsScam() {
+        return isScam;
+    }
 
     // Setters
-    public void setImage(String image){this.image = image;}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setIsScam(String isScam){this.isScam = isScam;}
+    public void setIsScam(String isScam) {
+        this.isScam = isScam;
+    }
 
     @NonNull
     @Override

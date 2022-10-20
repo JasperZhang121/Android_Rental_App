@@ -9,23 +9,13 @@ import au.edu.anu.cecs.linkhome.tokenizer.expressions.MoreExp;
 
 /**
  * AVL tree implementation. Adapted from lab4.
- * @author Avani Dhaliwal, Devanshi Dhall, lab4
  */
 public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
-    /*
-        As a result of inheritance by using 'extends BinarySearchTree<T>,
-        all class fields within BinarySearchTree are also present here.
-        So while not explicitly written here, this class has:
-            - value
-            - leftNode
-            - rightNode
-     */
 
     public AVLTree(T value) {
         super(value);
 
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
-
         this.leftNode = new EmptyAVL<>();
         this.rightNode = new EmptyAVL<>();
     }
@@ -41,6 +31,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         return leftNode.getHeight() - rightNode.getHeight();
     }
 
+    /**
+     * @param element the element to be inserted in the tree
+     * @return the tree with the element
+     * @author Avani Dhaliwal, Devanshi Dhall
+     */
     @Override
     public AVLTree<T> insert(T element) {
 
@@ -64,6 +59,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         if (newTreeCopy.getBalanceFactor() < -1) {
             assert newTreeCopy.rightNode.value != null;
             if (element.compareTo(newTreeCopy.rightNode.value) <= 0) {
+                //Right Left Rotation
                 AVLTree<T> rightNode = (AVLTree<T>) newTreeCopy.rightNode;
                 newTreeCopy.rightNode = rightNode.rightRotate();
             }
@@ -71,6 +67,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         } else if (newTreeCopy.getBalanceFactor() > 1) {
             assert newTreeCopy.leftNode.value != null;
             if (element.compareTo(newTreeCopy.leftNode.value) >= 0) {
+                //Left Right Rotation
                 AVLTree<T> leftNode = (AVLTree<T>) newTreeCopy.leftNode;
                 newTreeCopy.leftNode = leftNode.leftRotate();
             }
@@ -82,6 +79,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     /**
      * Deletes the given element and returns a new instance of itself without the new node.
      * Adapted from code written by Peicheng Liu on stubents.
+     *
      * @param element the element to be removed from the tree
      * @return A new AVLTree without the element
      * @author Peicheng Liu
@@ -168,7 +166,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     /**
-     * Helper function for delete(), recursive, finds the leftmost (smallest) element in current tree
+     * Helper function for delete()
+     * Recursive
+     * Finds the leftmost (smallest) element in current tree
+     *
      * @return the leftmost element
      * @author Peicheng Liu
      */
@@ -182,6 +183,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Conducts a left rotation on the current node.
+     *
      * @return the new 'current' or 'top' node after rotation.
      */
     public AVLTree<T> leftRotate() {
@@ -194,6 +196,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     /**
      * Conducts a right rotation on the current node.
+     *
      * @return the new 'current' or 'top' node after rotation.
      */
     public AVLTree<T> rightRotate() {
@@ -205,9 +208,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     /**
-     * Note that this is not within a file of its own... WHY?
-     * The answer is: this is just a design decision. 'insert' here will return something specific
-     * to the parent class inheriting Tree from BinarySearchTree. In this case an AVL tree.
+     * An empty AVL tree
+     *
+     * @param <Data>
      */
     public static class EmptyAVL<Data extends Comparable<Data>> extends EmptyTree<Data> {
         @Override
@@ -217,6 +220,12 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         }
     }
 
+    /**
+     * Returns all the elements in an AVl tree as a list in order.
+     *
+     * @param tree the tree to be flattened.
+     * @return an ordered ArrayList of elements in the tree
+     */
     public ArrayList<T> treeToListInOrder(AVLTree<T> tree) {
         ArrayList<T> list = new ArrayList<>();
 
@@ -242,37 +251,35 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     /**
-     * Filter Data method is used to filter records on the UI by meeting the search condition in AVL tree
-     * @param  tree, exp, rent
-     * @return  AVLTree
+     * Filters a tree given a specific condition.
+     * For example if exp is LessExp and element is of type Data with rent 300.
+     * Then the method returns a tree with all elements whose rent is less than 300.
+     *
+     * @param tree, exp, rent
+     * @return AVLTree the filtered tree
+     * @author Avani Dhaliwal, Devanshi Dhall
      */
-    public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T rent){
-        if(exp instanceof LessExp) {
-            if (Objects.requireNonNull(value).compareTo(rent) < 0) {
+    public AVLTree<T> filterData(AVLTree<T> tree, Exp exp, T element) {
+        //Return tree with all values less than element.
+        if (exp instanceof LessExp) {
+            if (Objects.requireNonNull(value).compareTo(element) < 0) {
                 if (tree.rightNode instanceof EmptyAVL) {
                     return tree;
                 } else {
-                    return new AVLTree<>(value, this.leftNode, filterData((AVLTree<T>) tree.rightNode, exp, rent));
+                    return new AVLTree<>(value, this.leftNode, filterData((AVLTree<T>) tree.rightNode, exp, element));
                 }
-            } else {
-                return null;
             }
         }
-
-        if(exp instanceof MoreExp) {
-            if (Objects.requireNonNull(value).compareTo(rent) > 0) {
+        //Return tree with all values more than element.
+        else if (exp instanceof MoreExp) {
+            if (Objects.requireNonNull(value).compareTo(element) > 0) {
                 if (tree.leftNode instanceof EmptyAVL) {
                     return tree;
                 } else {
-                    return new AVLTree<>(value, this.leftNode, filterData((AVLTree<T>) tree.leftNode, exp, rent));
+                    return new AVLTree<>(value, this.leftNode, filterData((AVLTree<T>) tree.leftNode, exp, element));
                 }
-
-            } else {
-                return null;
             }
         }
-
         return null;
     }
-
 }

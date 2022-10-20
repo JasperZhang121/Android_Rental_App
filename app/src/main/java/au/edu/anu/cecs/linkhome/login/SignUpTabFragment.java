@@ -50,6 +50,7 @@ public class SignUpTabFragment extends Fragment {
 
     /**
      * createUser method creates an account for the new users who have signed up in the app
+     * @author Devanshi Dhall
      */
     private void createUser() {
         String emailID = email.getText().toString();
@@ -81,7 +82,7 @@ public class SignUpTabFragment extends Fragment {
         else {
             mAuth.createUserWithEmailAndPassword(emailID, passwordConfirm).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "User Registered ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Account Registered", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getContext(), LoginTabFragment.class));
                 } else {
                     Toast.makeText(getContext(), "Registration error " +
@@ -89,7 +90,6 @@ public class SignUpTabFragment extends Fragment {
                 }
             });
         }
-
     }
 }
 

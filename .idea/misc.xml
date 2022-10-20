@@ -12,9 +12,10 @@
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_detailed_page.xml" value="0.33" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_home_page.xml" value="0.33" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_login.xml" value="0.4462962962962963" />
-        <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_main.xml" value="0.20052083333333334" />
+        <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_mastercard.xml" value="0.381025641025641" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_payment_page.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_payment_successful.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_paypal.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/activity_wishlist.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/RAZER BLADE/AndroidStudioProjects/ga-22s2-comp2100-6442/app/src/main/res/layout/bookmark_fragment.xml" value="0.38697916666666665" />
@@ -53,7 +54,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -2,8 +2,9 @@ package au.edu.anu.cecs.linkhome.tokenizer.expressions;
 
 /**
  * Abstract class Exp to represent expressions
+ * Adapted from Lab07
  *
- * @author Adapted from Lab07, Devanshi DHall, Hao Zhang
+ * @author Devanshi DHall, Hao Zhang
  */
 public abstract class Exp {
 

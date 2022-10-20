@@ -5,6 +5,11 @@ import android.os.Bundle;
 
 import au.edu.anu.cecs.linkhome.R;
 
+/**
+ * Called when the user successfully confirms the payment
+ *
+ * @author Devanshi Dhall
+ */
 public class PaymentSuccessful extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

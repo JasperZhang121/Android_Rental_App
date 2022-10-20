@@ -1,7 +1,11 @@
 package au.edu.anu.cecs.linkhome.tokenizer;
 
 /**
- * @author Adapted from Lab07, Devanshi DHall, Hao Zhang
+ * Adapted from Lab07
+ * <p>
+ * Creates tokens from the user's searched query
+ *
+ * @author Devanshi Dhall, Hao Zhang
  */
 public class Tokenizer {
     private String buffer;
@@ -69,6 +73,7 @@ public class Tokenizer {
             }
             currentToken = new Token(result.toString().trim(), Token.Type.INT);
         }
+
         else {
             throw new Token.IllegalTokenException("Invalid token");
         }
@@ -80,6 +85,7 @@ public class Tokenizer {
 
     /**
      * Returns the current token extracted by {@code next()}
+     *
      * @return type: Token
      */
     public Token current() {
@@ -88,6 +94,7 @@ public class Tokenizer {
 
     /**
      * Check whether tokenizer still has tokens left
+     *
      * @return type: boolean
      */
     public boolean hasNext() {

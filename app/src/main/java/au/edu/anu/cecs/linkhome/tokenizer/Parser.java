@@ -14,12 +14,15 @@ import au.edu.anu.cecs.linkhome.tokenizer.expressions.MoreExp;
 import au.edu.anu.cecs.linkhome.tokenizer.expressions.OrExp;
 
 /**
- * It should be able to parser the following grammar rule:
+ * Adapted some parts from Lab07
+ *
+ * Parses the following grammar rule:
  * <exp>    ::=  <city> <operator> <letter> | <rent> <operator> <coefficient> | <exp> || <exp> | <exp> && <exp>
  * <operator> ::= < < | > | = >
  * <coefficient> ::= <unsigned integer>
  * <letter> ::= <alphabets>
- * @author Devanshi Dhall, Hao Zhang, Adapted some parts from Lab07
+ *
+ * @author Devanshi Dhall, Hao Zhang
  */
 public class Parser {
 
@@ -36,6 +39,7 @@ public class Parser {
 
     /**
      * Create an array list to store the necessary tokens in the list
+     *
      * @return finalList
      */
     public ArrayList<Object> getFinalList() {
@@ -45,6 +49,7 @@ public class Parser {
     /**
      * Adheres to the grammar rule:
      * <exp>    ::= <term> || <exp> | <term> && <exp> | <term>
+     *
      * @return type: Exp.
      */
     public Exp parseExp() {
@@ -63,10 +68,11 @@ public class Parser {
     /**
      * Adheres to the grammar rule:
      * <operator> ::= < < | > | = >
+     *
      * @return type: Exp.
      */
     public Exp parseOperators() {
-        if(this.tokenizer.current() == null){
+        if (this.tokenizer.current() == null) {
             return null;
         }
         switch (this.tokenizer.current().getType()) {
@@ -93,8 +99,8 @@ public class Parser {
                 finalList.add(equalExp);
                 if (tokenizer.hasNext()) {
                     tokenizer.next();
+                    System.out.println(this.tokenizer.current());
                     parseCoefficient();
-
                 }
                 return new EqualExp();
 
@@ -116,22 +122,22 @@ public class Parser {
                 }
                 return new OrExp();
         }
-        return null;
+        return parseLetter();
     }
 
     /**
      * Adheres to the grammar rule:
      * <coefficient> ::= <unsigned integer>
+     *
      * @return type: Exp.
      */
     public Exp parseCoefficient() {
-
         IntExp result;
 
         if (this.tokenizer.current().getType() == Token.Type.INT) {
             result = new IntExp(Integer.parseInt(this.tokenizer.current().getToken()));
             finalList.add(result.evaluateInt());
-            if(tokenizer.hasNext()){
+            if (tokenizer.hasNext()) {
                 tokenizer.next();
                 return parseOperators();
             }
@@ -146,11 +152,10 @@ public class Parser {
     /**
      * Adheres to the grammar rule:
      * <letter> ::= <alphabets>
+     *
      * @return type: Exp.
      */
-
     public Exp parseLetter() {
-
         if (Objects.equals(this.tokenizer.current().getToken(), "city")) {
             if (tokenizer.hasNext()) {
                 tokenizer.next();
@@ -159,24 +164,27 @@ public class Parser {
                 }
             }
 
-        } else if (Objects.equals(this.tokenizer.current().getToken(), "rent")) {
+        }
+
+        else if (Objects.equals(this.tokenizer.current().getToken(), "rent")) {
             if (tokenizer.hasNext()) {
                 tokenizer.next();
                 if (tokenizer.current().getType() == Token.Type.EQUAL || tokenizer.current().getType() == Token.Type.MORE || tokenizer.current().getType() == Token.Type.LESS) {
                     parseOperators();
                 }
             }
-        } else if (this.tokenizer.current().getType() == Token.Type.TEXT) {
+        }
+
+        else if (this.tokenizer.current().getType() == Token.Type.TEXT) {
             finalList.add(tokenizer.current().getToken());
             if (tokenizer.hasNext()) {
                 tokenizer.next();
-                if (this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.AND) {
+                if (this.tokenizer.current() != null && this.tokenizer.current().getType() == Token.Type.AND) {
+                    parseOperators();
+                } else if (this.tokenizer.current() != null && this.tokenizer.current().getType() == Token.Type.OR) {
                     parseOperators();
                 }
-                else if(this.tokenizer.current()!=null && this.tokenizer.current().getType() == Token.Type.OR){
-                    parseOperators();
-                }
-                if(this.tokenizer.current()==null){
+                if (this.tokenizer.current() == null) {
                     return new OrExp();
                 }
             }

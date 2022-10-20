@@ -7,12 +7,12 @@
     tools:context=".homePage.payment.Paypal">
 
     <EditText
-        android:id="@+id/paymentCardNumber"
+        android:id="@+id/payment_card_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
         android:ems="10"
-        android:hint="Enter Card Number"
+        android:hint="@string/enter_card_number"
         android:inputType="number"
         android:maxLength="16"
         android:maxLines="1"
@@ -21,7 +21,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/paymentDates"
+        android:id="@+id/payment_dates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -32,11 +32,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
+        app:layout_constraintTop_toBottomOf="@+id/payment_card_number"
         app:layout_constraintVertical_bias="0.07" />
 
     <EditText
-        android:id="@+id/paymentCVV"
+        android:id="@+id/payment_cvv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -49,11 +49,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentCardNumber"
+        app:layout_constraintTop_toBottomOf="@+id/payment_card_number"
         app:layout_constraintVertical_bias="0.246" />
 
     <EditText
-        android:id="@+id/paymentHolderName"
+        android:id="@+id/payment_holder_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -64,11 +64,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentDates"
+        app:layout_constraintTop_toBottomOf="@+id/payment_dates"
         app:layout_constraintVertical_bias="0.284" />
 
     <EditText
-        android:id="@+id/paymentEmail"
+        android:id="@+id/payment_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -79,11 +79,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentDates"
+        app:layout_constraintTop_toBottomOf="@+id/payment_dates"
         app:layout_constraintVertical_bias="0.501" />
 
     <Button
-        android:id="@+id/paymentConfirmPaypal"
+        android:id="@+id/payment_confirm_paypal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Confirm"
@@ -91,22 +91,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentEmail"
+        app:layout_constraintTop_toBottomOf="@+id/payment_email"
         app:layout_constraintVertical_bias="0.296" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/card_image"
         android:layout_width="31dp"
         android:layout_height="24dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/paymentCardNumber"
+        app:layout_constraintEnd_toEndOf="@+id/payment_card_number"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_credit_card_24" />
 
     <TextView
-        android:id="@+id/et_information"
+        android:id="@+id/payment_details_title"
         android:layout_width="342dp"
         android:layout_height="47dp"
         android:layout_marginTop="14dp"
@@ -118,14 +118,14 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/paymentCardNumber"
+        app:layout_constraintBottom_toTopOf="@+id/payment_card_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/payapl_image" />
 
     <TextView
-        android:id="@+id/et_welcome_mastercard"
+        android:id="@+id/payment_title"
         android:layout_width="367dp"
         android:layout_height="45dp"
         android:layout_marginStart="50dp"
@@ -139,7 +139,7 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintBottom_toTopOf="@+id/payapl_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +147,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/payapl_image"
         android:layout_width="354dp"
         android:layout_height="49dp"
         android:layout_marginStart="16dp"
@@ -157,11 +157,11 @@
         android:layout_marginRight="346dp"
         android:layout_marginBottom="17dp"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/et_information"
+        app:layout_constraintBottom_toTopOf="@+id/payment_details_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_welcome_mastercard"
+        app:layout_constraintTop_toBottomOf="@+id/payment_title"
         app:srcCompat="@drawable/paypal" />
 
     <TextView
@@ -171,9 +171,9 @@
         android:text=""
         android:textColor="#FF0000"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/paymentConfirm"
+        app:layout_constraintBottom_toTopOf="@+id/payment_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/payment_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,11 +59,11 @@ public class ParserTest {
 
     @Test
     public void testSimpleCase1() {
-
         Tokenizer mathTokenizer = new Tokenizer(SIMPLE_CASE_1);
         Parser parser = new Parser(mathTokenizer);
         parser.parseExp();
         ArrayList<Object> list = parser.getFinalList();
+        System.out.println(list);
         assertTrue(list.get(0)instanceof EqualExp);
         assertEquals(list.get(1),"Canberra");
         assertTrue(list.get(2)instanceof OrExp);

@@ -10,15 +10,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 import au.edu.anu.cecs.linkhome.homePage.bookmarks.BookmarkFragment;
 import au.edu.anu.cecs.linkhome.homePage.posts.DatabaseFragment;
@@ -31,7 +28,7 @@ import au.edu.anu.cecs.linkhome.stateDesignPattern.User;
 /**
  * HomePage stores all the details related to the navigation
  * All the different states such as going from login to clicking on logout are implemented
- * Each user can navigate to different pages in the app as per their preference
+ * Each user can navigate to different pages (bookmarks and homepage) in the app as per their preference
  *
  * @author Avani Dhaliwal
  */
@@ -56,7 +53,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        TextView userEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.textView);
+        //Display the username on the navigation header
+        TextView userEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.username_tv);
         User user = User.getInstance();
         if (user.getUserState() instanceof LoginState) {
             userEmail.setText(user.getUsername());
@@ -72,6 +70,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     /**
      * onBackPressed method helps to open or close the
      * navigation menu by clicking on hamburger menu icon
+     * @author Avani Dhaliwal
      */
     @Override
     public void onBackPressed() {
@@ -87,6 +86,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
      *
      * @param item MenuItem
      * @return true or false
+     * @author Avani Dhaliwal
      */
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -95,6 +95,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         // Creating an instance of a User class to access where an instance of a user is required
         User user = User.getInstance();
         switch (item.getItemId()) {
+            //If user clicks on Wishlist start the bookmark fragment
             case R.id.nav_bookmarks:
                 if (user.getUserState() instanceof LoginState) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -103,11 +104,16 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     Toast.makeText(this, "Login to add posts to Wishlist", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            //If user clicks on home start the database fragment
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new DatabaseFragment()).commit();
                 break;
+
+            //When login is clicked
             case R.id.nav_login:
+                //if the user is logged out go to the login page
                 if (user.getUserState() instanceof LogoutState) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.putExtra("USER", user);
@@ -116,7 +122,10 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     Toast.makeText(this, "You are currently logged in", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            //When logout is clicked
             case R.id.nav_logout:
+                //if the user is logged in go to the login page
                 if (user.getUserState() instanceof LoginState) {
                     FirebaseAuth mAuth = FirebaseAuth.getInstance();
                     mAuth.signOut();
