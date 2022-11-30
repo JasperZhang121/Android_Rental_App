@@ -17,9 +17,14 @@
 
 **Display:**
 
+ 
+![Screenshot 2022-11-30 133439](https://user-images.githubusercontent.com/111576857/204693830-695c5206-9fc5-446e-8391-ef92852d13f0.png)
+![Screenshot 2022-11-30 133531](https://user-images.githubusercontent.com/111576857/204693944-e7e994b2-5fc0-4dd2-9093-a36aebfeb2b0.png)
 
+![Screenshot 2022-11-30 133627](https://user-images.githubusercontent.com/111576857/204694076-d089d59f-2af2-430e-92b6-0cf283340669.png)
+![Screenshot 2022-11-30 133728](https://user-images.githubusercontent.com/111576857/204694200-9bfc8f94-b2e7-4adb-bf57-7034d1f74ddf.png)
 
-
+![Screenshot 2022-11-30 133834](https://user-images.githubusercontent.com/111576857/204694396-523e25b0-2e1a-4742-9090-7efbd7c1c2c7.png)
 
 -------------------------
 **Grammar Design:**
