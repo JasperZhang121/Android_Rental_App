@@ -1,6 +1,6 @@
-- Our application named "LinkHome" is a booking accommodation application that specialises in rental housing. Our application is focused towards building a strong and diverse culture among group of people by offering them rental property for their vacation mode.
+**The application named "LinkHome" is a booking accommodation application that specialises in rental housing. Our application is focused towards building a strong and diverse culture among group of people by offering them rental property for their vacation mode.
 
-Application workflow and features:
+**Application workflow and features:
 1. If a user is new to the app, then the user needs to sign up and create an account to add items to wishlist and confirm their booking as required.
 2. If the user already has an account on the application, then the user can directly sign in using the credentials.
 3. User can still view the properties without logging in the app but cannot wishlist the item.
@@ -13,7 +13,8 @@ Application workflow and features:
 11. The user can choose between two different payment options (MasterCard, Paypal) to confirm the booking.
 12. Once the user has clicked on confirmed and if the particular property is a scam, an alert box pops up saying it is a scam, would you still like to make the payment? If a user clicks yes, then the payment is successful.
 
-Grammar Design:
+**Grammar Design:
+
 The grammar is designed by taking into account the search criteria in our application.By making tha above mentioned grammar, it helps the user to filter records by city or rent or both. For example, the user can search by adding the below mentioned query in the search bar:
 city=Canberra && rent<400
 city=Canberra || rent>400
@@ -22,12 +23,10 @@ rent>400
 rent>300 && rent <400
 rent>300 || rent<400
 
-
-Summary of Known Errors and Bugs:
+**Summary of Known Errors and Bugs:
 1. Bug 1:
 - Sometimes when the user signs up, the app crashes. This can be fixed by clearing the device cache.
 - Although the app crashes, the user can still login in the application again using the new credentials.
-
 2. Bug 2:
 - If the first item is bookmarked by clicking on the heart icon, then every 6th post after the bookmark post has also a filled heart icon.
 - However only the first item chosen is added to the wishlist page.
