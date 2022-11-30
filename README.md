@@ -13,8 +13,15 @@
 10. Also, if a user wants to know more information about a particular house, then by clicking on the image would navigate to the detailed page of the property.
 11. The user can choose between two different payment options (MasterCard, Paypal) to confirm the booking.
 12. Once the user has clicked on confirmed and if the particular property is a scam, an alert box pops up saying it is a scam, would you still like to make the payment? If a user clicks yes, then the payment is successful.
+-------------------------
+
+**Display:**
 
 
+
+
+
+-------------------------
 **Grammar Design:**
 
 The grammar is designed by taking into account the search criteria in our application.By making tha above mentioned grammar, it helps the user to filter records by city or rent or both. For example, the user can search by adding the below mentioned query in the search bar:
