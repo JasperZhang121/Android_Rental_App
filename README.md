@@ -1,4 +1,6 @@
 **The application named "LinkHome" is a booking accommodation application that specialises in rental housing. Our application is focused towards building a strong and diverse culture among group of people by offering them rental property for their vacation mode.**
+
+Android_Rental_App/app/src/main/java/au/edu/anu/cecs/linkhome/
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Application workflow and features:**
